@@ -20,7 +20,6 @@
         "pg": "~2.0.0",
         "bcrypt": "~0.7.3",
         "commander": "~1.1.1",
-        "jsonfile" : "*",
-        "fs": "*"
+        "jsonfile" : "*"
      }
 }

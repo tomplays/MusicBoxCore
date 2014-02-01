@@ -17,9 +17,10 @@ Node version for MusicBoxCore
 ## INSTALL
 
 <pre><code>
+
 git clone https://github.com/tomplays/MusicBoxCore.git
 
-cd MusicBoxCore
+cd MusicBoxCore/node
 
 npm install (maybe sudo for PG)
 
@@ -34,11 +35,12 @@ npm install (maybe sudo for PG)
 
 
 <code><pre>
-	npm app.js --fixtures start with dbinit.js database fill
 
-	npm app.js --drop   drop database ! 
+npm app.js --fixtures start with dbinit.js database fill
+
+npm app.js --drop   drop database ! 
+
 </code></pre>
- 	
 
 ## Directory Layout
     
