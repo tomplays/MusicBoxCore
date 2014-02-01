@@ -33,14 +33,11 @@ npm install (maybe sudo for PG)
 
 ## RUN/START 
 
-
-<code><pre>
-
 npm app.js --fixtures start with dbinit.js database fill
 
 npm app.js --drop   drop database ! 
 
-</code></pre>
+
 
 ## Directory Layout
     
