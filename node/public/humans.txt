@@ -1,0 +1,17 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+Tom Wersinger
+    
+
+# THANKS
+
+
+# TECHNOLOGY COLOPHON
+
+    HTML5, CSS3
+    Node, Express
+    Angular
+    MusicBox

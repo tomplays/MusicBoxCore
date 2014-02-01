@@ -1,0 +1,16 @@
+{
+    "PORT": 3001,
+    "COOKIESECRET": "ABC1aze78787sd23",
+    "SESSIONSECRET": "azeazeadfKLKL123",
+    "RECAPTCHA_PUBLIC_KEY": null,
+    "RECAPTCHA_PRIVATE_KEY": null,
+    "ROOT_URL": "http://localhost",
+    "API_NAME": "Shared MusicBox API 1.0",
+    "DATABASE_NAME": "database_name",
+    "DATABASE_USERNAME": "database_user",
+    "DATABASE_PASSWORD": "",
+  	"DATABASE_PORT": "5432",
+  	"DATABASE_HOST": "localhost",
+  	"DATABASE_DIALECT": "postgres",
+  	"DATABASE_INSERT_MODE" : "comments_only"
+}
