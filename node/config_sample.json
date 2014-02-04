@@ -9,8 +9,12 @@
     "DATABASE_NAME": "database_name",
     "DATABASE_USERNAME": "database_user",
     "DATABASE_PASSWORD": "",
-  	"DATABASE_PORT": "5432",
-  	"DATABASE_HOST": "localhost",
-  	"DATABASE_DIALECT": "postgres",
-  	"DATABASE_INSERT_MODE" : "comments_only"
+    "DATABASE_PORT": "5432",
+    "DATABASE_HOST": "localhost",
+    "DATABASE_DIALECT": "postgres",
+    "DATABASE_INSERT_MODE" : "any", 
+    "DATABASE_DOCSAPI_MODE": "dynamic",
+    "ADMIN_KEYPASS": "qsklqkslqsu",
+    "CREATE_DOC_KEYPASS": "qskjkqjskjqksjk",
+    "CREATE_DOC_COUNT": "39"
 }
