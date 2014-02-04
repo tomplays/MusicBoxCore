@@ -147,12 +147,16 @@ module.exports = {
 var fixtures = require("./models/dbinit");
 
 // drop || fixtures sync. 
-if ( nconf.get('fixtures')  ||  nconf.get('drop')){
+if ( nconf.get('fixtures')  ||  nconf.get('drop') ||  nconf.get('tags')){
 	sequelize.sync()
 	.success(function() {
 		if (nconf.get('fixtures')){
 			console.log("-- Syncing database with dbinit");
 			fixtures.fooo();
+		}
+		if (nconf.get('tags')){
+			console.log("-- Syncing database withtags");
+			fixtures.foootags();
 		}
 		if (nconf.get('drop')){
 			console.log("-- Dropping database");

@@ -14,9 +14,6 @@ var hardcoded_real_published = '2013-12-11T14:30:46.395Z'; // un bel apres-midi 
 
 
 
-// Following functions create docs "fixtures" for texts, users, roles and caps, rooms, comments, nodes, etc...
-
-
 exports.doc_build = function(user, room, sample_number){
 
 	/*
@@ -83,16 +80,19 @@ exports.doc_build = function(user, room, sample_number){
 				[{ type: 'section_class', subtype: '', metadata : 'pa20_btm', start: 509, end:708}],
 				
 
-				[{ type: 'section', subtype: 'text', metadata : '', start: 709, end:1208}],
-				[{ type: 'section', subtype: 'text', metadata : '', start: 1209, end:2208}],
-
+				//[{ type: 'section', subtype: 'text', metadata : '', start: 709, end:1208}],
+				/*
+					[{ type: 'section', subtype: 'text', metadata : '', start: 1209, end:2208}],
+				*/
 		 		[{position:'under', 	depth: 1, css: 'freebase' , type: 'freebase', subtype: 'freebase', metadata : 'this is a note/freebase under section',  start: 1209, end:1248}],
 				[{css: 'none', position:'right',  ext_doc : null, type: 'img', subtype: 'img', metadata : baseuse_url+'/img/lorem/200-200.jpg',  start: 1209, end:1209}],
 				// [{css: 'none', position:'right',  ext_doc : null, type: 'img', subtype: 'img', metadata : baseuse_url+'/img/lorem/400-400.jpg',  start: 1210, end:1210}],
 				// [{css: 'none', position:'right',  ext_doc : null, type: 'img', subtype: 'img', metadata : baseuse_url+'/img/lorem/600-400.jpg',  start: 1211, end:1211}],
 
 
+				/* 
 				[{ type: 'section', subtype: 'text', metadata : '', start: 2209, end:2308}],
+				*/
 
 
 				//[{ type: 'section', subtype: 'text', metadata : '', start: 809, end:1108}],
@@ -100,7 +100,7 @@ exports.doc_build = function(user, room, sample_number){
 				//	[{ type: 'section', subtype: 'text', metadata : '', start: 809, end:1808}],
 				[{css: 'none', position:'wide',  ext_doc : null, type: 'img', subtype: 'img', metadata : baseuse_url+'/img/lorem/600-400.jpg', start: 264, end:508}],
 				[{css: 'none', position:'center', ext_doc : null, type: 'img', subtype: 'img', metadata : baseuse_url+'/img/lorem/400-400.jpg', start:509, end:708}],
-				[{css: 'none', position:'left',  ext_doc : 2, type: 'img', subtype: 'img', metadata : baseuse_url+'/img/lorem/200-200.jpg',  start:509, end:708}],
+			//	[{css: 'none', position:'left',  ext_doc : 2, type: 'img', subtype: 'img', metadata : baseuse_url+'/img/lorem/200-200.jpg',  start:509, end:708}],
 
 
 		 		[{position:'right', 	depth: 1, css: 'freebase' , type: 'freebase', subtype: 'freebase', metadata : 'this is a note/freebase', start: 32, end: 34}],
@@ -142,7 +142,7 @@ exports.doc_build = function(user, room, sample_number){
 					[{meta_key: 'use_authorcard', 					meta_value: 'full_last' }],
 					[{meta_key: 'share_notice', 					meta_value: 'Partager' }],
 					[{meta_key: 'text_class',						meta_value: 'medium' }],
-					[{meta_key: 'branding_class', 					meta_value: 'sa white_bg' }],
+					[{meta_key: 'branding_class', 					meta_value: '' }], 
 					[{meta_key: 'color_a',							meta_value: '#e67e22' }],
 					[{meta_key: 'color_b',							meta_value: '#f39c12' }],
 					[{meta_key: 'block_bgcolor',					meta_value: 'black_bg' }],
@@ -152,7 +152,8 @@ exports.doc_build = function(user, room, sample_number){
 					[{meta_key: 'share_fragment',					meta_value: 'last_full_right' }],
 					[{meta_key: 'share_notice', 	   				meta_value: 'Share' }],
 					[{meta_key: 'keywords_notice', 					meta_value: 'Keywords' }],
-					[{meta_key: 'author_notice', 					meta_value: 'Edited by' }],
+					[{meta_key: 'editor_notice', 					meta_value: 'Edited by' }],
+					[{meta_key: 'creator_notice', 					meta_value: 'Created by' }],
 					[{meta_key: 'nodes_fragment', 					meta_value: 'full_last' }],
 					[{meta_key: 'date_fragment', 					meta_value: 'full_last' }],
 					[{meta_key: 'text_class', 						meta_value: 'high_fat' }],
@@ -161,7 +162,7 @@ exports.doc_build = function(user, room, sample_number){
 					[{meta_key: 'doc_notices_after_title',			meta_value: 'MusicBox Demo doc'}],
 					[{meta_key: 'doc_notices_before_title',			meta_value: 'Display a sample text, some images, notes, comments and fragments' }]
 				);
-		nodes = new Array('tests');
+		var nodes = new Array('musicbox','lorem-ipsum', 'blou');
 
 
 	}
@@ -179,14 +180,17 @@ exports.doc_build = function(user, room, sample_number){
 			[{meta_key: 'media_url',meta_value: baseuse_url+'/img/lorem/200-200.jpg' }],
 			[{meta_key: 'credit_link',meta_value: 'https://github.com/tomplays/MusicBox' }],
 			[{meta_key: 'credit_text',meta_value: 'tom W.' }],
-			[{meta_key: 'licence_type',meta_value: 'open' }],
+			[{meta_key: 'licence_type',meta_value: 'cc' }],
 			[{meta_key: 'licence_subtype',meta_value: 'cc-by' }],
 			[{meta_key: 'media_filetype',meta_value: 'jpg' }],
-			[{meta_key: 'media_description',meta_value: 'a blue jpg description' }],
+			[{meta_key: 'media_description',meta_value: 'a blue placeholder' }],
 			[{meta_key: 'media_o_w',meta_value: '600' }],
 			[{meta_key: 'media_o_h',meta_value: '400' }],
 			[{meta_key: 'branding_class',meta_value: 'sa white_bg' }]
 		);
+			
+		var nodes = new Array('musicbox','lorem-ipsum', 'blou','placeholder');
+
 
 
 
@@ -321,9 +325,11 @@ if(sample_number==8 || sample_number==15 || sample_number==16){
 						doc.addRole(rol3).success(function() { });
 
 					});
+
 				});	
 		});
-		doc.addEditor(user).success(function() { });
+		//doc.addEditor(user).success(function() { });
+		//doc.addCreator(user).success(function() { });
 
 
 
@@ -388,15 +394,33 @@ if(sample_number==8 || sample_number==15 || sample_number==16){
 
 	//console.log('docmetas for doc #'+sample_number+' ok');
 		
-
+	
 	_.each(nodes, function(node){	
-		var nodefound = models.Node.find({where: {slug: node }}).success(function(nodefound) {
+		console.log(node)
+		var nodefound = models.Node.find({
+	 	where: {slug:node}}).success(function(nodefound) {
 			if(nodefound){
-				console.log(nodefound.slug)
-				nodefound.addIdoc(doc);
+				console.log('found'+nodefound)
+				//nodefound.addIdoc(doc);
 				doc.addNode(nodefound)
 				nodefound.increment('objectcount', {by:1});
 			}
+
+			else{
+				console.log('NOt found')
+				//console.log(node)
+				var nodefound = models.Node.build({ name: node , slug: node , taxonomy:'test', objectcount:1}).save().success(function(nodefound) {
+					//console.log(nodefound)
+					//nodefound.addIdoc(doc);
+					doc.addNode(nodefound)
+					//nodefound.increment('objectcount', {by:1});
+				});
+			}
+
+				
+		
+
+			
 		});
 	});
 
@@ -598,7 +622,7 @@ exports.build_a_user = function(user){
 			var uma = models.Objectmeta.build({meta_key:'has_earlyadopter', meta_value: true}).save().success(function(uma) {
 					tom.addUsermeta(uma).success(function() {});
 			});
-			var uma = models.Objectmeta.build({meta_key:'profile_image', meta_value: 'img/users/tom-blue-small.jpg'}).save().success(function(uma) {
+			var uma = models.Objectmeta.build({meta_key:'profile_image', meta_value: 'img/users/tom-retro.jpg'}).save().success(function(uma) {
 					tom.addUsermeta(uma).success(function() {});
 			});
 			var uma = models.Objectmeta.build({meta_key:'current_place_city', meta_value: 'Paris'}).save().success(function(uma) {
@@ -607,7 +631,7 @@ exports.build_a_user = function(user){
 			var uma = models.Objectmeta.build({meta_key:'current_place_country', meta_value: 'France'}).save().success(function(uma) {
 					tom.addUsermeta(uma).success(function() {});
 			});
-			var uma = models.Objectmeta.build({meta_key:'short_bio', meta_value: 'user bio'}).save().success(function(uma) {
+			var uma = models.Objectmeta.build({meta_key:'short_bio', meta_value: 'my short bio here'}).save().success(function(uma) {
 					tom.addUsermeta(uma).success(function() {});
 			});
 			var uma = models.Objectmeta.build({meta_key:'website_url', meta_value: 'https://github.com/tomplays/'}).save().success(function(uma) {
@@ -660,16 +684,26 @@ exports.build_kindofdoc = function(){
 
 exports.foootags = function(){	
 	
-	var nodes = new Array(
+
+	// Following functions create docs "fixtures" for texts, users, roles and caps, rooms, comments, nodes, etc...
+var foo_nodes = new Array(
 					[{name:'Tests', slug: 'tests', taxonomy: 'self', bgimage: baseuse_url+'/img/lorem/400-400.jpg', baseline: '+'}],
-					[{name:'blou', slug: 'blou', taxonomy: 'self', bgimage: '-', baseline: '-'}]
+					[{name:'blou', slug: 'blou', taxonomy: 'self', bgimage: '-', baseline: '-'}],
+					[{name:'placeholder', slug: 'placeholder', taxonomy: 'self', bgimage: '-', baseline: '-'}],
+					[{name:'musicbox', slug: 'musicbox', taxonomy: 'self', bgimage: '-', baseline: '-'}],
+					[{name:'lorem-ipsum', slug: 'lorem-ipsum', taxonomy: 'self', bgimage: '-', baseline: '-'}]
+
+
 	
 			);
+	
 
-	_.each(nodes, function(node){	
-		var node = node[0];
-			var newnode = models.Node.build({name: node.name , slug: node.slug , taxonomy:node.taxonomy, objectcount:0 }).save().success(function(newnode) {
-				// metas for nodes
+	_.each(foo_nodes, function(node){	
+		
+		
+			//var node = node[0];
+			var newnode = models.Node.build({ name: node.name , slug: node.slug , taxonomy:node.taxonomy, objectcount:1 }).save().success(function(newnode) {
+				/*
 				models.Nodemeta.build({meta_key: 'background_image',meta_value: node.bgimage}).save().success(function(nodemeta) {
 					nodemeta.setNode(newnode).success(function() {});
 					newnode.addTr(nodemeta).success(function() {});
@@ -678,8 +712,21 @@ exports.foootags = function(){
 					nodemeta.setNode(newnode).success(function() {});
 					newnode.addTr(nodemeta).success(function() {});
 	      		});
+*/
+		
+
+
+				
 		});
-	});		
+
+
+
+
+	});	
+	
+
+
+
 }
 
 exports.makesecret = function (len)
@@ -693,10 +740,11 @@ exports.makesecret = function (len)
 
 /*main*/
 exports.fooo = function(){	
-	//	var tags 		= exports.foootags()
+		//var tags 		= exports.foootags()
 		var kindofdoc 	= exports.build_kindofdoc();
 		var user_sys 	= exports.build_a_user('user_sys');
 		var tom  		= exports.build_a_user('tom');
 		console.log('</fixtures>');
 		
 }
+

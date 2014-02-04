@@ -415,6 +415,40 @@
       "updatedAt": "2014-02-01T09:41:39.058Z",
       "IdocId": 1,
       "ext_doc": null
+    },
+    {
+      "id": 24,
+      "type": "img",
+      "subtype": "img",
+      "start": 509,
+      "end": 708,
+      "css": "",
+      "metadata": "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/t1/c66.57.716.716/s160x160/395325_10151379238887504_2061178607_n.jpg",
+      "depth": 0,
+      "version": null,
+      "status": null,
+      "position": "left",
+      "createdAt": "2014-02-01T14:36:51.771Z",
+      "updatedAt": "2014-02-01T14:36:51.886Z",
+      "IdocId": 1,
+      "ext_doc": null
+    },
+    {
+      "id": 25,
+      "type": "img",
+      "subtype": "img",
+      "start": 0,
+      "end": 167,
+      "css": "",
+      "metadata": "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/t1/c66.57.716.716/s160x160/395325_10151379238887504_2061178607_n.jpg",
+      "depth": 0,
+      "version": null,
+      "status": null,
+      "position": "wide",
+      "createdAt": "2014-02-01T14:37:27.435Z",
+      "updatedAt": "2014-02-01T14:37:27.439Z",
+      "IdocId": 1,
+      "ext_doc": null
     }
   ],
   "roles": [

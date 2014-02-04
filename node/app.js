@@ -10,6 +10,7 @@ program
     .version(package.version)
     .option('--fixtures', 'Initialize database with fixtures')
     .option('--drop', 'drop db')
+    .option('--tags', 'tags')
     .parse(process.argv);
 var app = express();
 // Configuration
