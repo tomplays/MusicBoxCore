@@ -19,23 +19,32 @@ Node version for MusicBoxCore
 <pre><code>
 
 git clone https://github.com/tomplays/MusicBoxCore.git
-
 cd MusicBoxCore/node
+npm install (maybe sudo for postgres)
 
-npm install (maybe sudo for PG)
+cp config_sample.json config.json 
+nano config.json (..)
 
 </code></pre>
 
 
 ## OPTIONS
 
- see config.json
+ 	see config.json
 
 ## RUN/START 
 
-npm app.js --fixtures start with dbinit.js database fill
 
-npm app.js --drop   drop database ! 
+
+npm run-script start
+
+or 
+
+node app.js --drop		drop
+node app.js --tags		fill database with tags 
+node app.js --fixtures	fill database using dbinit.js
+
+
 
 
 
@@ -138,7 +147,8 @@ npm app.js --drop   drop database !
 
 
 ## Todo
-	* a lot..
+
+	
 	* more dockey control
 	* users apis ++
 

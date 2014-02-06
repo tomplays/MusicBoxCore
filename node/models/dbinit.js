@@ -60,6 +60,9 @@ exports.doc_build = function(user, room, sample_number){
 		sample_content			+= "Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Lorem with section background and padding modern styles. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis. Curabitur aliquet pellentesque diam. Integer quis metus vitae elit lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi vel erat non mauris convallis vehicula. Nulla et sapien. Integer tortor tellus, aliquam faucibus, convallis id, congue eu, quam. Mauris ullamcorper felis vitae erat. Proin feugiat, augue non elementum posuere, metus purus iaculis lectus, et tristique ligula justo vitae magna. Aliquam convallis sollicitudin purus. Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus. Fusce vulputate sem at sapien. Vivamus leo. Aliquam euismod libero eu enim. Nulla nec felis sed leo placerat imperdiet. Aenean suscipit nulla in justo. Suspendisse cursus rutrum augue. Nulla tincidunt tincidunt mi. Curabitur iaculis, lorem vel rhoncus faucibus, felis magna fermentum augue, et ultricies lacus lorem varius purus. Curabitur eu amet.";
 		sample_content			+= "(2x) Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis. Curabitur aliquet pellentesque diam. Integer quis metus vitae elit lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi vel erat non mauris convallis vehicula. Nulla et sapien. Integer tortor tellus, aliquam faucibus, convallis id, congue eu, quam. Mauris ullamcorper felis vitae erat. Proin feugiat, augue non elementum posuere, metus purus iaculis lectus, et tristique ligula justo vitae magna. Aliquam convallis sollicitudin purus. Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus. Fusce vulputate sem at sapien. Vivamus leo. Aliquam euismod libero eu enim. Nulla nec felis sed leo placerat imperdiet. Aenean suscipit nulla in justo. Suspendisse cursus rutrum augue. Nulla tincidunt tincidunt mi. Curabitur iaculis, lorem vel rhoncus faucibus, felis magna fermentum augue, et ultricies lacus lorem varius purus. Curabitur eu amet.";
 
+		//sample_content			+= "Le « confidentiel » de L’Express fait quelques lignes, comme un avertissement de confrère à confrère. Manuel Valls serait à la recherche des sources d’un journaliste du Figaro :« Depuis plusieurs mois, au ministère de l’Intérieur, on s’inquiète de la publication d’informations sensibles issues de documents internes à la police ou au corps préfectoral, traitées de manière polémique. Il a été demandé aux chefs de service, notamment à la police aux frontières, d’identifier les informateurs d’un journaliste spécialisé. » Ce journaliste, c’est Jean-Marc Leclerc. Fils d’un commissaire de police devenu préfet, il est l’un des journalistes les mieux informés sur la vie des institutions policières, préfecture de police de Paris et ministère de l’Intérieur. Dans ce petit milieu, c’est bien simple : tout le monde lui parle.Un spécialiste, dans la ligne de son journal Il était là avant Manuel Valls et lui survivra sans doute. Y compris au sein-même du ministère, où il appartient à un groupe de travail sur les fichiers de police depuis 2008. Il peut analyser sans sourciller un dispositif de maintien de l’ordre en manif, comme pour le Jour de colère.";
+
+
 		kind_i					= 'document';
 		section_i				= 'featured_second';
 		doc_title				= 'Lorem Ipsum Blou blou';
@@ -84,8 +87,9 @@ exports.doc_build = function(user, room, sample_number){
 				/*
 					[{ type: 'section', subtype: 'text', metadata : '', start: 1209, end:2208}],
 				*/
-		 		[{position:'under', 	depth: 1, css: 'freebase' , type: 'freebase', subtype: 'freebase', metadata : 'this is a note/freebase under section',  start: 1209, end:1248}],
-				[{css: 'none', position:'right',  ext_doc : null, type: 'img', subtype: 'img', metadata : baseuse_url+'/img/lorem/200-200.jpg',  start: 1209, end:1209}],
+						 		[{position:'under', 	depth: 1, type: 'note', subtype: 'freebase', metadata : '',  start: 1209, end:1248}],
+
+				[{css: 'none', position:'right',  ext_doc : 2, type: 'img', subtype: 'img', metadata : baseuse_url+'/img/lorem/200-200.jpg',  start: 1209, end:1209}],
 				// [{css: 'none', position:'right',  ext_doc : null, type: 'img', subtype: 'img', metadata : baseuse_url+'/img/lorem/400-400.jpg',  start: 1210, end:1210}],
 				// [{css: 'none', position:'right',  ext_doc : null, type: 'img', subtype: 'img', metadata : baseuse_url+'/img/lorem/600-400.jpg',  start: 1211, end:1211}],
 
@@ -98,16 +102,32 @@ exports.doc_build = function(user, room, sample_number){
 				//[{ type: 'section', subtype: 'text', metadata : '', start: 809, end:1108}],
 
 				//	[{ type: 'section', subtype: 'text', metadata : '', start: 809, end:1808}],
-				[{css: 'none', position:'wide',  ext_doc : null, type: 'img', subtype: 'img', metadata : baseuse_url+'/img/lorem/600-400.jpg', start: 264, end:508}],
+				[{css: 'none', position:'wide',  ext_doc : 2, type: 'img', subtype: 'img', metadata : baseuse_url+'/img/lorem/600-400.jpg', start: 264, end:508}],
 				[{css: 'none', position:'center', ext_doc : null, type: 'img', subtype: 'img', metadata : baseuse_url+'/img/lorem/400-400.jpg', start:509, end:708}],
+			
+				[{css: 'none', position:'center', ext_doc : null, type: 'img', subtype: 'img', metadata : 'http://rue89.nouvelobs.com/sites/news/files/styles/asset_img_full/public/assets/image/2014/02/manuel_valls.png', start:509, end:708}],
+
+
+
+
 			//	[{css: 'none', position:'left',  ext_doc : 2, type: 'img', subtype: 'img', metadata : baseuse_url+'/img/lorem/200-200.jpg',  start:509, end:708}],
 
+		 		[{position:'right', 	depth: 1, type: 'note', subtype: 'wikipedia', metadata : 'this is a note/wikipedia', start: 32, end: 34}],
 
-		 		[{position:'right', 	depth: 1, css: 'freebase' , type: 'freebase', subtype: 'freebase', metadata : 'this is a note/freebase', start: 32, end: 34}],
-		 		[{position:'right', 	depth: 1, css: 'comment' , type: 'comment', subtype: 'comment', metadata : 'a comment', start: 509, end:532}],
+		 		[{position:'right', 	depth: 1, type: 'note', subtype: 'data', metadata : 677, start: 32, end: 37}],
+		 		[{position:'right', 	depth: 1, type: 'note', subtype: 'wikipedia', metadata : 'this is a long with <a><em>html</em> link</a> note/freebase under section. Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissim sit amet.', start: 32, end: 37}],
+
+		 		[{position:'right', 	depth: 1, type: 'note', subtype: 'freebase', metadata : 'this is a long with <a><em>html</em> link</a> note/freebase under section. Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissim sit amet.', start: 33, end: 35}],
+		 		[{position:'right', 	depth: 1, type: 'note', subtype: 'wikipedia', metadata : 'this is a long with <a><em>html</em> link</a> note/freebase under section. Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissim sit amet.', start: 33, end: 35}],
+
+		 		[{position:'under', 	depth: 1, type: 'note', subtype: 'freebase', metadata : 'this is a long with <a><em>html</em> link</a> note/freebase under section. Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissim sit amet.', start: 35, end: 38}],
+
+		 		[{position:'under', 	depth: 1, type: 'note', subtype: 'freebase', metadata : 'this is a long with <a><em>html</em> link</a> note/freebase under section. Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissim sit amet.', start: 32, end: 34}],
+
+		 		[{position:'under', 	depth: 1, css: 'comment' , type: 'comment', subtype: 'comment', metadata : 'a comment', start: 509, end:532}],
 		 		[{position:'right', 	depth: 1, css: 'comment' , type: 'comment', subtype: 'comment', metadata : 'another comment', start: 519, end:527}],
 
-		 		[{position:'under', 	depth: 1, css: 'freebase' , type: 'freebase', subtype: 'freebase', metadata : 'this is a note/freebase under section', start: 519, end:527}],
+		 		[{position:'under', 	depth: 1,  type: 'note', subtype: 'freebase', metadata : 'this is a note/freebase under section', start: 519, end:527}],
 
 
 
@@ -149,13 +169,13 @@ exports.doc_build = function(user, room, sample_number){
 					[{meta_key: 'block_color',						meta_value: 'white_atext' }],
 					[{meta_key: 'single_theme', 					meta_value: 'model-lh-f fl-th-p' }],
 					[{meta_key: 'kind',								meta_value: 'classic-post' }],
-					[{meta_key: 'share_fragment',					meta_value: 'last_full_right' }],
+					[{meta_key: 'share_fragment',					meta_value: 'after_title' }],
 					[{meta_key: 'share_notice', 	   				meta_value: 'Share' }],
 					[{meta_key: 'keywords_notice', 					meta_value: 'Keywords' }],
 					[{meta_key: 'editor_notice', 					meta_value: 'Edited by' }],
 					[{meta_key: 'creator_notice', 					meta_value: 'Created by' }],
 					[{meta_key: 'nodes_fragment', 					meta_value: 'full_last' }],
-					[{meta_key: 'date_fragment', 					meta_value: 'full_last' }],
+					[{meta_key: 'date_fragment', 					meta_value: 'full_first' }],
 					[{meta_key: 'text_class', 						meta_value: 'high_fat' }],
 					[{meta_key: 'text_typo', 						meta_value: 'Esteban::latin' }],
 					[{meta_key: 'headings_typo', 					meta_value: 'Droid Sans' }],

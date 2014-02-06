@@ -48,9 +48,6 @@ var Role 		= sequelize.import(__dirname + "/models/role.js");
 var Kindofdoc	= sequelize.import(__dirname + "/models/kindofdoc.js");
 
 
-// depreciated.. 
-//	var Page 	    = sequelize.import(__dirname + "/models/page.js");
-//  var Subscriber	= sequelize.import(__dirname + "/models/subscriber.js");
 
 
 // Database Objects dependance / relationships
@@ -155,7 +152,7 @@ if ( nconf.get('fixtures')  ||  nconf.get('drop') ||  nconf.get('tags')){
 			fixtures.fooo();
 		}
 		if (nconf.get('tags')){
-			console.log("-- Syncing database withtags");
+			console.log("-- Syncing database with tags");
 			fixtures.foootags();
 		}
 		if (nconf.get('drop')){
