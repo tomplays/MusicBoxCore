@@ -8,14 +8,20 @@ var inheriting = { };
 
 /* for developpers include here: var labroutes = require('./routes/lab'); */
 
-module.exports = function(app) {
-	app.all('/*', function(req, res, next) {
- 	 res.header("Access-Control-Allow-Origin", "*");
- 	 res.header("Access-Control-Allow-Headers", "Content-Type, X-Requested-With");
- 	 res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  	 next();
-	});
+
 	
+module.exports = function(app) {
+        app.all('/*', function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    	// res.header("Access-Control-Allow-Headers", "X-Requested-With, Access-Control-Allow-Origin, X-HTTP-Method-Override, Content-Type, Authorization, Accep$
+  		// res.header("Access-Control-Allow-Credentials", true);
+   		// res.header("Access-Control-Max-Age","86400"); // 24 hours
+ 		//   res.writeHead(200, headers);
+		//    res.next();
+        next();
+        });
+
 	
 	/*############################  APIS V1.0 ############################*/
 
