@@ -1,6 +1,8 @@
 ## MusicBoxCore API /running node 
 =================================
 
+[![Build Status](https://travis-ci.org/tomplays/MusicBoxCore.png?branch=master)](https://travis-ci.org/tomplays/MusicBoxCore)
+
 Node version for MusicBoxCore
 
 
@@ -11,21 +13,18 @@ Node version for MusicBoxCore
 * Postgres Database <-> Sequelize mapping (http://www.sequelizejs.com/)
 
 
-(tested running on a Debian, OSX and RaspberryPi)
+(tested running on a Debian, OSX)
 
 
 ## INSTALL
 
-<pre><code>
 
-git clone https://github.com/tomplays/MusicBoxCore.git
-cd MusicBoxCore/node
-npm install (maybe sudo for postgres)
+`git clone https://github.com/tomplays/MusicBoxCore.git`
+`cd MusicBoxCore/node`
+`npm install` (maybe sudo for postgres)
 
-cp config_sample.json config.json 
-nano config.json (..)
-
-</code></pre>
+`cp config_sample.json config.json`
+`nano config.json` (..)
 
 
 ## OPTIONS
@@ -34,15 +33,13 @@ nano config.json (..)
 
 ## RUN/START 
 
-
-
-npm run-script start
+`npm run-script start`
 
 or 
 
-node app.js --drop		drop
-node app.js --tags		fill database with tags 
-node app.js --fixtures	fill database using dbinit.js
+`node app.js --drop`		drop
+`node app.js --tags`		fill database with tags 
+`node app.js --fixtures`	fill database using dbinit.js
 
 
 
