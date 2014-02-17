@@ -128,6 +128,7 @@ exports.edit_doc_infos = function (req, res) {
 					    doc.addDoclog(log);
 						var doc_infos = {};
 						doc_infos.doc = doc;
+						doc_infos.doc.secret = 'hidden';
 						doc_infos.doclog = log;
 						//console.log(doc_infos);
 						res.send(doc_infos);

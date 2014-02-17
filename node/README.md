@@ -3,7 +3,7 @@
 
 [![Build Status](https://travis-ci.org/tomplays/MusicBoxCore.png?branch=master)](https://travis-ci.org/tomplays/MusicBoxCore)
 
-Node version for MusicBoxCore
+Node version of MusicBoxCore
 
 
 ## Technical Stack 
@@ -15,30 +15,43 @@ Node version for MusicBoxCore
 
 (tested running on a Debian, OSX)
 
+## Quick Start
 
-## INSTALL
+
+### Requirements
+
+	* Node
+	* Postgres
+
+
+### Installation
 
 
 `git clone https://github.com/tomplays/MusicBoxCore.git`
+
 `cd MusicBoxCore/node`
+
 `npm install` (maybe sudo for postgres)
 
 `cp config_sample.json config.json`
+
 `nano config.json` (..)
 
 
-## OPTIONS
+### Options
 
  	see config.json
 
-## RUN/START 
+### Run
 
 `npm run-script start`
 
 or 
 
 `node app.js --drop`		drop
+
 `node app.js --tags`		fill database with tags 
+
 `node app.js --fixtures`	fill database using dbinit.js
 
 
@@ -110,14 +123,14 @@ or
 	
 	Dynamic examples
 		* doc/s
-		http://localhost:3011/apis/doc/1
-		http://localhost:3011/apis/docs
+		http://localhost:3001/apis/doc/1
+		http://localhost:3001/apis/docs
 
 
 	Static mode examples
 		
-		a. http://localhost:3011/apis/doc/1/write
-		b. http://localhost:3011/apis/doc/1/static
+		a. http://localhost:3001/apis/doc/1/write
+		b. http://localhost:3001/apis/doc/1/static
 
 
 ## ROUTES callbacks
@@ -145,7 +158,7 @@ or
 
 ## Todo
 
-	
+	* add and build pass travis
 	* more dockey control
 	* users apis ++
 
