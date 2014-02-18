@@ -9,8 +9,7 @@ nconf 		= require('nconf');
 		*textdata
 	// METADATA
 		*metadata
-	// COMMENT
-		*doccomment
+	
 	// DOCLOG
 		*doclog
 
@@ -62,7 +61,32 @@ exports.create_textdata = function (req, res) {
  }	 	
 }
 
-exports.update_textdata  = function (req, res) {
+
+exports.update_textdata_multi  = function (req, res) {
+	var multi = 'false';
+	if(req.params.multi){
+		multi = req.body.multi;
+
+		_.each(multi, function(td){
+
+				console.log(td)
+
+		});
+
+
+
+
+
+
+	}
+
+
+
+
+	console.log(multi)
+	
+/*
+
 
 	if( nconf.get('DATABASE_INSERT_MODE') == 'comments_only' ){
 		var out = new Array();
@@ -71,7 +95,14 @@ exports.update_textdata  = function (req, res) {
 
 	}
 
-	textdataid = req.body.id;
+	
+	if(req.body.id;){
+		textdataid = req.body.id;
+	}
+	else{
+		res.send('not body.id')
+	}
+
 	var textdata = models.Textdata.find({
 	 	where: {id:textdataid}}).success(function(textdata) {
 
@@ -88,12 +119,81 @@ exports.update_textdata  = function (req, res) {
      		if(req.body.depth){textdata.depth= req.body.depth;}
      		if(req.body.ext_doc){textdata.ext_doc= req.body.ext_doc;}
      		if(req.body.end){textdata.end= parseInt(req.body.end);}
+
 			textdata.save().success(function(textdata) {
   				res.send(textdata);
   				
 			});
 
-			console.log(textdata)
+			console.log('textdata updated')
+				
+
+			}
+			else{
+
+				res.send('else/not saved td')
+			}
+
+
+
+			
+  		});
+
+
+*/
+}
+
+
+
+exports.update_textdata  = function (req, res) {
+	if( nconf.get('DATABASE_INSERT_MODE') == 'comments_only' ){
+		var out = new Array();
+		res.send(out);
+		return
+
+	}
+	
+
+
+
+
+
+	
+	if(req.body.id){
+		textdataid = req.body.id;
+	}
+	else{
+		res.send('not body.id')
+	}
+
+	var textdata = models.Textdata.find({
+	 	where: {id:textdataid}}).success(function(textdata) {
+
+
+
+
+
+
+
+		if(textdata){
+			console.log('upadting td')	
+			
+			if(req.body.css){textdata.css = req.body.css;}
+     		if(req.body.metadata){textdata.metadata= req.body.metadata;}
+     		if(req.body.type){textdata.type= req.body.type;}
+     		if(req.body.subtype){textdata.subtype= req.body.subtype;}
+     		if(req.body.start){textdata.start= parseInt(req.body.start);}
+     		if(req.body.position){textdata.position= req.body.position;}
+     		if(req.body.depth){textdata.depth= req.body.depth;}
+     		if(req.body.ext_doc){textdata.ext_doc= req.body.ext_doc;}
+     		if(req.body.end){textdata.end= parseInt(req.body.end);}
+
+			textdata.save().success(function(textdata) {
+  				res.send(textdata);
+  				
+			});
+
+			console.log('textdata updated')
 				
 
 			}
@@ -225,23 +325,64 @@ exports.create_docmeta = function (req, res) {
 	
 }
 exports.update_docmeta = function (req, res) {
+	console.log('trying to upadte docmeta');
+	var out = new Object();
 
+	
+
+	if(!req.body.key || !req.body.id){
+		out.status ='missing fields, id || key'
+		res.send(out);
+
+		return;
+	}
 	if( nconf.get('DATABASE_INSERT_MODE') == 'comments_only' ){
-		res.send('----');
+		out.status = 'comments insert only are allowed'
+		res.send(out);
 		return;
 	}
 	var docmetaid = req.body.id;
+	var key = req.body.key;
+
 	var docmeta = models.Docmeta.find({
 	 	where: {id:docmetaid}}).success(function(docmeta) {
-			console.log(docmeta);
-			docmeta.meta_key =  req.body.meta_key;
-			docmeta.meta_value = req.body.meta_value;
-			docmeta.save();
-			res.json(docmeta);
-  		});
-
-
+			//console.log(docmeta);
+			/* sub loop for doc.secret*/
+			console.log('doc'+docmeta.IdocId);
+			var doc_id = docmeta.IdocId;
+			var doc = models.Idoc.find(
+				{where: {id:doc_id}}
+			).success(function(doc) {
+				if(doc){
+					console.log('showing console doc.secret:'+doc.secret)
+					if(doc.secret !== key ){
+						out.status = 'secret not match'
+						res.send(out);
+						console.log('docsecret failed try'); // some control
+						return;
+					}
+					else{
+						console.log('saved')
+						out.status = 'saved'
+						docmeta.meta_key	 	=  req.body.meta_key;
+						docmeta.meta_value 		=  req.body.meta_value;
+						out.docmeta = docmeta;
+						docmeta.save();
+						
+						res.send(out);
+						return;
+					}
+				}
+				else{
+					 out.status = 'error doc query';
+					res.send(out)
+					return;
+				}
+			});
+	});
 }
+
+
 exports.delete_docmeta = function (req, res) {
 
 	if( nconf.get('DATABASE_INSERT_MODE') == 'comments_only' ){
@@ -264,7 +405,7 @@ exports.delete_docmeta = function (req, res) {
 	});
 }
 
-
+/*
 exports.doccomments = function (req, res) {
 
 	var docid = req.params.docid;
@@ -361,7 +502,7 @@ exports.update_doccomment = function (req, res) {
 			}
   		});
 }
-
+*/
 
 exports.doclogs = function (req, res) {
 	var docid = req.params.docid;

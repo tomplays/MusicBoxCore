@@ -54,6 +54,8 @@ or
 
 `node app.js --fixtures`	fill database using dbinit.js
 
+`forever start app.js`	    if using forever module 
+ +  cf : https://github.com/nodejitsu/forever
 
 
 
@@ -140,7 +142,6 @@ or
 		for
 			TEXTDATA 
 			METADATA
-			DOCCOMMENT
 			DOCLOG
 
 		+ misc (internals use)

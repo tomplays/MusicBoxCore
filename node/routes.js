@@ -40,6 +40,9 @@ module.exports = function(app) {
 	app.get('/apis/textdata/:docid',								apiroutes.textdatas); // 
 	app.post('/apis/textdata/:docid/create',						apiroutes.create_textdata); 
 	app.post('/apis/textdata/update',								apiroutes.update_textdata); 
+	app.post('/apis/textdata/update_multi',							apiroutes.update_textdata_multi); 
+
+
 	app.post('/apis/textdata/:docid/:textdataid/delete',			apiroutes.delete_textdata);
 	app.post('/apis/findtarget',									apiroutes.extdoc_textdata_find_target);
 	app.get('/apis/reftextdata/:docid/find',					    apiroutes.extdoc_textdata_find);
@@ -64,9 +67,9 @@ module.exports = function(app) {
 	app.post('/apis/doclogs/:docid/create',							apiroutes.create_doclog); 	// CURl : curl --data  "doclog[text]=my text&doclog[verb]=og_obj&doclog[subject]=log_obj&doclog[author]=tom" http://localhost:3000/apis/doclogs/1/create
 
 	// "Global" DOCCOMMENTS
-	app.post('/apis/doccomments/:docid/create',						apiroutes.create_doccomment); // CURl : curl --data  "doccomment[text]=my text" http://localhost:3000/apis/doccomments/1/create
-	app.get('/apis/comments/:docid/status/:status', 				apiroutes.doccomments); 
-	app.get('/apis/comment/:commentid/:action/:value/:adminkey', 	apiroutes.update_doccomment); // hardcoded with pass #todo
+	//app.post('/apis/doccomments/:docid/create',						apiroutes.create_doccomment); // CURl : curl --data  "doccomment[text]=my text" http://localhost:3000/apis/doccomments/1/create
+	//app.get('/apis/comments/:docid/status/:status', 				apiroutes.doccomments); 
+	// app.get('/apis/comment/:commentid/:action/:value/:adminkey', 	apiroutes.update_doccomment); // hardcoded with pass #todo
 
 	//USER (no CRUD/API yet)
  	app.get('/apis/profile/:username_or_id/:static?', 				userroutes.apiprofile); // public
