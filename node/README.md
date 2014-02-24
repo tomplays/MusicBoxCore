@@ -54,9 +54,12 @@ or
 
 `node app.js --fixtures`	fill database using dbinit.js
 
+
 `forever start app.js`	    if using forever module 
  +  cf : https://github.com/nodejitsu/forever
 
+I use nodemon for local tests too.
+`nodemon app.js'
 
 
 
@@ -157,11 +160,10 @@ or
 		User profile infos
 
 
-## Todo
+## Todos and isssues
 
-	* add and build pass travis
-	* more dockey control
-	* users apis ++
+	https://github.com/tomplays/MusicBoxCore/issues
+	
 
 
 #### AUTHOR

@@ -1,16 +1,17 @@
 MusicBoxCore
 ============
 
+[![Build Status](https://travis-ci.org/tomplays/MusicBoxCore.png?branch=master)](https://travis-ci.org/tomplays/MusicBoxCore)
 
-##### Just an Api...
+
+##### MusicBox third-party / Standalone api 
 
 
 Scripts used as backend for MusicBox (see MusicBox @ https://github.com/tomplays/MusicBox)
 
 ### Versions / folders
 
-
-Version 1.xx is using node/
+Version 1.xx is using **node/**
 
 ### Help & forks are welcome..
 
