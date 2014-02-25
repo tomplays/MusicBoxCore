@@ -83,6 +83,12 @@ module.exports = function(sequelize, DataTypes) {
                 validate: {
                 },
             },
+            open_edit  :{
+                type: DataTypes.BOOLEAN,
+                defaultValue: true,
+                validate: {
+                },
+            }
         }
     );
 };

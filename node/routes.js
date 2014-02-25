@@ -12,11 +12,12 @@ var inheriting = { };
 	
 module.exports = function(app) {
         app.all('/*', function(req, res, next) {
+        	//console.log(req.header)
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    	// res.header("Access-Control-Allow-Headers", "X-Requested-With, Access-Control-Allow-Origin, X-HTTP-Method-Override, Content-Type, Authorization, Accep$
-  		// res.header("Access-Control-Allow-Credentials", true);
-   		// res.header("Access-Control-Max-Age","86400"); // 24 hours
+    	res.header("Access-Control-Allow-Headers", "X-Requested-With, Access-Control-Allow-Origin, X-HTTP-Method-Override")
+  		res.header("Access-Control-Allow-Credentials", true);
+   		res.header("Access-Control-Max-Age","86400"); // 24 hours
  		//   res.writeHead(200, headers);
 		//    res.next();
         next();
@@ -30,6 +31,8 @@ module.exports = function(app) {
 
 	app.post('/apis/doc_create', 									docroutes.create_doc); // post root node infos
 	app.post('/apis/doc/:docid/edit/:field/:value', 				docroutes.edit_doc_infos); // post root node infos
+	app.post('/apis/doc/:docid/edit', 							     	docroutes.edit_doc_infos); // post root node infos
+
 	// app.get('/apis/doc/clone/:id',								docroutes.doc_clone); // clone a doc 
 
 	app.get('/apis/docs', 											docroutes.docs);
@@ -40,7 +43,7 @@ module.exports = function(app) {
 	app.get('/apis/textdata/:docid',								apiroutes.textdatas); // 
 	app.post('/apis/textdata/:docid/create',						apiroutes.create_textdata); 
 	app.post('/apis/textdata/update',								apiroutes.update_textdata); 
-	app.post('/apis/textdata/update_multi',							apiroutes.update_textdata_multi); 
+	app.post('/apis/textdata/massive/update',						apiroutes.update_textdata_massive); 
 
 
 	app.post('/apis/textdata/:docid/:textdataid/delete',			apiroutes.delete_textdata);
@@ -49,7 +52,8 @@ module.exports = function(app) {
 	app.get('/apis/reftextdata/:docid/:textdataid/:docidtarget',    apiroutes.extdoc_textdata);
 	
 	// test dockey (angular callback/save using doc.secret)
-	app.post('/apis/testkey',										apiroutes.test_key); 
+	app.post('/apis/testkey/:docid',								apiroutes.test_key); 
+	app.put('/apis/testkey/:docid',									apiroutes.test_key); 
 
 	// taxonomy 
 	app.get('/apis/nodes/list/flat',								apiroutes.nodes_flat_list); 
@@ -64,7 +68,7 @@ module.exports = function(app) {
 	
 	// LOGS
 	app.get('/apis/doclogs/:docid', 								apiroutes.doclogs); 
-	app.post('/apis/doclogs/:docid/create',							apiroutes.create_doclog); 	// CURl : curl --data  "doclog[text]=my text&doclog[verb]=og_obj&doclog[subject]=log_obj&doclog[author]=tom" http://localhost:3000/apis/doclogs/1/create
+	app.post('/apis/doclogs/create',							    apiroutes.create_doclog); 	// CURl : curl --data  "doclog[text]=my text&doclog[verb]=og_obj&doclog[subject]=log_obj&doclog[author]=tom" http://localhost:3000/apis/doclogs/1/create
 
 	// "Global" DOCCOMMENTS
 	//app.post('/apis/doccomments/:docid/create',						apiroutes.create_doccomment); // CURl : curl --data  "doccomment[text]=my text" http://localhost:3000/apis/doccomments/1/create

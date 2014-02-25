@@ -10,6 +10,11 @@ module.exports = function(sequelize, DataTypes) {
                 validate: {
                 },
             },
+            object: {
+                type: DataTypes.TEXT,
+                validate: {
+                },
+            },
 			subject: {
                 type: DataTypes.TEXT,
                 validate: {

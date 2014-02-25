@@ -13,13 +13,12 @@ var hardcoded_real_published = '2013-12-11T14:30:46.395Z'; // un bel apres-midi 
 
 
 
-
-
 exports.doc_build = function(user, room, sample_number){
 
 	/*
 	1. lorem ipsum
-	2. media extref
+	2. 
+
 	
 	*/
 
@@ -30,15 +29,20 @@ exports.doc_build = function(user, room, sample_number){
 	var 	user_name 					= user.username
 	var 	external_i					= false;
 	var 	doc_slug				    = '-';
+	var 	open_edit				    = true;
+
 	var 	ishome						= false;
 	var 	d_order						= Math.round(Math.random(0,1)*1000);
 	var 	d_renderas 					= 'lire';
 	var     richmode 					= true; 
 	var		sample_content				= "";
 
-	var doc_secret				=  exports.makesecret(13);
 
-	
+
+	//var doc_secret				=  exports.makesecret(13);
+	// not annoying for tests..
+	var doc_secret				=  'A';
+
 
 	if(sample_number==0){
 		sample_content			+= "";
@@ -55,28 +59,29 @@ exports.doc_build = function(user, room, sample_number){
 		// sample_content			+= "(2x) Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis. Curabitur aliquet pellentesque diam. Integer quis metus vitae elit lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi vel erat non mauris convallis vehicula. Nulla et sapien. Integer tortor tellus, aliquam faucibus, convallis id, congue eu, quam. Mauris ullamcorper felis vitae erat. Proin feugiat, augue non elementum posuere, metus purus iaculis lectus, et tristique ligula justo vitae magna. Aliquam convallis sollicitudin purus. Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus. Fusce vulputate sem at sapien. Vivamus leo. Aliquam euismod libero eu enim. Nulla nec felis sed leo placerat imperdiet. Aenean suscipit nulla in justo. Suspendisse cursus rutrum augue. Nulla tincidunt tincidunt mi. Curabitur iaculis, lorem vel rhoncus faucibus, felis magna fermentum augue, et ultricies lacus lorem varius purus. Curabitur eu amet.";
 
 
-		sample_content 			+= 'Hello world, here is the homepage - --- '+doc_secret;
+		sample_content 			+= 'Welcome here';
 		kind_i					= 'document';
 		section_i				= 'featured_second';
-		doc_title				= 'Homepage';
+		doc_title				= 'Demo Homepage';
 		doc_slug				= 'homepage';
 		ishome					= true;
 	
 		tds = new Array(
-				[{ css: 'fixed_top', type: 'section', subtype: 'text', metadata : '', start: 0, end: 134}],
-				[{position:'under', 	css: 'child_section' , type: 'child_section', ext_doc:2, subtype: 'child_section', metadata : 'Demo doc #1', start:0, end: 34}],
-				[{position:'left', 	css: 'child_section' , type: 'child_section', ext_doc:3, subtype: 'child_section', metadata : 'Demo media', start:0, end: 34}],
-				[{position:'under', 	css: 'child_section' , type: 'child_section', ext_doc:4, subtype: 'child_section', metadata : 'Demo media /2', start:0, end: 34}],
-				[{position:'right', 	css: 'child_section' , type: 'child_section', ext_doc:1, subtype: 'child_section', metadata : 'myself', start:0, end: 34}],
-				[{position:'right', 	css: 'child_section' , type: 'child_section', ext_doc:5, subtype: 'child_section', metadata : 'demos', start:0, end: 34}],
-				[{position:'right', 	css: 'child_section' , type: 'child_section', ext_doc:6, subtype: 'child_section', metadata : 'demo', start:0, end: 34}]
+				[{ css: '',	type: 'section', subtype: 'text', metadata : '', start: 0, end: 134}],
+			
+			[{position:'under', 	css: 'child_section' , type: 'child_section', ext_doc:2, subtype: 'child_section', metadata : 'Demo doc #1', start:0, end: 34}],
+			[{position:'left', 		css: 'child_section' , type: 'child_section', ext_doc:3, subtype: 'child_section', metadata : 'Demo media', start:0, end: 34}],
+			[{position:'under', 	css: 'child_section' , type: 'child_section', ext_doc:4, subtype: 'child_section', metadata : 'Demo media /2', start:0, end: 34}],
+			[{position:'right', 	css: 'child_section' , type: 'child_section', ext_doc:1, subtype: 'child_section', metadata : 'myself', start:0, end: 34}],
+			[{position:'right', 	css: 'child_section' , type: 'child_section', ext_doc:5, subtype: 'child_section', metadata : 'demos', start:0, end: 34}],
+			[{position:'global', 	css: 'child_section' , type: 'child_section', ext_doc:6, subtype: 'child_section', metadata : 'demo', start:0, end: 34}]
 		);
 
 
 		var shortexcerpt = 'blou';
 		dms = new Array(
-					[{meta_key: 'footer_center_html',				meta_value: 'MusicBox demo / homepage /demo <a href="'+git_url+'">MusicBox</a>' }],
-				    [{meta_key: 'image_thumb', meta_value: baseuse_url+'/img/docs/4/music-box.jpg' }],
+					[{meta_key: 'footer_center_html',				meta_value: '#:'+doc_secret+' MusicBox demo / homepage /demo <a href="'+git_url+'">MusicBox</a>' }],
+				    [{meta_key: 'image_thumb', 						meta_value: baseuse_url+'/img/docs/4/music-box.jpg' }],
 					[{meta_key: 'short_doc_model',					meta_value: 'image_left_title_excerpt' }],
 					[{meta_key: 'short_excerpt',					meta_value: shortexcerpt }],
 					[{meta_key: 'use_authorcard', 					meta_value: 'no' }],
@@ -89,7 +94,10 @@ exports.doc_build = function(user, room, sample_number){
 					[{meta_key: 'block_color',						meta_value: 'white_atext' }],
 					[{meta_key: 'single_theme', 					meta_value: 'model-lh-f fl-th-p' }],
 					[{meta_key: 'kind',								meta_value: 'classic-post' }],
-					[{meta_key: 'global_comments',								meta_value: 'no' }]
+					[{meta_key: 'global_comments',					meta_value: 'no' }],
+					[{meta_key: 'doc_notices_before_title',			meta_value: 'MusicBox Demo site'}],
+					[{meta_key: 'doc_notices_after_title',			meta_value: 'Display a welcome text and some childs documents' }]
+
 					//[{meta_key: 'share_fragment',					meta_value: 'after_title' }],
 					//[{meta_key: 'share_notice', 	   				meta_value: 'Share' }],
 					//[{meta_key: 'keywords_notice', 					meta_value: 'Keywords' }],
@@ -100,8 +108,7 @@ exports.doc_build = function(user, room, sample_number){
 					//[{meta_key: 'text_class', 						meta_value: 'high_fat' }],
 					//[{meta_key: 'text_typo', 						meta_value: 'Esteban::latin' }],
 					//[{meta_key: 'headings_typo', 					meta_value: 'Droid Sans' }],
-					//[{meta_key: 'doc_notices_after_title',			meta_value: 'MusicBox Demo doc'}],
-					//[{meta_key: 'doc_notices_before_title',			meta_value: 'Display a sample text, some images, notes, comments and fragments' }]
+					
 				);
 		var nodes = new Array('musicbox','lorem-ipsum', 'blou');
 	}
@@ -163,12 +170,19 @@ exports.doc_build = function(user, room, sample_number){
 				[{ metadata : '',subtype: 'strong' , type: 'markup',start:5, end:20}],
 				[{ metadata : '',subtype: 'em' , type: 'markup',start:35, end:60}],
 				[{ metadata : '',subtype: 'strike' , type: 'markup',start:75, end:90}],
+		
+
+
 			//	[{ type: 'section_class', subtype: '', metadata : 'cloud_bg', start: 0, end: 167}],
 			//	[{ type: 'section_class', subtype: '', metadata : 'pa20_topbtm',  start: 0, end: 167}],
 				[{ type: 'section', subtype: 'text', metadata : '', start: 168, end:262}],
 				[{ type: 'section', subtype: 'text', metadata : '', start: 263, end:508}],
 				[{ type: 'section', subtype: 'text', metadata : '', start: 509, end:708}],
+
+
 				[{ metadata : '',subtype: 'strong' , type: 'markup',start: 609, end:705}],
+				
+
 				[{position:'under', depth: 1,   type: 'note', subtype: 'wikipedia',  metadata : 'this is a long with <a><em>html</em> link</a> note/freebase under section. Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissim sit amet.', start: 10, end:29}],
 		 		[{position:'right', depth: 1,   type: 'note', subtype: 'note',       metadata : 'this is a long with <a><em>html</em> link</a> note/freebase under section. Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissim sit amet.', start: 50, end:69}],
 		 		[{position:'right', depth: 1,   type: 'note', subtype: 'note',       metadata : 'this is a long with <a><em>html</em> link</a> note/freebase under section. Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissim sit amet.', start: 100, end:112}],
@@ -343,10 +357,11 @@ else if(sample_number==6){
 				[{position:'left', 	depth: 1, type: 'data', subtype: 'year', metadata : '2014',  start: 1000, end:1001}],
 				[{position:'left', 	depth: 1, type: 'data', subtype: 'unit', metadata : '100kg',   start: 1000, end:1001}],
 				[{position:'left', 	depth: 1, type: 'data', subtype: 'money', metadata : '1000$',   start: 1000, end:1001}],
-				[{position:'left', 	depth: 1, type: 'data', subtype: 'x', metadata : 78,   start: 1000, end:1001}],
-				[{position:'left', 	depth: 1, type: 'data', subtype: 'x', metadata : 158,   start: 1000, end:1001}],
-				[{position:'left', 	depth: 1, type: 'data', subtype: 'x', metadata : 278,   start: 1000, end:1001}],
-				[{position:'left', 	depth: 1, type: 'data', subtype: 'x', metadata : 178,   start: 1000, end:1001}]
+				[{position:'left', 	depth: 1, type: 'data', subtype: 'x', metadata : 78,   start: 0, end:1}],
+				[{position:'left', 	depth: 1, type: 'data', subtype: 'x', metadata : 158,   start: 0, end:10}],
+				[{position:'left', 	depth: 1, type: 'data', subtype: 'x', metadata : '278 mA',   start: 0, end:1}],
+				[{position:'left', 	depth: 1, type: 'data', subtype: 'x', metadata : '178 V',   start: 1, end:10}],
+				[{position:'global', depth: 1, type: 'data', subtype: 'x', metadata : '50 Watts/h',   start:30, end:41}]
 
 
 
@@ -491,9 +506,287 @@ else if(sample_number==6){
 
 
 	}
+else if(sample_number==9){
+
+		
+
+		sample_content			= "Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Lorem with section background and padding modern styles. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis. Curabitur aliquet pellentesque diam. Integer quis metus vitae elit lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi vel erat non mauris convallis vehicula. Nulla et sapien. Integer tortor tellus, aliquam faucibus, convallis id, congue eu, quam. Mauris ullamcorper felis vitae erat. Proin feugiat, augue non elementum posuere, metus purus iaculis lectus, et tristique ligula justo vitae magna. Aliquam convallis sollicitudin purus. Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus. Fusce vulputate sem at sapien. Vivamus leo. Aliquam euismod libero eu enim. Nulla nec felis sed leo placerat imperdiet. Aenean suscipit nulla in justo. Suspendisse cursus rutrum augue. Nulla tincidunt tincidunt mi. Curabitur iaculis, lorem vel rhoncus faucibus, felis magna fermentum augue, et ultricies lacus lorem varius purus. Curabitur eu amet.";
+
+		kind_i					= 'document';
+		section_i				= 'featured_second';
+		doc_title				= 'Lorem Ipsum images';
+		doc_slug				= 'Lorem-ipsum-images';
+	
+		tds = new Array(
+				/*five sections with images at different positions */
+
+				[{ type: 'section', subtype: 'text', css : 'fixed_top', start: 0, end: 399}],
+					[{position:'right', 	css: 'img' , type: 'img', ext_doc:2, subtype: 'img', metadata : baseuse_url+'/img/lorem/600-400.jpg'  , start:0, end: 30}],
+
+				[{ type: 'section', subtype: 'text', metadata : '', start: 400, end:799}],
+					[{position:'left', 	css: 'img' , type: 'img', ext_doc:2, subtype: 'example', metadata : baseuse_url+'/img/lorem/600-400.jpg'  , start: 450, end:469}],
+				
+				[{ type: 'section', subtype: 'text', metadata : '', start: 800, end:999}],
+					[{position:'center', 	css: 'img' , type: 'img', ext_doc:2, subtype: 'example', metadata : baseuse_url+'/img/lorem/600-400.jpg'  , start: 850, end:869}],
+				
+				[{ type: 'section', subtype: 'text', metadata : '', start: 1000, end:1599}],
+					[{position:'left', 	css: 'img' , type: 'img', ext_doc:2, subtype: 'example', metadata : baseuse_url+'/img/lorem/600-400.jpg'  ,  start: 1001, end:1597}],
+					[{position:'right', 	css: 'img' , type: 'img', ext_doc:2, subtype: 'example', metadata : baseuse_url+'/img/lorem/600-400.jpg'  ,  start: 1001, end:1597}],
+
+				[{ type: 'section', subtype: 'text', metadata : '', start: 1600, end:1800}],
+					[{position:'wide', 	css: 'img' , type: 'img', ext_doc:4, subtype: 'example', metadata : baseuse_url+'/img/docs/4/music-box.jpg'  ,  start: 1600, end:1601}]
+			);
+
+
+		var shortexcerpt = 'blou';
+		dms = new Array(
+					[{meta_key: 'footer_center_html',				meta_value: '#'+sample_number+ ' - '+doc_title+' - <a href="'+git_url+'">MusicBox</a>' }],
+					[{meta_key: 'image_thumb',						meta_value: baseuse_url+'/img/lorem/600-400.jpg' }],
+					[{meta_key: 'short_doc_model',					meta_value: 'image_left_title_excerpt' }],
+					[{meta_key: 'short_excerpt',					meta_value: shortexcerpt }],
+					[{meta_key: 'use_authorcard', 					meta_value: 'full_last' }],
+					[{meta_key: 'share_notice', 					meta_value: 'Partager' }],
+					[{meta_key: 'text_class',						meta_value: 'medium' }],
+					[{meta_key: 'branding_class', 					meta_value: '' }], 
+					[{meta_key: 'color_a',							meta_value: '#e67e22' }],
+					[{meta_key: 'color_b',							meta_value: '#f39c12' }],
+					[{meta_key: 'block_bgcolor',					meta_value: 'black_bg' }],
+					[{meta_key: 'block_color',						meta_value: 'white_atext' }],
+					[{meta_key: 'single_theme', 					meta_value: 'model-lh-f fl-th-p' }],
+					[{meta_key: 'kind',								meta_value: 'classic-post' }],
+					[{meta_key: 'share_fragment',					meta_value: 'after_title' }],
+					[{meta_key: 'share_notice', 	   				meta_value: 'Share' }],
+					[{meta_key: 'keywords_notice', 					meta_value: 'Keywords' }],
+					[{meta_key: 'editor_notice', 					meta_value: 'Edited by' }],
+					[{meta_key: 'creator_notice', 					meta_value: 'Created by' }],
+					[{meta_key: 'nodes_fragment', 					meta_value: 'full_last' }],
+					[{meta_key: 'date_fragment', 					meta_value: 'full_first' }],
+					[{meta_key: 'text_class', 						meta_value: 'high_fat' }],
+					[{meta_key: 'text_typo', 						meta_value: 'Esteban::latin' }],
+					[{meta_key: 'headings_typo', 					meta_value: 'Droid Sans' }],
+					[{meta_key: 'doc_notices_after_title',			meta_value: 'MusicBox Demo doc'}],
+					[{meta_key: 'doc_notices_before_title',			meta_value: 'Display a sample text with classic markup for titles (h1-h6), strong, italic, strike, links, lists, ...' }]
+				);
+		var nodes = new Array('musicbox','lorem-ipsum', 'blou');
+
+
+	}
+else if(sample_number==10){
+
+		
+
+		sample_content			= "0123456789012345678- -901234567890120123- -456789012345678- -90123456789012-- 34567890123456789- -01234567893456- -7890123456789- -01234012345678900123456789012345678- -9012345678901234567890123456789- -012345678912345678- -9012345678901234567890123456789- -012345678956789";
+
+		kind_i					= 'document';
+		section_i				= 'featured_second';
+		doc_title				= 'Lorem Ipsum editor tester';
+		doc_slug				= 'Lorem-ipsum-images';
+	
+		tds = new Array(
+				/*five sections with images at different positions */
+
+				[{ type: 'section', subtype: 'text', css : '', start: 0, end: 10}],
+				[{ type: 'section', subtype: 'text', css : '', start: 11, end: 18}],
+				[{ type: 'section', subtype: 'text', css : '', start: 19, end: 32}],
+				[{ type: 'section', subtype: 'text', css : '', start: 33, end: 100 }],
+			[{ type: 'section', subtype: 'text', css : '', start: 101, end: 273 }]
+
+
+		
+
+		);
+
+
+		var shortexcerpt = 'blou';
+		dms = new Array(
+					[{meta_key: 'footer_center_html',				meta_value: doc_secret }],
+					[{meta_key: 'image_thumb',						meta_value: baseuse_url+'/img/lorem/600-400.jpg' }],
+					[{meta_key: 'short_doc_model',					meta_value: 'image_left_title_excerpt' }],
+					[{meta_key: 'short_excerpt',					meta_value: shortexcerpt }],
+					[{meta_key: 'use_authorcard', 					meta_value: 'full_last' }],
+					[{meta_key: 'share_notice', 					meta_value: 'Partager' }],
+					[{meta_key: 'text_class',						meta_value: 'medium' }],
+					[{meta_key: 'branding_class', 					meta_value: '' }], 
+					[{meta_key: 'color_a',							meta_value: '#e67e22' }],
+					[{meta_key: 'color_b',							meta_value: '#f39c12' }],
+					[{meta_key: 'block_bgcolor',					meta_value: 'black_bg' }],
+					[{meta_key: 'block_color',						meta_value: 'white_atext' }],
+					[{meta_key: 'single_theme', 					meta_value: 'model-lh-f fl-th-p' }],
+					[{meta_key: 'kind',								meta_value: 'classic-post' }],
+					[{meta_key: 'share_fragment',					meta_value: 'after_title' }],
+					[{meta_key: 'share_notice', 	   				meta_value: 'Share' }],
+					[{meta_key: 'keywords_notice', 					meta_value: 'Keywords' }],
+					[{meta_key: 'editor_notice', 					meta_value: 'Edited by' }],
+					[{meta_key: 'creator_notice', 					meta_value: 'Created by' }],
+					[{meta_key: 'nodes_fragment', 					meta_value: 'full_last' }],
+					[{meta_key: 'date_fragment', 					meta_value: 'full_first' }],
+					[{meta_key: 'text_class', 						meta_value: 'high_fat' }],
+					[{meta_key: 'text_typo', 						meta_value: 'Esteban::latin' }],
+					[{meta_key: 'headings_typo', 					meta_value: 'Droid Sans' }],
+					[{meta_key: 'doc_notices_after_title',			meta_value: 'MusicBox Demo doc'}],
+					[{meta_key: 'doc_notices_before_title',			meta_value: 'Display a sample text with classic markup for titles (h1-h6), strong, italic, strike, links, lists, ...' }]
+				);
+		var nodes = new Array('musicbox','lorem-ipsum', 'blou');
+
+
+	}
+else if(sample_number==11){
+
+		// STRESS TEST // latest versions of chrome and firefox can do it ! 
 
 
 
+ sample_content			+= "Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Lorem with section background and padding modern styles. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis. Curabitur aliquet pellentesque diam. Integer quis metus vitae elit lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi vel erat non mauris convallis vehicula. Nulla et sapien. Integer tortor tellus, aliquam faucibus, convallis id, congue eu, quam. Mauris ullamcorper felis vitae erat. Proin feugiat, augue non elementum posuere, metus purus iaculis lectus, et tristique ligula justo vitae magna. Aliquam convallis sollicitudin purus. Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus. Fusce vulputate sem at sapien. Vivamus leo. Aliquam euismod libero eu enim. Nulla nec felis sed leo placerat imperdiet. Aenean suscipit nulla in justo. Suspendisse cursus rutrum augue. Nulla tincidunt tincidunt mi. Curabitur iaculis, lorem vel rhoncus faucibus, felis magna fermentum augue, et ultricies lacus lorem varius purus. Curabitur eu amet.";
+	 sample_content			+= "(2x) Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis. Curabitur aliquet pellentesque diam. Integer quis metus vitae elit lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi vel erat non mauris convallis vehicula. Nulla et sapien. Integer tortor tellus, aliquam faucibus, convallis id, congue eu, quam. Mauris ullamcorper felis vitae erat. Proin feugiat, augue non elementum posuere, metus purus iaculis lectus, et tristique ligula justo vitae magna. Aliquam convallis sollicitudin purus. Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus. Fusce vulputate sem at sapien. Vivamus leo. Aliquam euismod libero eu enim. Nulla nec felis sed leo placerat imperdiet. Aenean suscipit nulla in justo. Suspendisse cursus rutrum augue. Nulla tincidunt tincidunt mi. Curabitur iaculis, lorem vel rhoncus faucibus, felis magna fermentum augue, et ultricies lacus lorem varius purus. Curabitur eu amet.";
+ sample_content			+= "Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Lorem with section background and padding modern styles. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis. Curabitur aliquet pellentesque diam. Integer quis metus vitae elit lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi vel erat non mauris convallis vehicula. Nulla et sapien. Integer tortor tellus, aliquam faucibus, convallis id, congue eu, quam. Mauris ullamcorper felis vitae erat. Proin feugiat, augue non elementum posuere, metus purus iaculis lectus, et tristique ligula justo vitae magna. Aliquam convallis sollicitudin purus. Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus. Fusce vulputate sem at sapien. Vivamus leo. Aliquam euismod libero eu enim. Nulla nec felis sed leo placerat imperdiet. Aenean suscipit nulla in justo. Suspendisse cursus rutrum augue. Nulla tincidunt tincidunt mi. Curabitur iaculis, lorem vel rhoncus faucibus, felis magna fermentum augue, et ultricies lacus lorem varius purus. Curabitur eu amet.";
+	 sample_content			+= "(2x) Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis. Curabitur aliquet pellentesque diam. Integer quis metus vitae elit lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi vel erat non mauris convallis vehicula. Nulla et sapien. Integer tortor tellus, aliquam faucibus, convallis id, congue eu, quam. Mauris ullamcorper felis vitae erat. Proin feugiat, augue non elementum posuere, metus purus iaculis lectus, et tristique ligula justo vitae magna. Aliquam convallis sollicitudin purus. Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus. Fusce vulputate sem at sapien. Vivamus leo. Aliquam euismod libero eu enim. Nulla nec felis sed leo placerat imperdiet. Aenean suscipit nulla in justo. Suspendisse cursus rutrum augue. Nulla tincidunt tincidunt mi. Curabitur iaculis, lorem vel rhoncus faucibus, felis magna fermentum augue, et ultricies lacus lorem varius purus. Curabitur eu amet.";
+ sample_content			+= "Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Lorem with section background and padding modern styles. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis. Curabitur aliquet pellentesque diam. Integer quis metus vitae elit lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi vel erat non mauris convallis vehicula. Nulla et sapien. Integer tortor tellus, aliquam faucibus, convallis id, congue eu, quam. Mauris ullamcorper felis vitae erat. Proin feugiat, augue non elementum posuere, metus purus iaculis lectus, et tristique ligula justo vitae magna. Aliquam convallis sollicitudin purus. Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus. Fusce vulputate sem at sapien. Vivamus leo. Aliquam euismod libero eu enim. Nulla nec felis sed leo placerat imperdiet. Aenean suscipit nulla in justo. Suspendisse cursus rutrum augue. Nulla tincidunt tincidunt mi. Curabitur iaculis, lorem vel rhoncus faucibus, felis magna fermentum augue, et ultricies lacus lorem varius purus. Curabitur eu amet.";
+	 sample_content			+= "(2x) Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis. Curabitur aliquet pellentesque diam. Integer quis metus vitae elit lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi vel erat non mauris convallis vehicula. Nulla et sapien. Integer tortor tellus, aliquam faucibus, convallis id, congue eu, quam. Mauris ullamcorper felis vitae erat. Proin feugiat, augue non elementum posuere, metus purus iaculis lectus, et tristique ligula justo vitae magna. Aliquam convallis sollicitudin purus. Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus. Fusce vulputate sem at sapien. Vivamus leo. Aliquam euismod libero eu enim. Nulla nec felis sed leo placerat imperdiet. Aenean suscipit nulla in justo. Suspendisse cursus rutrum augue. Nulla tincidunt tincidunt mi. Curabitur iaculis, lorem vel rhoncus faucibus, felis magna fermentum augue, et ultricies lacus lorem varius purus. Curabitur eu amet.";
+ sample_content			+= "Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Lorem with section background and padding modern styles. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis. Curabitur aliquet pellentesque diam. Integer quis metus vitae elit lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi vel erat non mauris convallis vehicula. Nulla et sapien. Integer tortor tellus, aliquam faucibus, convallis id, congue eu, quam. Mauris ullamcorper felis vitae erat. Proin feugiat, augue non elementum posuere, metus purus iaculis lectus, et tristique ligula justo vitae magna. Aliquam convallis sollicitudin purus. Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus. Fusce vulputate sem at sapien. Vivamus leo. Aliquam euismod libero eu enim. Nulla nec felis sed leo placerat imperdiet. Aenean suscipit nulla in justo. Suspendisse cursus rutrum augue. Nulla tincidunt tincidunt mi. Curabitur iaculis, lorem vel rhoncus faucibus, felis magna fermentum augue, et ultricies lacus lorem varius purus. Curabitur eu amet.";
+	 sample_content			+= "(2x) Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis. Curabitur aliquet pellentesque diam. Integer quis metus vitae elit lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi vel erat non mauris convallis vehicula. Nulla et sapien. Integer tortor tellus, aliquam faucibus, convallis id, congue eu, quam. Mauris ullamcorper felis vitae erat. Proin feugiat, augue non elementum posuere, metus purus iaculis lectus, et tristique ligula justo vitae magna. Aliquam convallis sollicitudin purus. Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus. Fusce vulputate sem at sapien. Vivamus leo. Aliquam euismod libero eu enim. Nulla nec felis sed leo placerat imperdiet. Aenean suscipit nulla in justo. Suspendisse cursus rutrum augue. Nulla tincidunt tincidunt mi. Curabitur iaculis, lorem vel rhoncus faucibus, felis magna fermentum augue, et ultricies lacus lorem varius purus. Curabitur eu amet.";
+ sample_content			+= "Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Lorem with section background and padding modern styles. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis. Curabitur aliquet pellentesque diam. Integer quis metus vitae elit lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi vel erat non mauris convallis vehicula. Nulla et sapien. Integer tortor tellus, aliquam faucibus, convallis id, congue eu, quam. Mauris ullamcorper felis vitae erat. Proin feugiat, augue non elementum posuere, metus purus iaculis lectus, et tristique ligula justo vitae magna. Aliquam convallis sollicitudin purus. Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus. Fusce vulputate sem at sapien. Vivamus leo. Aliquam euismod libero eu enim. Nulla nec felis sed leo placerat imperdiet. Aenean suscipit nulla in justo. Suspendisse cursus rutrum augue. Nulla tincidunt tincidunt mi. Curabitur iaculis, lorem vel rhoncus faucibus, felis magna fermentum augue, et ultricies lacus lorem varius purus. Curabitur eu amet.";
+	 sample_content			+= "(2x) Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis. Curabitur aliquet pellentesque diam. Integer quis metus vitae elit lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi vel erat non mauris convallis vehicula. Nulla et sapien. Integer tortor tellus, aliquam faucibus, convallis id, congue eu, quam. Mauris ullamcorper felis vitae erat. Proin feugiat, augue non elementum posuere, metus purus iaculis lectus, et tristique ligula justo vitae magna. Aliquam convallis sollicitudin purus. Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus. Fusce vulputate sem at sapien. Vivamus leo. Aliquam euismod libero eu enim. Nulla nec felis sed leo placerat imperdiet. Aenean suscipit nulla in justo. Suspendisse cursus rutrum augue. Nulla tincidunt tincidunt mi. Curabitur iaculis, lorem vel rhoncus faucibus, felis magna fermentum augue, et ultricies lacus lorem varius purus. Curabitur eu amet.";
+ sample_content			+= "Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Lorem with section background and padding modern styles. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis. Curabitur aliquet pellentesque diam. Integer quis metus vitae elit lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi vel erat non mauris convallis vehicula. Nulla et sapien. Integer tortor tellus, aliquam faucibus, convallis id, congue eu, quam. Mauris ullamcorper felis vitae erat. Proin feugiat, augue non elementum posuere, metus purus iaculis lectus, et tristique ligula justo vitae magna. Aliquam convallis sollicitudin purus. Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus. Fusce vulputate sem at sapien. Vivamus leo. Aliquam euismod libero eu enim. Nulla nec felis sed leo placerat imperdiet. Aenean suscipit nulla in justo. Suspendisse cursus rutrum augue. Nulla tincidunt tincidunt mi. Curabitur iaculis, lorem vel rhoncus faucibus, felis magna fermentum augue, et ultricies lacus lorem varius purus. Curabitur eu amet.";
+	 sample_content			+= "(2x) Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis. Curabitur aliquet pellentesque diam. Integer quis metus vitae elit lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi vel erat non mauris convallis vehicula. Nulla et sapien. Integer tortor tellus, aliquam faucibus, convallis id, congue eu, quam. Mauris ullamcorper felis vitae erat. Proin feugiat, augue non elementum posuere, metus purus iaculis lectus, et tristique ligula justo vitae magna. Aliquam convallis sollicitudin purus. Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus. Fusce vulputate sem at sapien. Vivamus leo. Aliquam euismod libero eu enim. Nulla nec felis sed leo placerat imperdiet. Aenean suscipit nulla in justo. Suspendisse cursus rutrum augue. Nulla tincidunt tincidunt mi. Curabitur iaculis, lorem vel rhoncus faucibus, felis magna fermentum augue, et ultricies lacus lorem varius purus. Curabitur eu amet.";
+ 
+		kind_i					= 'document';
+		section_i				= 'featured_second';
+		doc_title				= 'Very long Lorem Ipsum';
+		doc_slug				= 'Lorem-ipsum-long';
+	
+		tds = new Array(
+				/*five sections with images at different positions */
+
+				[{ type: 'section', subtype: 'text', css : '', start: 0, end: 5000}],
+				[{ type: 'section', subtype: 'text', css : '', start: 5001, end: 10000}]
+
+							//[{ type: 'section', subtype: 'text', css : '', start: 10001, end: 35000}]
+
+		
+
+		);
+
+
+		var shortexcerpt = 'blou';
+		dms = new Array(
+					[{meta_key: 'footer_center_html',				meta_value: doc_secret }],
+					[{meta_key: 'image_thumb',						meta_value: baseuse_url+'/img/lorem/600-400.jpg' }],
+					[{meta_key: 'short_doc_model',					meta_value: 'image_left_title_excerpt' }],
+					[{meta_key: 'short_excerpt',					meta_value: shortexcerpt }],
+					[{meta_key: 'use_authorcard', 					meta_value: 'no' }],
+					[{meta_key: 'share_notice', 					meta_value: 'Partager' }],
+					[{meta_key: 'text_class',						meta_value: 'medium' }],
+					[{meta_key: 'branding_class', 					meta_value: '' }], 
+					[{meta_key: 'color_a',							meta_value: '#e67e22' }],
+					[{meta_key: 'color_b',							meta_value: '#f39c12' }],
+					[{meta_key: 'block_bgcolor',					meta_value: 'black_bg' }],
+					[{meta_key: 'block_color',						meta_value: 'white_atext' }],
+					[{meta_key: 'single_theme', 					meta_value: 'model-lh-f fl-th-p' }],
+					[{meta_key: 'kind',								meta_value: 'classic-post' }],
+					[{meta_key: 'share_fragment',					meta_value: 'after_title' }],
+					[{meta_key: 'share_notice', 	   				meta_value: 'Share' }],
+					[{meta_key: 'keywords_notice', 					meta_value: 'Keywords' }],
+					[{meta_key: 'editor_notice', 					meta_value: 'Edited by' }],
+					[{meta_key: 'creator_notice', 					meta_value: 'Created by' }],
+					[{meta_key: 'nodes_fragment', 					meta_value: 'full_last' }],
+					[{meta_key: 'date_fragment', 					meta_value: 'full_first' }],
+					[{meta_key: 'text_class', 						meta_value: 'high_fat' }],
+					[{meta_key: 'text_typo', 						meta_value: 'Esteban::latin' }],
+					[{meta_key: 'headings_typo', 					meta_value: 'Droid Sans' }],
+					[{meta_key: 'doc_notices_after_title',			meta_value: 'MusicBox Demo doc'}],
+					[{meta_key: 'doc_notices_before_title',			meta_value: '(stree test) Displaying'+ _.size(sample_content	)+ 'chars' }]
+				);
+		var nodes = new Array('musicbox','lorem-ipsum', 'blou');
+
+
+	}
+else if(sample_number==12){
+
+		
+
+		/* 2k letters by line */	
+		sample_content			+= "Scientifiquement, l\'acquisition des possibilités de traite­ment des grands nombres a permis d\'étudier les conditions de l\'appa­rition et du développement des formes de hasard:la théorie des probabilités que Blaise Pascal a largement contribué à fonder,la remise en cause de l\'espérance mathématique comme critère universel d\'utilité par Émile Borel en 1928,la mathématisation de la notion de « hasard » par Andreï Kolmogorov avec la notion de complexité de Kolmogorov. la mathématisation de la contingence par Andreï Kolmogorov en 1931 (avec les équations forward et backward), l\'usage des probabilités dans les questions de stratégie militaire ou économique par la théorie des jeux de John von Neumann et Oskar Morgenstern en 1944 (stratégies mixtes), la mathématisation du hasard de l\'observation dans les phénomènes quantiques (relations d’incertitude de Heisenberg).On y trouve un écho de la philosophie de Démocrite, selon laquelle « Tout ce qui existe est le fruit du hasard et de la nécessité ».Le hasard du mouvement et de la rencontre des atomes les uns avec les autres, déjà exposé chez Démocrite, sera revisité par la mécanique quantique, pour laquelle le hasard ne peut se définir que là où il y a un observateur (les fonctions d\'onde sont en effet parfaitement déterminées ; seule leur « réalisation » est aléatoire). Il importe de ne pas confondre le chaos et le hasard : le comportement erratique de systèmes résulte d’un enchevêtrement de séries causales engendrant des conflits d’actions, qui semblent indépendantes car trop complexes pour être analysées. Le hasard, lui, exprime simplement une absence d\'information, que celle-ci puisse exister ou non. Néanmoins, les systèmes chaotiques sont couramment utilisés dans les générateurs de hasard. La complexité n’intervient pas non plus en tant que telle : on peut créer nombre de modèles extrême­ment simples, et qui obéissent pourtant à un processus imprévisible, ou dont le comportement paraît déconcertant (voir Fourmi de Langton). Une fonction d’émergence se manifeste souvent dans les systèmes complexes observés, et a suggéré la notion d\'auto-organisation.Le hasard peut souvent être transcrit en lois probabi­listes. Probabilités et statistiques permettent une plus fine observation du monde et donc des projections plus rigoureuses dans l’avenir.Mais une distinction fondamentale doit être faite quant aux différentes formes de hasard : comme le montre Mandelbrot dans Hasard, fractales et finance9, il existe deux types de hasard, le hasard « bénin » et le hasard « sauvage ». Pour le hasard bénin, quand le nombre d\'observations augmente, les fluctuations sont de moins en moins importantes (c\'est la loi des grands nombres), la loi est gaussienne (c\'est le théorème central limite) et le présent est indépendant du passé suffisamment éloigné10. Le hasard « sauvage » est très différent puisque qu\'il correspond à des lois ou une simple observation peut changer une moyenne faite de plusieurs milliers d\'observations, il rend compte des évènements « catastrophiques » ou « pathologiques ». « [le hasard sauvage] est très vilain, car il ne permet pas de raisonner en termes de moyennes. Si vous prenez dix villes de France au hasard et si vous ratez Paris, Lyon et Marseille, vous allez faire chuter la taille moyenne dans votre échantillon. Si vous prenez dix villes, dont Paris et neuf villages, la moyenne n\'autorise aucune conclusion sur les populations de villes tirées au hasard. » (B. Mandelbrot11)Cette différence montre que l\'inférence statistique, c\'est-à-dire le fait de déduire d\'un échantillon de données de l\'information sur le processus qui génère cet échantillon, est une opération éminemment complexe en statistique inférentielle.Utilité et utilisation du hasardOn utilise le hasard afin de simplifier les analyses, mais pas seulement : de nombreux phénomènes réels étant imprévisibles, on a besoin de savoir utiliser le hasard si on veut les copier ; c\'est notamment le cas pour les simulations.Les théories des jeux prennent en compte le hasard. Celle des jeux « économiques », de John von Neumann et d\'Oskar Morgenstern, montre que les stratégies optimales pour contrer un adversaire sont parfois des stratégies mixtes : il est difficile de prévoir vos mouvements si vous les tirez au hasard, mais encore faut-il effectuer ce tirage d\'une façon optimale pour vous et le moins favorable possible pour votre adversaire. Voir Point selle.La compréhension et la maîtrise des jeux de hasard nécessitent quant à elles une bonne modélisation du hasard.Les méthodes de calculs numériques basées sur le hasard sont nommées « Méthodes de Monte-Carlo ».Méthodes de Monte-CarloArticle détaillé : Méthode de Monte-Carlo.Ces méthodes utilisent des nombres aléatoires pour simuler des situations, calculer des intégrales ou résoudre des équations aux dérivées partielles.Les méthodes de Monte-Carlo sont particulièrement utilisées en physique, où l\'on calcule des algorithmes qui permettent ensuite d\'analyser des résultats d\'expériences.Génération de hasardArticle détaillé : générateur de nombres aléatoires.Puisqu\'on utilise le hasard, il serait plus pratique de pouvoir directement le produire, ceci à des fins d\'efficacité. Pour cela, on peut par exemple utiliser : des phénomènes imprévisibles : dés, roulette, loto ; des opérations mathématiques imprévisibles à l\'intérieur d\'algorithmes : division euclidienne, congruence, carré ; des processus physiques : radioactivité, lame semi-réfléchissante...À l\'exception des phénomènes basés sur des phénomènes quantiques, ces méthodes ne génèrent qu\'un pseudo-hasard, presque indéterminable, ou seulement partiellement indéterminable.";
+
+	
+		kind_i					= 'document';
+		section_i				= 'featured_second';
+		doc_title				= 'Le hasard ..#'+doc_secret;
+		doc_slug				= 'hasard-demo';
+	
+		tds = new Array(
+				[{ position:'inline', type: 'section', subtype: 'text', metadata : '', start: 0, end: 1473}],
+
+//				[{ metadata : '',subtype: 'em' , type: 'markup', start: 0 , end: 175}],
+				[{ metadata : '',subtype: 'list-item' , type: 'markup', start: 175 , end: 251}],
+				[{ metadata : '',subtype: 'list-item' , type: 'markup', start: 252 , end: 356}],
+				[{ metadata : '',subtype: 'list-item' , type: 'markup', start: 357 , end: 467}],
+
+		 		[{position:'right', depth: 1,  type: 'note', subtype: 'wikipedia', metadata : 'Blaise Pascal, né le 19 juin 1623 à Clairmont (aujourd\'hui Clermont-Ferrand) en Auvergne et mort le 19 août 1662 à Paris, est un mathématicien, physicien, inventeur, philosophe, moraliste et théologien français. Enfant précoce, son père l\'éduque. Les premiers travaux de Pascal concernent les sciences naturelles et appliquées. Il contribue de manière importante à l’étude des fluides. Il a clarifié les concepts de pression et de vide, en étendant le travail de Torricelli. Pascal a écrit des textes importants sur la méthode scientifique.', start: 209, end:221}],
+
+
+
+
+				[{ position:'inline', type: 'section', subtype: 'text', metadata : '', start: 1474, end:1699}]
+/*
+				[{  position:'inline',type: 'section', subtype: 'text', metadata : '', start: 700, end:1499}],
+				[{  position:'inline',type: 'section', subtype: 'text', metadata : '', start: 1500, end:4799}],
+				[{position:'left', 	depth: 1,   type: 'note', subtype: 'wikipedia',  metadata : 'wiki note',  start: 0, end:499}],
+		 		[{position:'left', 	depth: 1,   type: 'note', subtype: 'wikipedia',  metadata : 'this is a note/wikipedia',start: 0, end:499}],
+		 		[{position:'left', 	depth: 1,   type: 'note', subtype: 'data',       metadata :  677, start: 0, end:499}],
+		 		[{position:'under', depth: 1,   type: 'note', subtype: 'wikipedia',  metadata : 'this is a long with <a><em>html</em> link</a> note/freebase under section. Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissim sit amet.', start: 0, end:499}],
+		 		[{position:'under', depth: 1,   type: 'note', subtype: 'freebase',   metadata : 'this is a long with <a><em>html</em> link</a> note/freebase under section. Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissim sit amet.', start: 500, end:699}],
+		 		[{position:'under', depth: 1,   type: 'note', subtype: 'wikipedia',  metadata : 'this is a long with <a><em>html</em> link</a> note/freebase under section. Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissim sit amet.', start: 500, end:699}],
+		 		[{position:'right', depth: 1,   type: 'note', subtype: 'note',       metadata : 'this is a long with <a><em>html</em> link</a> note/freebase under section. Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissim sit amet.', start: 500, end:699}],
+		 		[{position:'right', depth: 1,   type: 'note', subtype: 'note',       metadata : 'this is a long with <a><em>html</em> link</a> note/freebase under section. Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissim sit amet.', start: 500, end:699}],
+		 		[{position:'left', 	depth: 10,  type: 'note', subtype: 'comment',    metadata : 'a comment',  start: 700, end:1499}],
+		 		[{position:'right', depth: 10,  type: 'note', subtype: 'comment',    metadata : 'another comment',  start: 700, end:1499}],
+		 		[{position:'left', 	depth: 100, type: 'note', subtype: 'freebase',   metadata : 'this is a note/freebase under section',  start: 700, end:1499}],
+				[{position:'left', 	depth: 1, type: 'data', subtype: 'year', metadata : '2014',  start: 1000, end:1001}],
+				[{position:'left', 	depth: 1, type: 'data', subtype: 'unit', metadata : '100kg',   start: 1000, end:1001}],
+				[{position:'left', 	depth: 1, type: 'data', subtype: 'money', metadata : '1000$',   start: 1000, end:1001}],
+				[{position:'left', 	depth: 1, type: 'data', subtype: 'x', metadata : 78,   start: 0, end:1}],
+				[{position:'left', 	depth: 1, type: 'data', subtype: 'x', metadata : 158,   start: 0, end:10}],
+				[{position:'left', 	depth: 1, type: 'data', subtype: 'x', metadata : '278 mA',   start: 0, end:1}],
+				[{position:'left', 	depth: 1, type: 'data', subtype: 'x', metadata : '178 V',   start: 1, end:10}],
+				[{position:'global', depth: 1, type: 'data', subtype: 'x', metadata : '50 Watts/h',   start:30, end:41}]
+
+*/
+
+			);
+
+
+		var shortexcerpt = 'wikipedia excerpt, Le hasard..';
+		dms = new Array(
+					[{meta_key: 'footer_center_html',				meta_value: '#'+doc_secret+ ' - '+doc_title+' - <a href="'+git_url+'">MusicBox</a>' }],
+					[{meta_key: 'image_thumb',						meta_value: baseuse_url+'/img/lorem/600-400.jpg' }],
+					[{meta_key: 'short_doc_model',					meta_value: 'image_left_title_excerpt' }],
+					[{meta_key: 'short_excerpt',					meta_value: shortexcerpt }],
+					[{meta_key: 'use_authorcard', 					meta_value: 'full_last' }],
+					[{meta_key: 'share_notice', 					meta_value: 'Partager' }],
+					[{meta_key: 'text_class',						meta_value: 'medium' }],
+					[{meta_key: 'color_a',							meta_value: '#e67e22' }],
+					[{meta_key: 'color_b',							meta_value: '#f39c12' }],
+					[{meta_key: 'block_bgcolor',					meta_value: 'black_bg' }],
+					[{meta_key: 'block_color',						meta_value: 'white_atext' }],
+					[{meta_key: 'single_theme', 					meta_value: 'model-lh-f fl-th-p' }],
+					[{meta_key: 'kind',								meta_value: 'classic-post' }],
+					[{meta_key: 'share_fragment',					meta_value: 'after_title' }],
+					[{meta_key: 'share_notice', 	   				meta_value: 'Share' }],
+					[{meta_key: 'keywords_notice', 					meta_value: 'Keywords' }],
+					[{meta_key: 'editor_notice', 					meta_value: 'Edited by' }],
+					[{meta_key: 'creator_notice', 					meta_value: 'Created by' }],
+					[{meta_key: 'nodes_fragment', 					meta_value: 'full_last' }],
+					[{meta_key: 'date_fragment', 					meta_value: 'full_last' }],
+					[{meta_key: 'text_class', 						meta_value: 'high_fat' }],
+					[{meta_key: 'text_typo', 						meta_value: 'Esteban::latin' }],
+					[{meta_key: 'headings_typo', 					meta_value: 'Droid Sans' }],
+					[{meta_key: 'doc_notices_after_title',			meta_value: 'MusicBox Demo doc'}],
+					[{meta_key: 'doc_notices_before_title',			meta_value: '$$$$'+doc_secret }]
+				);
+		var nodes = new Array('musicbox','lorem-ipsum', 'notes');
+
+
+	}
 	else{
 		sample_content		   += "-";
 		doc_title				= "-";
@@ -503,9 +796,8 @@ else if(sample_number==6){
 
 	}	
 
-
 // DOC CREATE START
-var doc = models.Idoc.build({title:doc_title, slug: doc_slug, renderas : d_renderas, content: sample_content,richmode:richmode, status: 'public', section:section_i , order:d_order, kind: kind_i, external : external_i, ishome :ishome, secret: doc_secret, real_published: hardcoded_real_published }).save().success(function(doc){
+var doc = models.Idoc.build({title:doc_title, slug: doc_slug, renderas : d_renderas, content: sample_content,richmode:richmode, status: 'public', section:section_i , order:d_order, kind: kind_i, external : external_i, ishome :ishome, secret: doc_secret, real_published: hardcoded_real_published , open_edit:open_edit		}).save().success(function(doc){
 
 
 	var pro1 = models.Process.build({text:'view_doc', status: 'on' , order:0}).save().success(function(pro1) {
@@ -531,10 +823,7 @@ var doc = models.Idoc.build({title:doc_title, slug: doc_slug, renderas : d_rende
 		});	
 	});
 	
-	
-
-
-if( sample_number==15 || sample_number==16){
+if( sample_number==105 || sample_number==106){
 			var userzzzz = models.User.build({username: '-----', color:"#dbb6f9", password: "tom", email:"homeqsdprow@gmail.com"}).save().success(function(userzzzz) {
 
 				var uma = models.Objectmeta.build({meta_key:'website_url', meta_value: 'https://twitter.com/---'}).save().success(function(uma) {
@@ -566,14 +855,7 @@ if( sample_number==15 || sample_number==16){
 						userzzzz.addUsermeta(uma).success(function() {});
 				});
 				
-
 			doc.addEditor(userzzzz).success(function() { });
-
-
-		
-	
-
-
 			var pro2a = models.Process.build({text:'doc_creator', status: 'on' , order:0}).save().success(function(pro2a) {
 					doc.addProcess(pro2a).success(function() {
 						console.log('pro2a added to doc 1');
@@ -598,19 +880,9 @@ if( sample_number==15 || sample_number==16){
 
 							});	
 			});
-
-
 		});
-
-
-
-
-
-
 	}
 	else{ 
-
-
 		var pro3 = models.Process.build({text:'doc_creator', status: 'on' , order:0}).save().success(function(pro3) {
 				doc.addProcess(pro3).success(function() {
 					//console.log('pro2 added to doc 1');
@@ -626,61 +898,26 @@ if( sample_number==15 || sample_number==16){
 		});
 		//doc.addEditor(user).success(function() { });
 		//doc.addCreator(user).success(function() { });
-
-
-
-
 	}
 
 	// logs for a doc
-	models.Log.build({text: user_name+' created a '+kind_i+' as draft', verb: 'created', subject: kind_i+' creation', author: user_name}).save().success(function(log) {
+	models.Log.build({text: 'd', verb: 'created', object : 'document',  subject: 'new', author: user_name}).save().success(function(log) {
 		doc.addDoclog(log);
 	});	
 	
-	models.Log.build({text: user_name+' edited title to '+doc_title, verb: 'created', subject: 'doc creation', author: user_name}).save().success(function(log) {
+	models.Log.build({text: 'd', verb: 'edited', object : 'document', subject: 'title', author: user_name}).save().success(function(log) {
 		doc.addDoclog(log);
 	});	
-	models.Log.build({text:user_name+' published a '+kind_i, verb: 'created', subject: 'doc creation', author: user_name}).save().success(function(log) {
+	models.Log.build({text: 'd', verb: 'published', object : 'document',  subject: 'published', author: user_name}).save().success(function(log) {
 		doc.addDoclog(log);
 	});	
 	
-
-	if(sample_number==1){
-		// comments for doc
-		var c = models.Comment.build({text:'First!',  status: 'approved'}).save().success(function(comment) {
-			 doc.addComment(comment);
-	     	 comment.setCommenter(user)
-
-
-			 
-		});
-		var c = models.Comment.build({text:'Welcome!',  status: 'approved'}).save().success(function(comment) {
-			 doc.addComment(comment); 
-			
-				var userzzz = models.User.build({username: 'Blc', color:"#549367", password: "hacqsqsuelpass", email:"homeqsof+prow@gmail.com"}).save().success(function(userzzz) {
-	     			comment.setCommenter(userzzz)
-
-			});
-
-			
-		});
-		var c = models.Comment.build({text:'/-) + <3',  status: 'pending'}).save().success(function(comment) {
-			 doc.addComment(comment); 
-	     	 comment.setCommenter(user)
-
-			
-		});	
-	}
-
-
 	_.each(tds, function(td){	
 		models.Textdata.build(td[0]).save().success(function(textdata) {
 			textdata.setTextdataer(doc);
 		});
 	});
 	//console.log('textdatas for doc #'+sample_number+' ok');
-
-
 
 	_.each(dms, function(dm){	
 		models.Docmeta.build(dm[0]).save().success(function(docmeta) {
@@ -689,7 +926,6 @@ if( sample_number==15 || sample_number==16){
 	});
 
 	//console.log('docmetas for doc #'+sample_number+' ok');
-		
 	
 	_.each(nodes, function(node){	
 		console.log(node)
@@ -701,7 +937,6 @@ if( sample_number==15 || sample_number==16){
 				doc.addNode(nodefound)
 				nodefound.increment('objectcount', {by:1});
 			}
-
 			else{
 				console.log('NOt found')
 				//console.log(node)
@@ -711,12 +946,7 @@ if( sample_number==15 || sample_number==16){
 					doc.addNode(nodefound)
 					//nodefound.increment('objectcount', {by:1});
 				});
-			}
-
-				
-		
-
-			
+			}			
 		});
 	});
 
@@ -753,30 +983,20 @@ exports.create_process_and_role_for_room_for_user = function(room,user,capabilit
 
 exports.user_create_room = function(room, user){
 
-		var room1 = models.Room.build({name: 'MusicBox' , slug: 'Mb', owners:user.id }).save().success(function(room1) {
-				
-				
-				
+		var room1 = models.Room.build({name: 'MusicBox' , slug: '#!', owners:user.id }).save().success(function(room1) {
+								
 				// adds some properties  "meta" for room
 				exports.meta_room(room1);
-
 
 				models.Log.build({text: '"blou room created" ', verb: 'create_room', subject: 'room_creation', author: 'system'}).save().success(function(log) {
 					room1.addRoomlog(log);
 				});	
-
-				
-
 
      			room1.addUser(user).success(function(user) {
 					models.Log.build({text: '"blou Editroom"', verb: 'join_room', subject: 'room_joined', author: user.username}).save().success(function(log) {
 						room1.addRoomlog(log);
 					});	
      			});
-
-
-
-
 
      			exports.create_process_and_role_for_room_for_user(room1 ,0,'view_room');
 				exports.create_process_and_role_for_room_for_user(room1 ,0,'subscribe_room');
@@ -791,7 +1011,6 @@ exports.user_create_room = function(room, user){
 				exports.create_process_and_role_for_room_for_user(room1 ,0, 'use_docmarklet');
 				exports.create_process_and_role_for_room_for_user(room1 ,'member', 'view_tools');
 
-
 				exports.create_process_and_role_for_room_for_user(room1 ,user, 'post_livemsg');
 				exports.create_process_and_role_for_room_for_user(room1 ,0, 'create_docs');
 		    	exports.create_process_and_role_for_room_for_user(room1 ,user, 'publish_docs');
@@ -801,19 +1020,16 @@ exports.user_create_room = function(room, user){
 				exports.create_process_and_role_for_room_for_user(room1 ,0, 'view_processes');
 				exports.create_process_and_role_for_room_for_user(room1 ,0,'fork_room');
 
-
 				console.log('room ok');
 				var doc = 0;
-				doc_count = 11;
+				doc_count = 12;
 
-				for (var u=1;u<12;u++){
+				for (var u=1;u<13;u++){
 					exports.doc_build(user, room1, u)
 				}
 				//exports.doc_build(user, room1, 15)
 				//exports.doc_build(user, room1, 1)
 
-
-console.log('room ok');
 				return room;
      			
 			});
@@ -955,48 +1171,36 @@ exports.build_a_user = function(user){
 	}
 }
 
-
-
-
-
 exports.build_kindofdoc = function(){
 
-
 	var kinds = new Array(
-					[{name:'doc_text', slug: 'doc_text', description: 'doc_text'}],
-				    [{name:'people', slug: 'people', description: 'people'}],
-				    [{name:'media_img', slug: 'media_img', description: 'media_img'}],
-				    [{name:'translation', slug: 'translation', description: 'translation'}]
-				);
-			_.each(kinds, function(kind,i){	
-				var kind = kind[0];
-				var defautkindofdoc = models.Kindofdoc.build({name:kind.name, slug: kind.slug, description:kind.description}).save().success(function(defautkindofdoc){
-					
-				});	
-			});
-			console.log('defaut kindofdoc fixed');
+		[{name:'doc_text', slug: 'doc_text', description: 'doc_text'}],
+	    [{name:'people', slug: 'people', description: 'people'}],
+	    [{name:'media_img', slug: 'media_img', description: 'media_img'}],
+	    [{name:'translation', slug: 'translation', description: 'translation'}]
+	);
+	_.each(kinds, function(kind,i){	
+		var kind = kind[0];
+		var defautkindofdoc = models.Kindofdoc.build({name:kind.name, slug: kind.slug, description:kind.description}).save().success(function(defautkindofdoc){
+			
+		});	
+	});
+	console.log('defaut kindofdoc fILLED');
 }
 
-
+// tags creation
 exports.foootags = function(){	
 	
-
 	// Following functions create docs "fixtures" for texts, users, roles and caps, rooms, comments, nodes, etc...
-var foo_nodes = new Array(
-					[{name:'Tests', slug: 'tests', taxonomy: 'self', bgimage: baseuse_url+'/img/lorem/400-400.jpg', baseline: '+'}],
-					[{name:'blou', slug: 'blou', taxonomy: 'self', bgimage: '-', baseline: '-'}],
-					[{name:'placeholder', slug: 'placeholder', taxonomy: 'self', bgimage: '-', baseline: '-'}],
-					[{name:'musicbox', slug: 'musicbox', taxonomy: 'self', bgimage: '-', baseline: '-'}],
-					[{name:'lorem-ipsum', slug: 'lorem-ipsum', taxonomy: 'self', bgimage: '-', baseline: '-'}]
-
-
+	var foo_nodes = new Array(
+		[{name:'Tests', slug: 'tests', taxonomy: 'self', bgimage: baseuse_url+'/img/lorem/400-400.jpg', baseline: '+'}],
+		[{name:'blou', slug: 'blou', taxonomy: 'self', bgimage: '-', baseline: '-'}],
+		[{name:'placeholder', slug: 'placeholder', taxonomy: 'self', bgimage: '-', baseline: '-'}],
+		[{name:'musicbox', slug: 'musicbox', taxonomy: 'self', bgimage: '-', baseline: '-'}],
+		[{name:'lorem-ipsum', slug: 'lorem-ipsum', taxonomy: 'self', bgimage: '-', baseline: '-'}]	
+	);
 	
-			);
-	
-
-	_.each(foo_nodes, function(node){	
-		
-		
+	_.each(foo_nodes, function(node){
 			//var node = node[0];
 			var newnode = models.Node.build({ name: node.name , slug: node.slug , taxonomy:node.taxonomy, objectcount:1 }).save().success(function(newnode) {
 				/*
@@ -1008,25 +1212,14 @@ var foo_nodes = new Array(
 					nodemeta.setNode(newnode).success(function() {});
 					newnode.addTr(nodemeta).success(function() {});
 	      		});
-*/
-		
-
-
-				
+			 */	
 		});
 
-
-
-
 	});	
-	
-
-
 
 }
-
-exports.makesecret = function (len)
-{
+// util
+exports.makesecret = function (len){
     var text = "";
     var possible = "bloublouDFGIJKMNOPQ!-)#@&%$*RSVWXYZ0123456789";
     for( var i=0; i < len; i++ )
@@ -1043,4 +1236,3 @@ exports.fooo = function(){
 		console.log('</fixtures>');
 		
 }
-

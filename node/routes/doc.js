@@ -98,7 +98,12 @@ exports.docnodes = function (req, res) {
 exports.edit_doc_infos = function (req, res) {
 	//console.log('.edit_doc_infos req.body');
 	//console.log(req.body)
+	if(!req.params.docid){
+		res.send('missing req.params.docid');
+		return
+	}
 	var doc_id = req.params.docid;
+
 	var dockey= false;
 	console.log('- Try to update doc #'+doc_id);
 	var doc = models.Idoc.find(
@@ -109,7 +114,8 @@ exports.edit_doc_infos = function (req, res) {
 		if(req.body.dockey && ( 
 						(req.body.dockey == nconf.get('CREATE_DOC_KEYPASS'))
 							||
-						(req.body.dockey == doc.secret ) 
+						(req.body.dockey == doc.secret 
+							|| doc.open_edit== true) 
 							  )  
 			){
 			dockey = true;
@@ -124,10 +130,11 @@ exports.edit_doc_infos = function (req, res) {
 				doc[field] = value;
 			}
 			doc.save();
-				models.Log.build({text: 'tom edited the ('+field+') with value '+value, verb: 'edit', subject: 'doc edit', author: 'tom'}).save().success(function(log) {
+				models.Log.build({text: 'tom edited the ('+field+') with value '+value,object:'document', verb: 'edit', subject: 'doc edit', author: 'tom'}).save().success(function(log) {
 					    doc.addDoclog(log);
 						var doc_infos = {};
 						doc_infos.doc = doc;
+						//if(open_edit == true){}
 						doc_infos.doc.secret = 'hidden';
 						doc_infos.doclog = log;
 						//console.log(doc_infos);
@@ -497,14 +504,11 @@ exports.create_doc = function (req, res) {
 		//var salt = bcrypt.genSaltSync(4);
 		//var hash = bcrypt.hashSync("abc", salt);
 		hash = exports.makeid(7);
-		console.log(req.body);
+
 		var title = 'new doc';
 		var content = 'new doc';
 		var slug = hash;
-		var kind='';
-		var external='';
-		var section='';
-		var order='';
+		var kind = external = section = order ='';
 		var status='fresh';
 		//var secret='';
 		var RoomId = 1;
@@ -513,6 +517,7 @@ exports.create_doc = function (req, res) {
 	}
 	if(req.body.kind){kind = req.body.kind;}
 	if(req.body.content){content = req.body.content;}
+
 		var doc = models.Idoc.build({
 			title: title, 
 			slug: slug,
@@ -523,11 +528,24 @@ exports.create_doc = function (req, res) {
 			kind: kind,
 			RoomId: RoomId
 			}).save().success(function(doc ){
+
+				console.log('new doc @ http://localhost:3001/apis/doc/'+doc.id)
+				console.log('new doc @ http://localhost:3021/doc/read/'+doc.id+'?isfresh=true')
+
+				//console.log(doc);
+
+				models.Textdata.build({position: '', css: '' , metadata : '', type: 'section', subtype: '', start: 0, end: 10}).save().success(function(textdata) {
+					textdata.setTextdataer(doc);
+					//res.send(textdata);
+					console.log('section init created')
+				});
+
+
 				models.Log.build({text: 'new doc! ', verb: 'created', subject: 'doc creation', author: 'system_tom'}).save().success(function(log) {
 					doc.addDoclog(log);
 				});	
 
-				models.Docmeta.build({meta_key: 'kind',meta_value: 'by_user' }).save().success(function(docmeta) {
+				models.Docmeta.build({meta_key: 'kind', meta_value: 'by_user' }).save().success(function(docmeta) {
 					docmeta.setDocmetaer(doc);
 				});
 	

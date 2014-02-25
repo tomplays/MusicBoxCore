@@ -27,14 +27,19 @@ nconf 		= require('nconf');
 
 
 exports.create_textdata = function (req, res) {
+	var out = new Object();
 
- if( nconf.get('DATABASE_INSERT_MODE') == 'comments_only' ){
-	var out = new Array();
-	res.send(out);
-	return
+	if( nconf.get('DATABASE_INSERT_MODE') == 'comments_only' ){
+		
+	 	if(req.body.subtype && req.body.subtype !== 'comment'){
+			out.status = 'comments_only insert mode'	
+			res.send(out);
+			return;
+	 	}
 
- }
- else{
+	}
+
+ 	console.log(req.body)
 	//var data = {'docid':docid,'start':partial_sentence_start , 'end':i, 'sentence': partial_sentence};
 	var tdocid = tposition = tstart = tend = tmetadata = ttype = tcss= tsubtype = '';
 
@@ -48,99 +53,47 @@ exports.create_textdata = function (req, res) {
 	var tcss = req.body.css;
 	var tsubtype = req.body.subtype;
 
-	//console.log(req.body)
+
 	
 	var doc = models.Idoc.find({
 	 	where: '"Idocs"."id"='+tdocid}).success(function(doc) {
 		models.Textdata.build({position: tposition, css: tcss , metadata : tmetadata, type: ttype, subtype: tsubtype, start: tstart, end: tend}).save().success(function(textdata) {
 			textdata.setTextdataer(doc);
 			res.send(textdata);
+			return;
 		});
 	});
 
- }	 	
+ 
+
+
+
 }
 
 
-exports.update_textdata_multi  = function (req, res) {
-	var multi = 'false';
-	if(req.params.multi){
-		multi = req.body.multi;
+exports.update_textdata_massive  = function (req, res) {
+		multi = req.body.list;
+		var updated = new Array()
+		_.each(req.body.list, function(td){
+			var textdata = models.Textdata.find({
+	 			where: {id:td.id}}).success(function(textdata) {
+				if(textdata){
+					textdata.start = td.start;
+					textdata.end = td.end;
+					
+					textdata.save().success(function(textdata) {
+		  				//res.send(textdata);
+		  				updated.push(textdata)
+					});
+				}
+				else{
 
-		_.each(multi, function(td){
-
-				console.log(td)
-
-		});
-
-
-
-
-
-
-	}
-
-
-
-
-	console.log(multi)
-	
-/*
-
-
-	if( nconf.get('DATABASE_INSERT_MODE') == 'comments_only' ){
-		var out = new Array();
-		res.send(out);
-		return
-
-	}
-
-	
-	if(req.body.id;){
-		textdataid = req.body.id;
-	}
-	else{
-		res.send('not body.id')
-	}
-
-	var textdata = models.Textdata.find({
-	 	where: {id:textdataid}}).success(function(textdata) {
-
-
-		if(textdata){
-			console.log('upadting td')	
-			
-			if(req.body.css){textdata.css = req.body.css;}
-     		if(req.body.metadata){textdata.metadata= req.body.metadata;}
-     		if(req.body.type){textdata.type= req.body.type;}
-     		if(req.body.subtype){textdata.subtype= req.body.subtype;}
-     		if(req.body.start){textdata.start= parseInt(req.body.start);}
-     		if(req.body.position){textdata.position= req.body.position;}
-     		if(req.body.depth){textdata.depth= req.body.depth;}
-     		if(req.body.ext_doc){textdata.ext_doc= req.body.ext_doc;}
-     		if(req.body.end){textdata.end= parseInt(req.body.end);}
-
-			textdata.save().success(function(textdata) {
-  				res.send(textdata);
-  				
+				}
 			});
-
-			console.log('textdata updated')
-				
-
-			}
-			else{
-
-				res.send('else/not saved td')
-			}
-
-
-
-			
-  		});
-
-
-*/
+		});
+		console.log('upadting massive _td done')	
+		res.send(updated);
+		return;
 }
 
 
@@ -325,7 +278,7 @@ exports.create_docmeta = function (req, res) {
 	
 }
 exports.update_docmeta = function (req, res) {
-	console.log('trying to upadte docmeta');
+	console.log('trying to update docmeta');
 	var out = new Object();
 
 	
@@ -384,23 +337,44 @@ exports.update_docmeta = function (req, res) {
 
 
 exports.delete_docmeta = function (req, res) {
+	var out = new Object();
 
-	if( nconf.get('DATABASE_INSERT_MODE') == 'comments_only' ){
-		res.send('');
+	if(!req.body.key || !req.params.docmetaid || !req.params.docid){
+		out.status ='missing fields, id || key'
+		res.send(out);
 		return;
 	}
 
+	if( nconf.get('DATABASE_INSERT_MODE') == 'comments_only' ){
+		out.status ='comments_only'
+		res.send(out);
+		return;
+	}
+
+
 	var docmetaid = req.params.docmetaid;
 	var docid = req.params.docid;
+
+	// DK check 
+
+
 	var docmeta = models.Docmeta.find({
 	 	where: {id:docmetaid}}).success(function(docmeta) {
-			docmeta.destroy().success(function() {
-			//reloads all...	
-			var docmetar = models.Docmeta.findAll(
-				{where: {IdocId:docid}}).success(function(docmetar) {
-					res.json(docmetar);
-			});	
-  		})
+	 		if(docmeta){
+	 			docmeta.destroy().success(function() {
+				//reloads all...	
+					var docmetar = models.Docmeta.findAll({where: {IdocId:docid}}).success(function(docmetar) {
+						res.json(docmetar);
+					});	
+				})
+	 		}
+	 		else{
+	 			out.status ='dm to destroy not found'
+				res.send(out);
+				return;
+	 		}
+			
+  	
 	
 	});
 }
@@ -514,9 +488,13 @@ exports.doclogs = function (req, res) {
 
 // to fix with real POST // todo
 exports.create_doclog = function (req, res) {
-	var docid = req.params.docid;
+	if(!req.body.docid || !req.body.object || !req.body.text || !req.body.subject || !req.body.verb || !req.body.author){
+		res.send('missing  fields..');
+		return;
+	}
+	var docid= req.body.docid;
 	//var log_obj = req.body.doclog;
-	var log_obj = {text: 'log_obj.text', verb: 'log_obj.verb', subject: 'log_obj.subject', author: 'log_obj.author', IdocId:docid}
+	var log_obj = {text: req.body.text, object: req.body.object,  verb: req.body.verb, subject: req.body.subject, author: req.body.author, IdocId:docid}
 	var doc = models.Idoc.find({
 	 	where: '"Idocs"."id"='+docid}).success(function(doc) {
 			models.Log.build(log_obj).save().success(function(log) {
@@ -532,7 +510,10 @@ exports.test_key= function (req, res) {
 	// could need need antispam sys.
 	console.log('testing keypass '+req.body.dockey)
 	
-
+	if(!req.body.docid){
+		res.send('missing  docid');
+		return;
+	}
 	var doc_id = req.body.docid;
 
 
