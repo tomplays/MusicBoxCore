@@ -71,6 +71,15 @@ exports.create_textdata = function (req, res) {
 }
 
 
+// for cascading updates / first attempt
+// using a list of TDs, 
+// see https://github.com/tomplays/MusicBox/issues/1
+
+// PARAMS : array(Textdatas {start, end , ID})
+// RETURN : array(Textdatas {complete record})
+// TODO   : dockeys and modes, , use promise
+
+
 exports.update_textdata_massive  = function (req, res) {
 		multi = req.body.list;
 		var updated = new Array()
@@ -80,10 +89,9 @@ exports.update_textdata_massive  = function (req, res) {
 				if(textdata){
 					textdata.start = td.start;
 					textdata.end = td.end;
-					
 					textdata.save().success(function(textdata) {
 		  				//res.send(textdata);
-		  				updated.push(textdata)
+		  				updated.push(textdata);
 					});
 				}
 				else{
@@ -91,11 +99,10 @@ exports.update_textdata_massive  = function (req, res) {
 				}
 			});
 		});
-		console.log('upadting massive _td done')	
+		console.log('upadting massive ('+_.size(multi)+') _td done')	
 		res.send(updated);
 		return;
 }
-
 
 
 exports.update_textdata  = function (req, res) {
@@ -106,11 +113,6 @@ exports.update_textdata  = function (req, res) {
 
 	}
 	
-
-
-
-
-
 	
 	if(req.body.id){
 		textdataid = req.body.id;
