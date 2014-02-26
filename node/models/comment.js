@@ -5,7 +5,7 @@ module.exports = function(sequelize, DataTypes) {
                 validate: {
                 },
             },
- 			status: {
+            status: {
                 type: DataTypes.STRING,
                 validate: {
                 },

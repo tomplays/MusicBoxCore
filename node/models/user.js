@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
 	return sequelize.define("User", {
 		username: {
 			type: DataTypes.STRING,
-		    //unique: true,
+			//unique: true,
 			validate: {
 				is: ["[a-z0-9_]",'i'],
 				len: [2, 15],
@@ -63,11 +63,11 @@ module.exports = function(sequelize, DataTypes) {
 				this.password = bcrypt.hashSync(this.password, 10);
 				return this.save_raw(params);
 			},
-            avatar: function() {
-                this.avatar = gravatar.url(this.email);
+			avatar: function() {
+				this.avatar = gravatar.url(this.email);
 				return this.save_raw(params);
 
-            }
+			}
 		}
 	});
 };

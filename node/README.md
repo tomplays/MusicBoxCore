@@ -13,7 +13,7 @@ Node version of MusicBoxCore
 * Postgres Database <-> Sequelize mapping (http://www.sequelizejs.com/)
 
 
-(tested running on a Debian, OSX)
+(tested running on Debian & OSX)
 
 ## Quick Start
 

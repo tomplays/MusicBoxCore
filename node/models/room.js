@@ -9,22 +9,22 @@ module.exports = function(sequelize, DataTypes) {
                 validate: {
                 },
             },
-			name: {
+            name: {
                 type: DataTypes.TEXT,
                 validate: {
                 },
             },
-			restricted: {
+            restricted: {
                 type: DataTypes.TEXT,
                 validate: {
                 },
             },
-			locked : {
+            locked : {
                 type: DataTypes.TEXT,
                 validate: {
                 },
             },
-			owners: {
+            owners: {
                 type: DataTypes.STRING,
                 validate: {
                 },
@@ -35,28 +35,22 @@ module.exports = function(sequelize, DataTypes) {
                 },
             }
         },
-          {
+        {
         classMethods: {
+            // doing nothing yet
             addIdoc : function(){
-
-                console.log('qsdqsd')
+                console.log('addedIdoc (model classMethods)')
             },
             setIdoc : function(){
-
-                console.log('qsdqsd')
+                console.log('SertIdoc (model classMethods)')
             }
         },
         instanceMethods: {
             save_raw: DAO.prototype.save, 
             save: function(params){
-                    //console.log(this)
-                  console.log('room save')
+                  console.log('room saved')
                   //console.log(this.selectedValues)
-
                  return this.save_raw(params);
-
-
-
                 //
                 //return;
             }

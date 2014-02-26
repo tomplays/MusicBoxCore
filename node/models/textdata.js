@@ -5,20 +5,20 @@ textdatas are text fragments, sections of text, meta informations, comments... a
 
 module.exports = function(sequelize, DataTypes) {
     return sequelize.define("Textdata", {
-			type: {
+            type: {
                 type: DataTypes.TEXT,
                 validate: {},
             },
-			subtype: {
+            subtype: {
                 type: DataTypes.TEXT,
                 validate: {},
             },
-			start: {
+            start: {
                 type: DataTypes.INTEGER,
                 validate: {
                 },
             },
-			end: {
+            end: {
                 type: DataTypes.INTEGER,
                 validate: {
                 },
@@ -36,11 +36,11 @@ module.exports = function(sequelize, DataTypes) {
                 validate: {},
                 defaultValue: 0,
             },
-			version: {
+            version: {
                 type: DataTypes.INTEGER,
                 validate: {},
             },
-			status: {
+            status: {
                 type: DataTypes.TEXT,
                 validate: {},
             },

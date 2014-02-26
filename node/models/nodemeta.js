@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
                 validate: {
                 },
             },
-			meta_value: {
+            meta_value: {
                 type: DataTypes.TEXT,
                 validate: {
                 },

@@ -248,11 +248,6 @@ exports.docmetas = function (req, res) {
 
 exports.create_docmeta = function (req, res) {
  	
-	//console.log(req.body.meta_key);  
-	var rrr = req.body;
-
-
-
  	if( nconf.get('DATABASE_INSERT_MODE') == 'comments_only' ){
  		var out = new Array({meta_key: 'static mode', meta_value: 'static mode'});
 		res.send(out);
@@ -285,8 +280,8 @@ exports.update_docmeta = function (req, res) {
 
 	
 
-	if(!req.body.key || !req.body.id){
-		out.status ='missing fields, id || key'
+	if(!req.body.key || !req.body.id || !req.body.meta_key || !req.body.meta_value){
+		out.status ='missing fields, id || key || mk || mkv'
 		res.send(out);
 
 		return;
@@ -341,7 +336,7 @@ exports.update_docmeta = function (req, res) {
 exports.delete_docmeta = function (req, res) {
 	var out = new Object();
 
-	if(!req.body.key || !req.params.docmetaid || !req.params.docid){
+	if(!req.body.key || !req.body.docmetaid || !req.body.docid){
 		out.status ='missing fields, id || key'
 		res.send(out);
 		return;
@@ -354,8 +349,8 @@ exports.delete_docmeta = function (req, res) {
 	}
 
 
-	var docmetaid = req.params.docmetaid;
-	var docid = req.params.docid;
+	var docmetaid = req.body.docmetaid;
+	var docid = req.body.docid;
 
 	// DK check 
 
@@ -381,104 +376,6 @@ exports.delete_docmeta = function (req, res) {
 	});
 }
 
-/*
-exports.doccomments = function (req, res) {
-
-	var docid = req.params.docid;
-	var status_field = 'approved';
-	var doccomments_out = new Array();
-	if(req.params.status){
-	 status_field = req.params.status;
-	}
-
-	var doccomments =  models.Comment.findAll( {where: {IdocId:docid },  include: [{ model: models.User, as: 'Commenter' }] })
-	
-     doccomments.success(function(doccomments) {
-
-
-	 	if(doccomments){
-			_.each(doccomments, function(dc){
-				if(dc.status == status_field || status_field == 'all' ){
-					doccomments_out.push(dc);
-				}
-			});
-	 		res.json(doccomments_out);
-	 	}		
-
-	});
-
-   
-}
-
-
-exports.create_doccomment = function (req, res) {
-
-	var id = req.params.docid;
-	var comment_name =  req.body.comment_name;
-	var comment_mail =  req.body.comment_mail;
-	var comment_text =  req.body.comment_text;
-	if(!comment_name  || !comment_mail || !comment_text ){
-		 res.send('missing_fields');
-	}
-		var user = models.User.find({where: "email LIKE '"+comment_mail+"'"}).success(function(user) {
-            if (user) {
-                   console.log(user);
-
-                   var doc = models.Idoc.find({where: '"Idocs"."id"='+id}).success(function(doc) {
-						var tcomment = models.Comment.build({text:comment_text, status: 'approved'}).save().success(function(comment) {
-			 				doc.addComment(comment);
-	        				comment.setCommenter(user);
-	        				res.send(comment);
-						});
-					});
-           } else {
-					var doc = models.Idoc.find({where: '"Idocs"."id"='+id}).success(function(doc) {
-						models.Comment.build({text:comment_text,  status: 'pending'}).save().success(function(comment) {
-			 				doc.addComment(comment);
-							res.send(comment);
-						});
-					});  
-                }
-		});
-}
-
-// static api mode (no editor)
-exports.update_doccomment = function (req, res) {
-	var adminkey 	= req.params.adminkey;
-
-	if( nconf.get('ADMIN_KEYPASS') !== adminkey ){
-		res.send('U need adminkey');
-		return;
-	}
-	var commentid 	= req.params.commentid;
-	var action 		= req.params.action;
-	var value 		= req.params.value;
-	
-	var comment = models.Comment.find({
-	 	where: {id:commentid}}).success(function(comment) {
-			console.log(comment);
-
-			if(action == 'approve'){
-				comment.status = 'approved';
-				comment.save();
-				res.send(comment);
-			}
-			else if(action == 'moderate'){
-				comment.status = 'moderate';
-				comment.save();
-				res.send(comment);
-			}
-			else if(action == 'delete'){
-				comment.destroy().success(function() {
-					res.send('comment deleted');
-				});
-			}
-			else{
-				res.send('action please');
-			}
-  		});
-}
-*/
 
 exports.doclogs = function (req, res) {
 	var docid = req.params.docid;

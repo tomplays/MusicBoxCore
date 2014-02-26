@@ -50,11 +50,11 @@ var Kindofdoc	= sequelize.import(__dirname + "/models/kindofdoc.js");
 
 
 
-// Database Objects dependance / relationships
-
-// see sequelize documentation
-
+// Database Objects associations / relationships
+// see sequelize documentation http://sequelizejs.com/
 // define models relationships 
+
+
 
 Idoc.hasMany(Docmeta, {as: 'Docmetas'});
 Docmeta.belongsTo(Idoc, { as: 'Docmetaer' });

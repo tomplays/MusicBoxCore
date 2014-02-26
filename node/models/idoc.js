@@ -1,10 +1,13 @@
 var DAO = require("sequelize/lib/dao"),
     Utils = require("sequelize/lib/utils");
 
+// MAIN document model. Define "root" model of a doc.
+// Document uses other models defined by sequelize associations) 
+// see ../models.js
 
 module.exports = function(sequelize, DataTypes) {
     return sequelize.define("Idoc", {
-			title: {
+            title: {
                 type: DataTypes.STRING,
                 validate: {
                 },
@@ -14,12 +17,12 @@ module.exports = function(sequelize, DataTypes) {
                 validate: {
                 },
             },
-			kind: {
+            kind: {
                 type: DataTypes.TEXT,
                 validate: {
                 },
             },
-			content: {
+            content: {
                 type: DataTypes.TEXT,
                 validate: {
                 },
@@ -30,17 +33,17 @@ module.exports = function(sequelize, DataTypes) {
                 validate: {
                 },
             },
-			external: {
+            external: {
                 type: DataTypes.BOOLEAN,
                 validate: {
                 },
             },
-			section: {
+            section: {
                 type: DataTypes.TEXT,
                 validate: {
                 },
             },
-			order: {
+            order: {
                 type: DataTypes.STRING,
                 validate: {
                 },
@@ -50,7 +53,7 @@ module.exports = function(sequelize, DataTypes) {
                 validate: {
                 },
             },
-			status: {
+            status: {
                 type: DataTypes.TEXT,
                 validate: {
                 },

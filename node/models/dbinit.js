@@ -94,7 +94,6 @@ exports.doc_build = function(user, room, sample_number){
 					[{meta_key: 'block_color',						meta_value: 'white_atext' }],
 					[{meta_key: 'single_theme', 					meta_value: 'model-lh-f fl-th-p' }],
 					[{meta_key: 'kind',								meta_value: 'classic-post' }],
-					[{meta_key: 'global_comments',					meta_value: 'no' }],
 					[{meta_key: 'doc_notices_before_title',			meta_value: 'MusicBox Demo site'}],
 					[{meta_key: 'doc_notices_after_title',			meta_value: 'Display a welcome text and some childs documents' }]
 
@@ -306,7 +305,6 @@ exports.doc_build = function(user, room, sample_number){
 					[{meta_key: 'block_color',						meta_value: 'white_atext' }],
 					[{meta_key: 'single_theme', 					meta_value: 'model-lh-f fl-th-p' }],
 					[{meta_key: 'kind',								meta_value: 'classic-post' }],
-					[{meta_key: 'global_comments',								meta_value: 'no' }],
 					//[{meta_key: 'share_fragment',					meta_value: 'after_title' }],
 					//[{meta_key: 'share_notice', 	   				meta_value: 'Share' }],
 					//[{meta_key: 'keywords_notice', 					meta_value: 'Keywords' }],

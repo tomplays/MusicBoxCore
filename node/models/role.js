@@ -5,12 +5,12 @@ module.exports = function(sequelize, DataTypes) {
                 validate: {
                 },
             },
- 			role: {
+            role: {
                 type: DataTypes.TEXT,
                 validate: {
                 },
             },
- 			status: {
+            status: {
                 type: DataTypes.TEXT,
                 validate: {
                 },

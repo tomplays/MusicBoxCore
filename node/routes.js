@@ -8,8 +8,6 @@ var inheriting = { };
 
 /* for developpers include here: var labroutes = require('./routes/lab'); */
 
-
-	
 module.exports = function(app) {
         app.all('/*', function(req, res, next) {
         	//console.log(req.header)
@@ -30,8 +28,7 @@ module.exports = function(app) {
 	app.get('/apis/doc/:id/:static?', 								docroutes.one_doc_full); // post root node infos
 
 	app.post('/apis/doc_create', 									docroutes.create_doc); // post root node infos
-	app.post('/apis/doc/:docid/edit/:field/:value', 				docroutes.edit_doc_infos); // post root node infos
-	app.post('/apis/doc/:docid/edit', 							     	docroutes.edit_doc_infos); // post root node infos
+	app.post('/apis/doc/:docid/edit', 							    docroutes.edit_doc_infos); // post root node infos
 
 	// app.get('/apis/doc/clone/:id',								docroutes.doc_clone); // clone a doc 
 
@@ -53,7 +50,6 @@ module.exports = function(app) {
 	
 	// test dockey (angular callback/save using doc.secret)
 	app.post('/apis/testkey/:docid',								apiroutes.test_key); 
-	app.put('/apis/testkey/:docid',									apiroutes.test_key); 
 
 	// taxonomy 
 	app.get('/apis/nodes/list/flat',								apiroutes.nodes_flat_list); 
@@ -64,18 +60,14 @@ module.exports = function(app) {
 	app.get ('/apis/docmetas/:docid',								apiroutes.docmetas);
 	app.post('/apis/docmetas/:docid/create',						apiroutes.create_docmeta); 
 	app.post('/apis/docmetas/update',								apiroutes.update_docmeta); 
-	app.post('/apis/docmetas/:docid/:docmetaid/delete',				apiroutes.delete_docmeta);
+	app.post('/apis/docmetas/delete',								apiroutes.delete_docmeta);
 	
 	// LOGS
 	app.get('/apis/doclogs/:docid', 								apiroutes.doclogs); 
 	app.post('/apis/doclogs/create',							    apiroutes.create_doclog); 	// CURl : curl --data  "doclog[text]=my text&doclog[verb]=og_obj&doclog[subject]=log_obj&doclog[author]=tom" http://localhost:3000/apis/doclogs/1/create
 
-	// "Global" DOCCOMMENTS
-	//app.post('/apis/doccomments/:docid/create',						apiroutes.create_doccomment); // CURl : curl --data  "doccomment[text]=my text" http://localhost:3000/apis/doccomments/1/create
-	//app.get('/apis/comments/:docid/status/:status', 				apiroutes.doccomments); 
-	// app.get('/apis/comment/:commentid/:action/:value/:adminkey', 	apiroutes.update_doccomment); // hardcoded with pass #todo
-
-	//USER (no CRUD/API yet)
+	
+	//USER (no real CRUD API for users yet)
  	app.get('/apis/profile/:username_or_id/:static?', 				userroutes.apiprofile); // public
 	
 
