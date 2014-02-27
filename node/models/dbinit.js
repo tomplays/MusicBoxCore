@@ -119,7 +119,14 @@ exports.doc_build = function(user, room, sample_number){
 		kind_i					= 'media';
 		section_i				= '';
 		d_renderas = 'media';
-		tds = new Array();
+		doc_slug				= 'blou-media';
+
+		//tds = new Array();
+		// avoid no section bug
+		tds = new Array(
+				[{ type: 'section', subtype: 'text', metadata : '', start: -1, end: -1}]
+		);
+
 
 		dms = new Array(
 			[{meta_key: 'media_theme',meta_value: 'dark' }],
@@ -228,7 +235,12 @@ exports.doc_build = function(user, room, sample_number){
 		kind_i					= 'media';
 		section_i				= '';
 		d_renderas = 'media';
-		tds = new Array();
+		doc_slug				= 'music-box-picture';
+
+		//tds = new Array();
+		tds = new Array(
+				[{ type: 'section', subtype: 'text', metadata : '', start: -10, end: -1}]
+		);
 
 		dms = new Array(
 			[{meta_key: 'media_theme',meta_value: 'dark' }],
@@ -462,11 +474,13 @@ else if(sample_number==6){
 				[{ metadata : '',subtype: 'strong' , type: 'markup', start:648, end:780}],	
 				[{ metadata : '',subtype: 'em' , type: 'markup', start:457, end:675}],	
 				[{ metadata : '',subtype: 'strong' , type: 'markup',start:787, end:790}],
-				[{ metadata : '',subtype: 'h2' , type: 'markup', start: 1384 , end: 1401}],	
-				[{ metadata : '',subtype: 'h3' , type: 'markup', start: 1411, end: 1429}],	
-				[{ metadata : '',subtype: 'h4' , type: 'markup', start: 1442, end: 1453 }],	
-		  		[{ metadata : '',subtype: 'h5' , type: 'markup', start: 1457 , end: 1466 }],	
+				[{ metadata : '',subtype: 'h1' , type: 'markup', start: 1384 , end: 1401}],	
+				[{ metadata : '',subtype: 'h2' , type: 'markup', start: 1411, end: 1429}],	
+				[{ metadata : '',subtype: 'h3' , type: 'markup', start: 1442, end: 1453 }],	
+		  		[{ metadata : '',subtype: 'h4' , type: 'markup', start: 1457 , end: 1466 }],	
+				[{ metadata : '',subtype: 'h5' , type: 'markup', start: 1492, end: 1503}],	
 				[{ metadata : '',subtype: 'h6' , type: 'markup', start: 1492, end: 1503}],	
+
 				[{ subtype: 'link' ,type: 'markup', metadata : 'http://test.fr', start:1546, end:1583}]
 			);
 

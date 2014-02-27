@@ -266,11 +266,11 @@ else{
 										doc.getTextdatas(/*{ include: [{ model: models.Idoc.Docmetas, as: 'Extref' }] }*/).success(function(textdatas) {
 
 
-											if(textdatas.ext_doc !==null){
+											//if(textdatas.ext_doc !==null){
 												//////
-											}
-									//	doc.getCreator().success(function(Creator) {
-									//		doc.getContributor().success(function(Contributor) {
+											//}
+											//	doc.getCreator().success(function(Creator) {
+											//		doc.getContributor().success(function(Contributor) {
 												
 												var my_roles = new Array();
 												var doc_creator= new Array();
@@ -392,6 +392,9 @@ exports.doc_clone = function (req, res) {
 						doc.getProcesses().success(function(processes) {
 							doc.getRoles().success(function(roles) {
 								doc.getTextdatas().success(function(textdatas) {
+
+
+
 									var newdoc = models.Idoc.build({title:doc.title, content: doc.content, status: doc.status, section:doc.section , order:doc.order , kind: doc.kind, external : doc.external}).save().success(function(newdoc){
 										Room.addIdoc(newdoc);
 										models.Log.build({text: 'Somebody created a '+doc.kind+' as '+doc.status+' from a cloned document', verb: 'created', subject: doc.kind+' creation', author: 'tom'}).save().success(function(log) {

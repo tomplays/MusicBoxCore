@@ -406,6 +406,10 @@ exports.create_doclog = function (req, res) {
 
 //misc
 exports.test_key= function (req, res) {
+
+	var where_obj = {}	
+	
+	if(req.body.docid )
 	// could need need antispam sys.
 	console.log('testing keypass '+req.body.dockey)
 	
@@ -414,11 +418,16 @@ exports.test_key= function (req, res) {
 		return;
 	}
 	var doc_id = req.body.docid;
+	if(_.isFinite(doc_id) ){ 
+		where_obj.id = doc_id;
+	}
+	else{
+		where_obj.slug = doc_id;
+		
+	}
 
 
-	var doc = models.Idoc.find(
-		{where: {id:doc_id}}
-	).success(function(doc) {
+	var doc = models.Idoc.find({where: where_obj }).success(function(doc) {
 		console.log('(debug visible dockey !):'+doc.secret)
 		
 		if(req.body.dockey && ( 

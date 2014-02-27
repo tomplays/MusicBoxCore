@@ -7,53 +7,49 @@
 var	nconf = require('nconf');
 Sequelize = require("sequelize");
 
-
 // see sequelize documentation
-var  sequelize= new Sequelize( 
-					nconf.get('DATABASE_NAME'), 
-					nconf.get('DATABASE_USERNAME'), 
-					nconf.get('DATABASE_PASSWORD'),
-					{
-						host: 		nconf.get('DATABASE_HOST'),
-						port: 		nconf.get('DATABASE_PORT'),
-						dialect: 	nconf.get('DATABASE_DIALECT'),
-						logging:    false,
-					}
-				);
+var sequelize= new Sequelize( 
+	nconf.get('DATABASE_NAME'), 
+	nconf.get('DATABASE_USERNAME'), 
+	nconf.get('DATABASE_PASSWORD'),
+	{
+		host: 		nconf.get('DATABASE_HOST'),
+		port: 		nconf.get('DATABASE_PORT'),
+		dialect: 	nconf.get('DATABASE_DIALECT'),
+		logging:    false,
+	}
+);
 
 /* Loading models from files, see /models folder */ 
 
-var User 		= sequelize.import(__dirname + "/models/user.js");
-var Room 	    = sequelize.import(__dirname + "/models/room.js");
-var Idoc		= sequelize.import(__dirname + "/models/idoc.js");
-var Docmeta		= sequelize.import(__dirname + "/models/docmeta.js");
-var Textdata	= sequelize.import(__dirname + "/models/textdata.js");
-var Comment	    = sequelize.import(__dirname + "/models/comment.js");
+var User        = sequelize.import(__dirname + "/models/user.js");
+var Room        = sequelize.import(__dirname + "/models/room.js");
+var Idoc        = sequelize.import(__dirname + "/models/idoc.js");
+var Docmeta     = sequelize.import(__dirname + "/models/docmeta.js");
+var Textdata    = sequelize.import(__dirname + "/models/textdata.js");
+var Comment     = sequelize.import(__dirname + "/models/comment.js");
 
 // used for user options (profile extend) 
 var Objectmeta  = sequelize.import(__dirname + "/models/objectmeta.js");
 
 // log actions in room // doc // etc..
-var Log	    	= sequelize.import(__dirname + "/models/log.js");
+var Log         = sequelize.import(__dirname + "/models/log.js");
 
 // like tags..
-var Node 		= sequelize.import(__dirname + "/models/node.js");
+var Node        = sequelize.import(__dirname + "/models/node.js");
 	// should use objectmeta instead
-	var Nodemeta 	= sequelize.import(__dirname + "/models/nodemeta.js");
+var Nodemeta    = sequelize.import(__dirname + "/models/nodemeta.js");
 
 // for rights and permissions (ACL)
-var Process 	= sequelize.import(__dirname + "/models/process.js");
-var Role 		= sequelize.import(__dirname + "/models/role.js");
+var Process     = sequelize.import(__dirname + "/models/process.js");
+var Role        = sequelize.import(__dirname + "/models/role.js");
 // internal use //  doc use
-var Kindofdoc	= sequelize.import(__dirname + "/models/kindofdoc.js");
-
-
+var Kindofdoc   = sequelize.import(__dirname + "/models/kindofdoc.js");
 
 
 // Database Objects associations / relationships
 // see sequelize documentation http://sequelizejs.com/
 // define models relationships 
-
 
 
 Idoc.hasMany(Docmeta, {as: 'Docmetas'});
@@ -121,11 +117,9 @@ Log.belongsTo(Room, { as: 'Roomlogs' });
 //Page.belongsTo(Room, { as: 'Rooms' });
 
 
-
 module.exports = {
     Sequelize		: sequelize,
 	User			: User,
-	/*Page			: Page,*/
 	Textdata		: Textdata,
 	Idoc	    	: Idoc,
 	Docmeta	    	: Docmeta,
@@ -137,7 +131,6 @@ module.exports = {
 	Process			: Process,
 	Role			: Role,
 	Objectmeta		: Objectmeta,
-	/* Subscriber	: Subscriber, */
 	Kindofdoc		: Kindofdoc
 }
 

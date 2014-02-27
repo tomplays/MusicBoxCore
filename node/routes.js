@@ -47,6 +47,10 @@ module.exports = function(app) {
 	app.post('/apis/findtarget',									apiroutes.extdoc_textdata_find_target);
 	app.get('/apis/reftextdata/:docid/find',					    apiroutes.extdoc_textdata_find);
 	app.get('/apis/reftextdata/:docid/:textdataid/:docidtarget',    apiroutes.extdoc_textdata);
+
+
+
+
 	
 	// test dockey (angular callback/save using doc.secret)
 	app.post('/apis/testkey/:docid',								apiroutes.test_key); 
@@ -72,7 +76,10 @@ module.exports = function(app) {
 	
 
 	app.get('*'	, function(req, res){
-		 res.send('<!DOCTYPE html><html><head><!-- /-) !--> <title> '+nconf.get('API_NAME')+'</title></head><body>'+ nconf.get('API_NAME')+' /index -  running /node : load_'+nconf.get('DATABASE_DOCSAPI_MODE')+' dialect_'+nconf.get('DATABASE_DIALECT')+ ' - <a href="https://github.com/tomplays/MusicBoxCore"> Doc and source @ Github </a></body></html>');
+		 var out = '<!DOCTYPE html><html><head><!-- /-) !--> <title> '+nconf.get('API_NAME')+'</title></head><body>';
+		 out += nconf.get('API_NAME')+' /index -  running /node : load_'+nconf.get('DATABASE_DOCSAPI_MODE')+' dialect_'+nconf.get('DATABASE_DIALECT')+ ' - <a href="https://github.com/tomplays/MusicBoxCore"> Doc and source @ Github </a>'
+		 out += '</body></html>';
+		 res.send(out);
 
 	});
 }

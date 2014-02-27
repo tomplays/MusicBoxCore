@@ -73,7 +73,7 @@ exports.apiprofile = function(req, res){
     else{
 	 	var user = models.User.find({where: "username LIKE '"+req.params.username_or_id+"'"}).success(function(user) {
 			if (user) {
-                res.json(user);
+                ////////// use where ...++ showing pass ! res.json(user);
            } 
 			else {
 				res.json('no user');
@@ -81,3 +81,13 @@ exports.apiprofile = function(req, res){
 		});
    	}
 };
+
+
+
+
+
+
+
+
+
+
