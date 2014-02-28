@@ -19,7 +19,12 @@ exports.doc_build = function(user, room, sample_number){
 	1. lorem ipsum
 	2. 
 
-	
+
+	12.  hasard (wikipedia)
+
+	13.  socketed document
+	14.  factcheking demo
+
 	*/
 
 
@@ -80,35 +85,34 @@ exports.doc_build = function(user, room, sample_number){
 
 		var shortexcerpt = 'blou';
 		dms = new Array(
-					[{meta_key: 'footer_center_html',				meta_value: '#:'+doc_secret+' MusicBox demo / homepage /demo <a href="'+git_url+'">MusicBox</a>' }],
-				    [{meta_key: 'image_thumb', 						meta_value: baseuse_url+'/img/docs/4/music-box.jpg' }],
-					[{meta_key: 'short_doc_model',					meta_value: 'image_left_title_excerpt' }],
-					[{meta_key: 'short_excerpt',					meta_value: shortexcerpt }],
-					[{meta_key: 'use_authorcard', 					meta_value: 'no' }],
-					[{meta_key: 'share_notice', 					meta_value: 'Partager' }],
-					//[{meta_key: 'text_class',						meta_value: 'medium' }],
-					[{meta_key: 'branding_class', 					meta_value: '' }], 
-					//[{meta_key: 'color_a',							meta_value: '#e67e22' }],
-					//[{meta_key: 'color_b',							meta_value: '#f39c12' }],
-					[{meta_key: 'block_bgcolor',					meta_value: 'black_bg' }],
-					[{meta_key: 'block_color',						meta_value: 'white_atext' }],
-					[{meta_key: 'single_theme', 					meta_value: 'model-lh-f fl-th-p' }],
-					[{meta_key: 'kind',								meta_value: 'classic-post' }],
-					[{meta_key: 'doc_notices_before_title',			meta_value: 'MusicBox Demo site'}],
-					[{meta_key: 'doc_notices_after_title',			meta_value: 'Display a welcome text and some childs documents' }]
-
-					//[{meta_key: 'share_fragment',					meta_value: 'after_title' }],
-					//[{meta_key: 'share_notice', 	   				meta_value: 'Share' }],
-					//[{meta_key: 'keywords_notice', 					meta_value: 'Keywords' }],
-					//[{meta_key: 'editor_notice', 					meta_value: 'Edited by' }],
-					//[{meta_key: 'creator_notice', 					meta_value: 'Created by' }],
-					//[{meta_key: 'nodes_fragment', 					meta_value: 'full_last' }],
-					//[{meta_key: 'date_fragment', 					meta_value: 'full_first' }],
-					//[{meta_key: 'text_class', 						meta_value: 'high_fat' }],
-					//[{meta_key: 'text_typo', 						meta_value: 'Esteban::latin' }],
-					//[{meta_key: 'headings_typo', 					meta_value: 'Droid Sans' }],
-					
-				);
+			[{meta_key: 'footer_center_html',				meta_value: '#:'+doc_secret+' MusicBox demo / homepage /demo <a href="'+git_url+'">MusicBox</a>' }],
+			[{meta_key: 'image_thumb', 						meta_value: baseuse_url+'/img/docs/4/music-box.jpg' }],
+			[{meta_key: 'short_doc_model',					meta_value: 'image_left_title_excerpt' }],
+			[{meta_key: 'short_excerpt',					meta_value: shortexcerpt }],
+			[{meta_key: 'use_authorcard', 					meta_value: 'no' }],
+			[{meta_key: 'share_notice', 					meta_value: 'Partager' }],
+			//[{meta_key: 'text_class',						meta_value: 'medium' }],
+			[{meta_key: 'branding_class', 					meta_value: '' }], 
+			//[{meta_key: 'color_a',						meta_value: '#e67e22' }],
+			//[{meta_key: 'color_b',						meta_value: '#f39c12' }],
+			[{meta_key: 'block_bgcolor',					meta_value: 'black_bg' }],
+			[{meta_key: 'block_color',						meta_value: 'white_atext' }],
+			[{meta_key: 'single_theme', 					meta_value: 'model-lh-f fl-th-p' }],
+			[{meta_key: 'kind',								meta_value: 'classic-post' }],
+			[{meta_key: 'doc_notices_before_title',			meta_value: 'MusicBox Demo site'}],
+			[{meta_key: 'doc_notices_after_title',			meta_value: 'Display a welcome text and some childs documents' }]
+			//[{meta_key: 'share_fragment',					meta_value: 'after_title' }],
+			//[{meta_key: 'share_notice', 	   				meta_value: 'Share' }],
+			//[{meta_key: 'keywords_notice', 					meta_value: 'Keywords' }],
+			//[{meta_key: 'editor_notice', 					meta_value: 'Edited by' }],
+			//[{meta_key: 'creator_notice', 					meta_value: 'Created by' }],
+			//[{meta_key: 'nodes_fragment', 					meta_value: 'full_last' }],
+			//[{meta_key: 'date_fragment', 					meta_value: 'full_first' }],
+			//[{meta_key: 'text_class', 						meta_value: 'high_fat' }],
+			//[{meta_key: 'text_typo', 						meta_value: 'Esteban::latin' }],
+			//[{meta_key: 'headings_typo', 					meta_value: 'Droid Sans' }],
+			
+		);
 		var nodes = new Array('musicbox','lorem-ipsum', 'blou');
 	}
 
@@ -681,43 +685,43 @@ else if(sample_number==11){
 
 		var shortexcerpt = 'blou';
 		dms = new Array(
-					[{meta_key: 'footer_center_html',				meta_value: doc_secret }],
-					[{meta_key: 'image_thumb',						meta_value: baseuse_url+'/img/lorem/600-400.jpg' }],
-					[{meta_key: 'short_doc_model',					meta_value: 'image_left_title_excerpt' }],
-					[{meta_key: 'short_excerpt',					meta_value: shortexcerpt }],
-					[{meta_key: 'use_authorcard', 					meta_value: 'no' }],
-					[{meta_key: 'share_notice', 					meta_value: 'Partager' }],
-					[{meta_key: 'text_class',						meta_value: 'medium' }],
-					[{meta_key: 'branding_class', 					meta_value: '' }], 
-					[{meta_key: 'color_a',							meta_value: '#e67e22' }],
-					[{meta_key: 'color_b',							meta_value: '#f39c12' }],
-					[{meta_key: 'block_bgcolor',					meta_value: 'black_bg' }],
-					[{meta_key: 'block_color',						meta_value: 'white_atext' }],
-					[{meta_key: 'single_theme', 					meta_value: 'model-lh-f fl-th-p' }],
-					[{meta_key: 'kind',								meta_value: 'classic-post' }],
-					[{meta_key: 'share_fragment',					meta_value: 'after_title' }],
-					[{meta_key: 'share_notice', 	   				meta_value: 'Share' }],
-					[{meta_key: 'keywords_notice', 					meta_value: 'Keywords' }],
-					[{meta_key: 'editor_notice', 					meta_value: 'Edited by' }],
-					[{meta_key: 'creator_notice', 					meta_value: 'Created by' }],
-					[{meta_key: 'nodes_fragment', 					meta_value: 'full_last' }],
-					[{meta_key: 'date_fragment', 					meta_value: 'full_first' }],
-					[{meta_key: 'text_class', 						meta_value: 'high_fat' }],
-					[{meta_key: 'text_typo', 						meta_value: 'Esteban::latin' }],
-					[{meta_key: 'headings_typo', 					meta_value: 'Droid Sans' }],
-					[{meta_key: 'doc_notices_after_title',			meta_value: 'MusicBox Demo doc'}],
-					[{meta_key: 'doc_notices_before_title',			meta_value: '(stree test) Displaying'+ _.size(sample_content	)+ 'chars' }]
-				);
+			[{meta_key: 'footer_center_html',				meta_value: doc_secret }],
+			[{meta_key: 'image_thumb',						meta_value: baseuse_url+'/img/lorem/600-400.jpg' }],
+			[{meta_key: 'short_doc_model',					meta_value: 'image_left_title_excerpt' }],
+			[{meta_key: 'short_excerpt',					meta_value: shortexcerpt }],
+			[{meta_key: 'use_authorcard', 					meta_value: 'no' }],
+			[{meta_key: 'share_notice', 					meta_value: 'Partager' }],
+			[{meta_key: 'text_class',						meta_value: 'medium' }],
+			[{meta_key: 'branding_class', 					meta_value: '' }], 
+			[{meta_key: 'color_a',							meta_value: '#e67e22' }],
+			[{meta_key: 'color_b',							meta_value: '#f39c12' }],
+			[{meta_key: 'block_bgcolor',					meta_value: 'black_bg' }],
+			[{meta_key: 'block_color',						meta_value: 'white_atext' }],
+			[{meta_key: 'single_theme', 					meta_value: 'model-lh-f fl-th-p' }],
+			[{meta_key: 'kind',								meta_value: 'classic-post' }],
+			[{meta_key: 'share_fragment',					meta_value: 'after_title' }],
+			[{meta_key: 'share_notice', 	   				meta_value: 'Share' }],
+			[{meta_key: 'keywords_notice', 					meta_value: 'Keywords' }],
+			[{meta_key: 'editor_notice', 					meta_value: 'Edited by' }],
+			[{meta_key: 'creator_notice', 					meta_value: 'Created by' }],
+			[{meta_key: 'nodes_fragment', 					meta_value: 'full_last' }],
+			[{meta_key: 'date_fragment', 					meta_value: 'full_first' }],
+			[{meta_key: 'text_class', 						meta_value: 'high_fat' }],
+			[{meta_key: 'text_typo', 						meta_value: 'Esteban::latin' }],
+			[{meta_key: 'headings_typo', 					meta_value: 'Droid Sans' }],
+			[{meta_key: 'doc_notices_after_title',			meta_value: 'MusicBox Demo doc'}],
+			[{meta_key: 'doc_notices_before_title',			meta_value: '(stree test) Displaying'+ _.size(sample_content	)+ 'chars' }]
+		);
 		var nodes = new Array('musicbox','lorem-ipsum', 'blou');
-
-
 	}
-else if(sample_number==12){
+	else if(sample_number==12){
 
 		
 
 		/* 2k letters by line */	
-		sample_content			+= "Scientifiquement, l\'acquisition des possibilités de traite­ment des grands nombres a permis d\'étudier les conditions de l\'appa­rition et du développement des formes de hasard:la théorie des probabilités que Blaise Pascal a largement contribué à fonder,la remise en cause de l\'espérance mathématique comme critère universel d\'utilité par Émile Borel en 1928,la mathématisation de la notion de « hasard » par Andreï Kolmogorov avec la notion de complexité de Kolmogorov. la mathématisation de la contingence par Andreï Kolmogorov en 1931 (avec les équations forward et backward), l\'usage des probabilités dans les questions de stratégie militaire ou économique par la théorie des jeux de John von Neumann et Oskar Morgenstern en 1944 (stratégies mixtes), la mathématisation du hasard de l\'observation dans les phénomènes quantiques (relations d’incertitude de Heisenberg).On y trouve un écho de la philosophie de Démocrite, selon laquelle « Tout ce qui existe est le fruit du hasard et de la nécessité ».Le hasard du mouvement et de la rencontre des atomes les uns avec les autres, déjà exposé chez Démocrite, sera revisité par la mécanique quantique, pour laquelle le hasard ne peut se définir que là où il y a un observateur (les fonctions d\'onde sont en effet parfaitement déterminées ; seule leur « réalisation » est aléatoire). Il importe de ne pas confondre le chaos et le hasard : le comportement erratique de systèmes résulte d’un enchevêtrement de séries causales engendrant des conflits d’actions, qui semblent indépendantes car trop complexes pour être analysées. Le hasard, lui, exprime simplement une absence d\'information, que celle-ci puisse exister ou non. Néanmoins, les systèmes chaotiques sont couramment utilisés dans les générateurs de hasard. La complexité n’intervient pas non plus en tant que telle : on peut créer nombre de modèles extrême­ment simples, et qui obéissent pourtant à un processus imprévisible, ou dont le comportement paraît déconcertant (voir Fourmi de Langton). Une fonction d’émergence se manifeste souvent dans les systèmes complexes observés, et a suggéré la notion d\'auto-organisation.Le hasard peut souvent être transcrit en lois probabi­listes. Probabilités et statistiques permettent une plus fine observation du monde et donc des projections plus rigoureuses dans l’avenir.Mais une distinction fondamentale doit être faite quant aux différentes formes de hasard : comme le montre Mandelbrot dans Hasard, fractales et finance9, il existe deux types de hasard, le hasard « bénin » et le hasard « sauvage ». Pour le hasard bénin, quand le nombre d\'observations augmente, les fluctuations sont de moins en moins importantes (c\'est la loi des grands nombres), la loi est gaussienne (c\'est le théorème central limite) et le présent est indépendant du passé suffisamment éloigné10. Le hasard « sauvage » est très différent puisque qu\'il correspond à des lois ou une simple observation peut changer une moyenne faite de plusieurs milliers d\'observations, il rend compte des évènements « catastrophiques » ou « pathologiques ». « [le hasard sauvage] est très vilain, car il ne permet pas de raisonner en termes de moyennes. Si vous prenez dix villes de France au hasard et si vous ratez Paris, Lyon et Marseille, vous allez faire chuter la taille moyenne dans votre échantillon. Si vous prenez dix villes, dont Paris et neuf villages, la moyenne n\'autorise aucune conclusion sur les populations de villes tirées au hasard. » (B. Mandelbrot11)Cette différence montre que l\'inférence statistique, c\'est-à-dire le fait de déduire d\'un échantillon de données de l\'information sur le processus qui génère cet échantillon, est une opération éminemment complexe en statistique inférentielle.Utilité et utilisation du hasardOn utilise le hasard afin de simplifier les analyses, mais pas seulement : de nombreux phénomènes réels étant imprévisibles, on a besoin de savoir utiliser le hasard si on veut les copier ; c\'est notamment le cas pour les simulations.Les théories des jeux prennent en compte le hasard. Celle des jeux « économiques », de John von Neumann et d\'Oskar Morgenstern, montre que les stratégies optimales pour contrer un adversaire sont parfois des stratégies mixtes : il est difficile de prévoir vos mouvements si vous les tirez au hasard, mais encore faut-il effectuer ce tirage d\'une façon optimale pour vous et le moins favorable possible pour votre adversaire. Voir Point selle.La compréhension et la maîtrise des jeux de hasard nécessitent quant à elles une bonne modélisation du hasard.Les méthodes de calculs numériques basées sur le hasard sont nommées « Méthodes de Monte-Carlo ».Méthodes de Monte-CarloArticle détaillé : Méthode de Monte-Carlo.Ces méthodes utilisent des nombres aléatoires pour simuler des situations, calculer des intégrales ou résoudre des équations aux dérivées partielles.Les méthodes de Monte-Carlo sont particulièrement utilisées en physique, où l\'on calcule des algorithmes qui permettent ensuite d\'analyser des résultats d\'expériences.Génération de hasardArticle détaillé : générateur de nombres aléatoires.Puisqu\'on utilise le hasard, il serait plus pratique de pouvoir directement le produire, ceci à des fins d\'efficacité. Pour cela, on peut par exemple utiliser : des phénomènes imprévisibles : dés, roulette, loto ; des opérations mathématiques imprévisibles à l\'intérieur d\'algorithmes : division euclidienne, congruence, carré ; des processus physiques : radioactivité, lame semi-réfléchissante...À l\'exception des phénomènes basés sur des phénomènes quantiques, ces méthodes ne génèrent qu\'un pseudo-hasard, presque indéterminable, ou seulement partiellement indéterminable.";
+		
+		sample_content = 'Le hasard exprime l\'incapacité de prévoir avec certitude un fait quelconque, c\'est-à-dire prévoir ce qu\'il va advenir. Ainsi, pour éclairer le sens du mot, il est souvent dit que hasard est synonyme d\'« imprévisibilité », ou « imprédictibilité ».L\'emploi de « avec certitude » est important, car il est toujours possible de prévoir différentes éventualités, et même leur probabilité, mais on ne peut simplement pas dire laquelle adviendra. Par exemple, lors du lancer d\'un dé à six faces, on sait que le résultat sera une des six possibilités, mais on ne sait pas laquelle.Cette incapacité de prévoir peut naitre de différentes causes, notamment la méconnaissance des paramètres nécessaires à la prévision, ou le manque de précision les concernant – c\'est pourquoi il est aussi courant de dire que le hasard traduit notre ignorance. C\'est l\'une des raisons à l\'origine de l\'aspect fortuit de la plupart des phénomènes observés à échelle humaine, mais il existe plusieurs autres raisons1.L\'utilisation du mot « hasard » dans le langage commun se rapporte indirectement à cette définition. Par exemple, on peut parler de hasard :    lorsqu\'on se retrouve dans une situation imprévue, telle qu\'une rencontre ; dans l\'exemple « On s\'est rencontrés par hasard », l\'aspect fortuit naît de la méconnaissance des emplois du temps respectifs des personnes impliquées dans la rencontre, celui-ci disparaitrait pour toute intelligence qui aurait accès à ces informations ;    lorsqu\'on ne sait pas ce qu\'il va se passer ; dans « C\'est le hasard qui décidera ! », l\'emploi est évident, car il exprime directement l\'absence de certitude.Dans l\'esprit populaire, le mot « hasard » a aussi d\'autres connotations plus subjectives. Il est vu comme la négation d\'une intention derrière les événements : « le hasard n\'existe pas ». Une telle affirmation peut aussi naître du sentiment que « hasard » est synonyme d\'« absence de cause », tout comme dans l\'expression « c\'est arrivé par hasard ».';
+		//sample_content			+= "Scientifiquement, l\'acquisition des possibilités de traite­ment des grands nombres a permis d\'étudier les conditions de l\'appa­rition et du développement des formes de hasard:la théorie des probabilités que Blaise Pascal a largement contribué à fonder,la remise en cause de l\'espérance mathématique comme critère universel d\'utilité par Émile Borel en 1928,la mathématisation de la notion de « hasard » par Andreï Kolmogorov avec la notion de complexité de Kolmogorov. la mathématisation de la contingence par Andreï Kolmogorov en 1931 (avec les équations forward et backward), l\'usage des probabilités dans les questions de stratégie militaire ou économique par la théorie des jeux de John von Neumann et Oskar Morgenstern en 1944 (stratégies mixtes), la mathématisation du hasard de l\'observation dans les phénomènes quantiques (relations d’incertitude de Heisenberg).On y trouve un écho de la philosophie de Démocrite, selon laquelle « Tout ce qui existe est le fruit du hasard et de la nécessité ».Le hasard du mouvement et de la rencontre des atomes les uns avec les autres, déjà exposé chez Démocrite, sera revisité par la mécanique quantique, pour laquelle le hasard ne peut se définir que là où il y a un observateur (les fonctions d\'onde sont en effet parfaitement déterminées ; seule leur « réalisation » est aléatoire). Il importe de ne pas confondre le chaos et le hasard : le comportement erratique de systèmes résulte d’un enchevêtrement de séries causales engendrant des conflits d’actions, qui semblent indépendantes car trop complexes pour être analysées. Le hasard, lui, exprime simplement une absence d\'information, que celle-ci puisse exister ou non. Néanmoins, les systèmes chaotiques sont couramment utilisés dans les générateurs de hasard. La complexité n’intervient pas non plus en tant que telle : on peut créer nombre de modèles extrême­ment simples, et qui obéissent pourtant à un processus imprévisible, ou dont le comportement paraît déconcertant (voir Fourmi de Langton). Une fonction d’émergence se manifeste souvent dans les systèmes complexes observés, et a suggéré la notion d\'auto-organisation.Le hasard peut souvent être transcrit en lois probabi­listes. Probabilités et statistiques permettent une plus fine observation du monde et donc des projections plus rigoureuses dans l’avenir.Mais une distinction fondamentale doit être faite quant aux différentes formes de hasard : comme le montre Mandelbrot dans Hasard, fractales et finance9, il existe deux types de hasard, le hasard « bénin » et le hasard « sauvage ». Pour le hasard bénin, quand le nombre d\'observations augmente, les fluctuations sont de moins en moins importantes (c\'est la loi des grands nombres), la loi est gaussienne (c\'est le théorème central limite) et le présent est indépendant du passé suffisamment éloigné10. Le hasard « sauvage » est très différent puisque qu\'il correspond à des lois ou une simple observation peut changer une moyenne faite de plusieurs milliers d\'observations, il rend compte des évènements « catastrophiques » ou « pathologiques ». « [le hasard sauvage] est très vilain, car il ne permet pas de raisonner en termes de moyennes. Si vous prenez dix villes de France au hasard et si vous ratez Paris, Lyon et Marseille, vous allez faire chuter la taille moyenne dans votre échantillon. Si vous prenez dix villes, dont Paris et neuf villages, la moyenne n\'autorise aucune conclusion sur les populations de villes tirées au hasard. » (B. Mandelbrot11)Cette différence montre que l\'inférence statistique, c\'est-à-dire le fait de déduire d\'un échantillon de données de l\'information sur le processus qui génère cet échantillon, est une opération éminemment complexe en statistique inférentielle.Utilité et utilisation du hasardOn utilise le hasard afin de simplifier les analyses, mais pas seulement : de nombreux phénomènes réels étant imprévisibles, on a besoin de savoir utiliser le hasard si on veut les copier ; c\'est notamment le cas pour les simulations.Les théories des jeux prennent en compte le hasard. Celle des jeux « économiques », de John von Neumann et d\'Oskar Morgenstern, montre que les stratégies optimales pour contrer un adversaire sont parfois des stratégies mixtes : il est difficile de prévoir vos mouvements si vous les tirez au hasard, mais encore faut-il effectuer ce tirage d\'une façon optimale pour vous et le moins favorable possible pour votre adversaire. Voir Point selle.La compréhension et la maîtrise des jeux de hasard nécessitent quant à elles une bonne modélisation du hasard.Les méthodes de calculs numériques basées sur le hasard sont nommées « Méthodes de Monte-Carlo ».Méthodes de Monte-CarloArticle détaillé : Méthode de Monte-Carlo.Ces méthodes utilisent des nombres aléatoires pour simuler des situations, calculer des intégrales ou résoudre des équations aux dérivées partielles.Les méthodes de Monte-Carlo sont particulièrement utilisées en physique, où l\'on calcule des algorithmes qui permettent ensuite d\'analyser des résultats d\'expériences.Génération de hasardArticle détaillé : générateur de nombres aléatoires.Puisqu\'on utilise le hasard, il serait plus pratique de pouvoir directement le produire, ceci à des fins d\'efficacité. Pour cela, on peut par exemple utiliser : des phénomènes imprévisibles : dés, roulette, loto ; des opérations mathématiques imprévisibles à l\'intérieur d\'algorithmes : division euclidienne, congruence, carré ; des processus physiques : radioactivité, lame semi-réfléchissante...À l\'exception des phénomènes basés sur des phénomènes quantiques, ces méthodes ne génèrent qu\'un pseudo-hasard, presque indéterminable, ou seulement partiellement indéterminable.";
 
 	
 		kind_i					= 'document';
@@ -769,36 +773,134 @@ else if(sample_number==12){
 
 		var shortexcerpt = 'wikipedia excerpt, Le hasard..';
 		dms = new Array(
-					[{meta_key: 'footer_center_html',				meta_value: '#'+doc_secret+ ' - '+doc_title+' - <a href="'+git_url+'">MusicBox</a>' }],
-					[{meta_key: 'image_thumb',						meta_value: baseuse_url+'/img/lorem/600-400.jpg' }],
-					[{meta_key: 'short_doc_model',					meta_value: 'image_left_title_excerpt' }],
-					[{meta_key: 'short_excerpt',					meta_value: shortexcerpt }],
-					[{meta_key: 'use_authorcard', 					meta_value: 'full_last' }],
-					[{meta_key: 'share_notice', 					meta_value: 'Partager' }],
-					[{meta_key: 'text_class',						meta_value: 'medium' }],
-					[{meta_key: 'color_a',							meta_value: '#e67e22' }],
-					[{meta_key: 'color_b',							meta_value: '#f39c12' }],
-					[{meta_key: 'block_bgcolor',					meta_value: 'black_bg' }],
-					[{meta_key: 'block_color',						meta_value: 'white_atext' }],
-					[{meta_key: 'single_theme', 					meta_value: 'model-lh-f fl-th-p' }],
-					[{meta_key: 'kind',								meta_value: 'classic-post' }],
-					[{meta_key: 'share_fragment',					meta_value: 'after_title' }],
-					[{meta_key: 'share_notice', 	   				meta_value: 'Share' }],
-					[{meta_key: 'keywords_notice', 					meta_value: 'Keywords' }],
-					[{meta_key: 'editor_notice', 					meta_value: 'Edited by' }],
-					[{meta_key: 'creator_notice', 					meta_value: 'Created by' }],
-					[{meta_key: 'nodes_fragment', 					meta_value: 'full_last' }],
-					[{meta_key: 'date_fragment', 					meta_value: 'full_last' }],
-					[{meta_key: 'text_class', 						meta_value: 'high_fat' }],
-					[{meta_key: 'text_typo', 						meta_value: 'Esteban::latin' }],
-					[{meta_key: 'headings_typo', 					meta_value: 'Droid Sans' }],
-					[{meta_key: 'doc_notices_after_title',			meta_value: 'MusicBox Demo doc'}],
-					[{meta_key: 'doc_notices_before_title',			meta_value: '$$$$'+doc_secret }]
-				);
+			[{meta_key: 'footer_center_html',				meta_value: '#'+doc_secret+ ' - '+doc_title+' - <a href="'+git_url+'">MusicBox</a>' }],
+			[{meta_key: 'image_thumb',						meta_value: baseuse_url+'/img/lorem/600-400.jpg' }],
+			[{meta_key: 'short_doc_model',					meta_value: 'image_left_title_excerpt' }],
+			[{meta_key: 'short_excerpt',					meta_value: shortexcerpt }],
+			[{meta_key: 'use_authorcard', 					meta_value: 'full_last' }],
+			[{meta_key: 'share_notice', 					meta_value: 'Partager' }],
+			[{meta_key: 'text_class',						meta_value: 'medium' }],
+			[{meta_key: 'color_a',							meta_value: '#e67e22' }],
+			[{meta_key: 'color_b',							meta_value: '#f39c12' }],
+			[{meta_key: 'block_bgcolor',					meta_value: 'black_bg' }],
+			[{meta_key: 'block_color',						meta_value: 'white_atext' }],
+			[{meta_key: 'single_theme', 					meta_value: 'model-lh-f fl-th-p' }],
+			[{meta_key: 'kind',								meta_value: 'classic-post' }],
+			[{meta_key: 'share_fragment',					meta_value: 'after_title' }],
+			[{meta_key: 'share_notice', 	   				meta_value: 'Share' }],
+			[{meta_key: 'keywords_notice', 					meta_value: 'Keywords' }],
+			[{meta_key: 'editor_notice', 					meta_value: 'Edited by' }],
+			[{meta_key: 'creator_notice', 					meta_value: 'Created by' }],
+			[{meta_key: 'nodes_fragment', 					meta_value: 'full_last' }],
+			[{meta_key: 'date_fragment', 					meta_value: 'full_last' }],
+			[{meta_key: 'text_class', 						meta_value: 'high_fat' }],
+			[{meta_key: 'text_typo', 						meta_value: 'Esteban::latin' }],
+			[{meta_key: 'headings_typo', 					meta_value: 'Droid Sans' }],
+			[{meta_key: 'doc_notices_after_title',			meta_value: 'MusicBox Demo doc'}],
+			[{meta_key: 'doc_notices_before_title',			meta_value: '$$$$'+doc_secret }]
+		);
 		var nodes = new Array('musicbox','lorem-ipsum', 'notes');
 
 
 	}
+	else if(sample_number==13){
+		
+		sample_content = 'Hello ? ~~~~ .. ?? ';
+
+		kind_i					= 'document';
+		section_i				= 'featured_second';
+		doc_title				= 'Incoming socket document';
+		doc_slug				= 'socket-demo';
+	
+		tds = new Array(
+			[{ position:'inline', type: 'section', subtype: 'text', metadata : '', start: 0, end: 60}],
+			[{position:'inline',  type: 'markup', subtype: 'h3', metadata : '',   start: 0, end:60}],
+			[{position:'left', type: 'note', subtype: 'comment', metadata : 'If sockets server in running, you should see incoming messages',     start: 0, end:1}],
+			[{position:'left', type: 'note', subtype: 'comment', metadata : 'Sockets are for future various "live" implementation',     start: 1, end:2}],
+			[{position:'under', type: 'note', subtype: 'comment', metadata : 'Server / Client are standalone, and opensource "basic" modules',     start: 2, end:3}],
+			[{position:'under', type: 'note', subtype: 'comment', metadata : '<a href="https://github.com/tomplays/MusicBoxSocketServer">MusicBox SocketServer @ Github</a> ',     start: 3, end:4}],
+			[{position:'under', type: 'note', subtype: 'comment', metadata : '<a href="https://github.com/tomplays/MusicBoxSocketClients">MusicBox Clients @ Github</a> ',     start: 4, end:5}]
+
+		);
+
+		var shortexcerpt = 'Fact-checking use demo';
+		dms = new Array(
+			[{meta_key: 'footer_center_html',				meta_value: doc_title+' - <a href="'+git_url+'">MusicBox</a>' }],
+			[{meta_key: 'image_thumb',						meta_value: baseuse_url+'/img/lorem/600-400.jpg' }],
+			[{meta_key: 'short_doc_model',					meta_value: 'image_left_title_excerpt' }],
+			[{meta_key: 'short_excerpt',					meta_value: shortexcerpt }],
+			[{meta_key: 'text_class',						meta_value: 'big' }],
+			[{meta_key: 'color_a',							meta_value: '#e67e22' }],
+			[{meta_key: 'color_b',							meta_value: '#f39c12' }],
+			[{meta_key: 'block_bgcolor',					meta_value: 'black_bg' }],
+			[{meta_key: 'block_color',						meta_value: 'white_atext' }],
+			[{meta_key: 'single_theme', 					meta_value: 'model-lh-f fl-th-p bigfonts' }],
+			[{meta_key: 'kind',								meta_value: 'classic-post' }],		
+			[{meta_key: 'text_class', 						meta_value: 'high_fat' }],
+			[{meta_key: 'text_typo', 						meta_value: 'Esteban::latin' }],
+			[{meta_key: 'headings_typo', 					meta_value: 'Droid Sans' }],
+			[{meta_key: 'doc_notices_after_title',			meta_value: 'Listening incoming websocket messages from server. ~Hardware-driven documents, ~Data-stream'}],
+			[{meta_key: 'doc_notices_before_title',			meta_value: 'Music Box demo documents' }]
+		);
+		var nodes = new Array('musicbox','lorem-ipsum');
+	}
+
+	else if(sample_number==14){
+		
+		sample_content = 'Today at six I saw a quick brown fox jumping over a lazy dog.But I\'am not so sure ..';
+
+		kind_i					= 'document';
+		section_i				= 'featured_second';
+		doc_title				= 'Fact-checking / Data use';
+		doc_slug				= 'Fact-checking-demo';
+	
+		tds = new Array(
+			[{ position:'inline', type: 'section', subtype: 'text', metadata : '', start: 0, end: 60}],
+			[{ position:'inline', type: 'section', subtype: 'text', metadata : '', start: 61, end: 142}],
+			[{position:'inline',  type: 'markup', subtype: 'h3', metadata : '',   start: 0, end:60}],
+			[{position:'inline',  type: 'markup', subtype: 'h4', metadata : '',   start: 61, end:142}],
+
+			[{position:'global',type: 'note', subtype: 'comment', metadata : '^^',   start: 77, end:80}],
+			[{position:'right', type: 'note', subtype: 'comment', metadata : 'You know there is not fox where you live @Tom !',    start: 77, end:80}],
+			[{position:'right', type: 'note', subtype: 'comment', metadata : 'Right ! No fox in Buttes Chaumont !',     start: 77, end:80}],
+
+			[{position:'under',  type: 'note', subtype: 'factchecking', metadata : 'Rather red than brown',   start: 10, end:14}],
+			[{position:'under',  type: 'note', subtype: 'factchecking', metadata : 'Not so lazy dog',   start: 34, end:40}],
+			[{position:'under', type: 'note', subtype: 'factchecking', metadata : 'Maybe it\'s <strong>not</strong> a cat ! ',   start: 40, end:42}],
+
+			[{position:'under',  type: 'note', subtype: 'comment', metadata : 'What a fox looks like ? : <a href="https://www.google.com/search?q=fox&source=lnms&tbm=isch">google images</a>',   start: 40, end:42}],
+
+			[{position:'global', type: 'data', subtype: 'hyperlocal', metadata : 'Buttes-Chuamont',  start: 0, end:1}],
+			[{position:'global', type: 'data', subtype: 'city', metadata : 'Paris',   start: 0, end:1}],
+			[{position:'global', type: 'data', subtype: 'world', metadata : 'France',   start: 0, end:1}]
+		);
+
+		var shortexcerpt = 'Fact-checking use demo';
+		dms = new Array(
+			[{meta_key: 'footer_center_html',				meta_value: doc_title+' - <a href="'+git_url+'">MusicBox</a>' }],
+			[{meta_key: 'image_thumb',						meta_value: baseuse_url+'/img/lorem/600-400.jpg' }],
+			[{meta_key: 'short_doc_model',					meta_value: 'image_left_title_excerpt' }],
+			[{meta_key: 'short_excerpt',					meta_value: shortexcerpt }],
+			[{meta_key: 'text_class',						meta_value: 'big' }],
+			[{meta_key: 'color_a',							meta_value: '#e67e22' }],
+			[{meta_key: 'color_b',							meta_value: '#f39c12' }],
+			[{meta_key: 'block_bgcolor',					meta_value: 'black_bg' }],
+			[{meta_key: 'block_color',						meta_value: 'white_atext' }],
+			[{meta_key: 'single_theme', 					meta_value: 'model-lh-f fl-th-p bigfonts' }],
+			[{meta_key: 'kind',								meta_value: 'classic-post' }],		
+			[{meta_key: 'text_class', 						meta_value: 'high_fat' }],
+			[{meta_key: 'text_typo', 						meta_value: 'Esteban::latin' }],
+			[{meta_key: 'headings_typo', 					meta_value: 'Droid Sans' }],
+			[{meta_key: 'doc_notices_after_title',			meta_value: 'Adding corrections, comments and links in a basic text'}],
+			[{meta_key: 'doc_notices_before_title',			meta_value: 'Music Box demo documents' }]
+		);
+		var nodes = new Array('musicbox','lorem-ipsum', 'factchecking');
+	}
+
+
+
+
+
 	else{
 		sample_content		   += "-";
 		doc_title				= "-";
@@ -1034,9 +1136,9 @@ exports.user_create_room = function(room, user){
 
 				console.log('room ok');
 				var doc = 0;
-				doc_count = 12;
+				doc_count = 18;
 
-				for (var u=1;u<13;u++){
+				for (var u=1;u<17;u++){
 					exports.doc_build(user, room1, u)
 				}
 				//exports.doc_build(user, room1, 15)
@@ -1209,7 +1311,9 @@ exports.foootags = function(){
 		[{name:'blou', slug: 'blou', taxonomy: 'self', bgimage: '-', baseline: '-'}],
 		[{name:'placeholder', slug: 'placeholder', taxonomy: 'self', bgimage: '-', baseline: '-'}],
 		[{name:'musicbox', slug: 'musicbox', taxonomy: 'self', bgimage: '-', baseline: '-'}],
-		[{name:'lorem-ipsum', slug: 'lorem-ipsum', taxonomy: 'self', bgimage: '-', baseline: '-'}]	
+		[{name:'lorem-ipsum', slug: 'lorem-ipsum', taxonomy: 'self', bgimage: '-', baseline: '-'}],
+		[{name:'Fact-checking', slug: 'fact-checking', taxonomy: 'self', bgimage: '-', baseline: '-'}]	
+
 	);
 	
 	_.each(foo_nodes, function(node){
