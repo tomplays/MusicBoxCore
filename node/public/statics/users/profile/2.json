@@ -5,26 +5,26 @@
     "email": "xxx-static",
     "color": "#c3c9eb",
     "password": "xxx-static",
-    "createdAt": "2014-02-01T09:41:38.565Z",
-    "updatedAt": "2014-02-01T09:41:39.394Z",
-    "IdocId": 5
+    "createdAt": "2014-03-03T09:38:34.946Z",
+    "updatedAt": "2014-03-03T09:38:34.946Z",
+    "IdocId": null
   },
   "usermetas": [
     {
       "id": 4,
       "meta_key": "has_earlyadopter",
       "meta_value": "true",
-      "createdAt": "2014-02-01T09:41:38.597Z",
-      "updatedAt": "2014-02-01T09:41:38.716Z",
+      "createdAt": "2014-03-03T09:38:35.031Z",
+      "updatedAt": "2014-03-03T09:38:35.285Z",
       "UserId": 2,
       "RoomId": null
     },
     {
       "id": 5,
       "meta_key": "profile_image",
-      "meta_value": "img/users/tom-blue-small.jpg",
-      "createdAt": "2014-02-01T09:41:38.598Z",
-      "updatedAt": "2014-02-01T09:41:38.719Z",
+      "meta_value": "img/users/tom-retro.jpg",
+      "createdAt": "2014-03-03T09:38:35.032Z",
+      "updatedAt": "2014-03-03T09:38:35.286Z",
       "UserId": 2,
       "RoomId": null
     },
@@ -32,8 +32,8 @@
       "id": 6,
       "meta_key": "current_place_city",
       "meta_value": "Paris",
-      "createdAt": "2014-02-01T09:41:38.600Z",
-      "updatedAt": "2014-02-01T09:41:38.732Z",
+      "createdAt": "2014-03-03T09:38:35.033Z",
+      "updatedAt": "2014-03-03T09:38:35.303Z",
       "UserId": 2,
       "RoomId": null
     },
@@ -41,17 +41,17 @@
       "id": 7,
       "meta_key": "current_place_country",
       "meta_value": "France",
-      "createdAt": "2014-02-01T09:41:38.601Z",
-      "updatedAt": "2014-02-01T09:41:38.734Z",
+      "createdAt": "2014-03-03T09:38:35.034Z",
+      "updatedAt": "2014-03-03T09:38:35.304Z",
       "UserId": 2,
       "RoomId": null
     },
     {
       "id": 8,
       "meta_key": "short_bio",
-      "meta_value": "user bio",
-      "createdAt": "2014-02-01T09:41:38.601Z",
-      "updatedAt": "2014-02-01T09:41:38.735Z",
+      "meta_value": "my short bio here",
+      "createdAt": "2014-03-03T09:38:35.034Z",
+      "updatedAt": "2014-03-03T09:38:35.309Z",
       "UserId": 2,
       "RoomId": null
     },
@@ -59,8 +59,8 @@
       "id": 9,
       "meta_key": "website_url",
       "meta_value": "https://github.com/tomplays/",
-      "createdAt": "2014-02-01T09:41:38.602Z",
-      "updatedAt": "2014-02-01T09:41:38.736Z",
+      "createdAt": "2014-03-03T09:38:35.035Z",
+      "updatedAt": "2014-03-03T09:38:35.310Z",
       "UserId": 2,
       "RoomId": null
     }
@@ -68,7 +68,7 @@
   "rooms": [
     {
       "id": 1,
-      "slug": "Mb",
+      "slug": "#!",
       "name": "MusicBox",
       "restricted": null,
       "locked": null,
