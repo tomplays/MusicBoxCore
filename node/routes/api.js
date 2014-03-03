@@ -82,16 +82,20 @@ exports.create_textdata = function (req, res) {
 
 exports.update_textdata_massive  = function (req, res) {
 		multi = req.body.list;
-		var updated = new Array()
+		console.log(req.body.doc_id)
+		var updated_arr = new Array()
 		_.each(req.body.list, function(td){
+
+
 			var textdata = models.Textdata.find({
 	 			where: {id:td.id}}).success(function(textdata) {
 				if(textdata){
 					textdata.start = td.start;
 					textdata.end = td.end;
 					textdata.save().success(function(textdata) {
-		  				//res.send(textdata);
-		  				updated.push(textdata);
+
+		  				//console.log(textdata)
+		  				//updated_arr.push(textdata.dataValues);
 					});
 				}
 				else{
@@ -99,8 +103,20 @@ exports.update_textdata_massive  = function (req, res) {
 				}
 			});
 		});
-		console.log('upadting massive ('+_.size(multi)+') _td done')	
-		res.send(updated);
+
+
+		//console.log('upadting massive ('+_.size(multi)+') _td done')	
+		//console.log(updated_arr)	
+
+		//res.json(updated_arr);
+
+
+		var textdatas_reload = models.Textdata.findAll(
+						{where: {IdocId:req.body.doc_id}}).success(function(textdatas) {
+							console.log(textdatas)
+							res.send(textdatas);
+						});	
+			
 		return;
 }
 
