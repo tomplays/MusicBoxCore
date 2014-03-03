@@ -449,13 +449,6 @@ else if(sample_number==6){
 	}
 	else if(sample_number==8){
 
-		/*
-		fs.readFile("public/import/constitution_fr.txt", "utf8", function(error, datai) {
-				doc.content = datai;
-				doc.save();
-		});
-		*/
-
 		sample_content			= "Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Lorem with section background and padding modern styles. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis. Curabitur aliquet pellentesque diam. Integer quis metus vitae elit lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi vel erat non mauris convallis vehicula. Nulla et sapien. Integer tortor tellus, aliquam faucibus, convallis id, congue eu, quam. Mauris ullamcorper felis vitae erat. Proin feugiat, augue non elementum posuere, metus purus iaculis lectus, et tristique ligula justo vitae magna. Aliquam convallis sollicitudin purus. Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus. Fusce vulputate sem at sapien. Vivamus leo. Aliquam euismod libero eu enim. Nulla nec felis sed leo placerat imperdiet. Aenean suscipit nulla in justo. Suspendisse cursus rutrum augue. Nulla tincidunt tincidunt mi. Curabitur iaculis, lorem vel rhoncus faucibus, felis magna fermentum augue, et ultricies lacus lorem varius purus. Curabitur eu amet.";
 
 		kind_i					= 'document';
@@ -464,60 +457,58 @@ else if(sample_number==6){
 		doc_slug				= 'Lorem-ipsum-markup';
 	
 		tds = new Array(
-				[{ type: 'section', subtype: 'text', metadata : '', start: 0, end: 399}],
+			[{ type: 'section', subtype: 'text', metadata : '', start: 0, end: 399}],
+			[{ type: 'section', subtype: 'text', metadata : '', start: 400, end:799}],
+			[{ type: 'section', subtype: 'text', metadata : '', start: 800, end:999}],
+			[{ type: 'section', subtype: 'text', metadata : '', start: 1000, end:1599}],
+			[{ type: 'section', subtype: 'text', metadata : '', start: 1600, end:1800}],
+			[{ metadata : '', subtype: 'em' , type: 'markup', start:110 , end: 119}],	
+			[{ metadata : '',subtype: 'strong' , type: 'markup', start:120, end:23}],
+			[{ metadata : '',subtype: 'h3' , type: 'markup', start: 160 , end: 262}],
+			[{ metadata : '',subtype: 'strike' , type: 'markup', start:300, end:33}],
+			[{ metadata : '',subtype: 'strong' , type: 'markup', start:648, end:780}],	
+			[{ metadata : '',subtype: 'em' , type: 'markup', start:457, end:675}],	
+			[{ metadata : '',subtype: 'strong' , type: 'markup',start:787, end:790}],
+			[{ metadata : '',subtype: 'h1' , type: 'markup', start: 1384 , end: 1401}],	
+			[{ metadata : '',subtype: 'h2' , type: 'markup', start: 1411, end: 1429}],	
+			[{ metadata : '',subtype: 'h3' , type: 'markup', start: 1442, end: 1453 }],	
+	  		[{ metadata : '',subtype: 'h4' , type: 'markup', start: 1457 , end: 1466 }],	
+			[{ metadata : '',subtype: 'h5' , type: 'markup', start: 1492, end: 1503}],	
+			[{ metadata : '',subtype: 'h6' , type: 'markup', start: 1492, end: 1503}],	
 
-
-				[{ type: 'section', subtype: 'text', metadata : '', start: 400, end:799}],
-				[{ type: 'section', subtype: 'text', metadata : '', start: 800, end:999}],
-				[{ type: 'section', subtype: 'text', metadata : '', start: 1000, end:1599}],
-				[{ type: 'section', subtype: 'text', metadata : '', start: 1600, end:1800}],
-				[{ metadata : '', subtype: 'em' , type: 'markup', start:110 , end: 119}],	
-				[{ metadata : '',subtype: 'strong' , type: 'markup', start:120, end:23}],
-				[{ metadata : '',subtype: 'h3' , type: 'markup', start: 160 , end: 262}],
-				[{ metadata : '',subtype: 'strike' , type: 'markup', start:300, end:33}],
-				[{ metadata : '',subtype: 'strong' , type: 'markup', start:648, end:780}],	
-				[{ metadata : '',subtype: 'em' , type: 'markup', start:457, end:675}],	
-				[{ metadata : '',subtype: 'strong' , type: 'markup',start:787, end:790}],
-				[{ metadata : '',subtype: 'h1' , type: 'markup', start: 1384 , end: 1401}],	
-				[{ metadata : '',subtype: 'h2' , type: 'markup', start: 1411, end: 1429}],	
-				[{ metadata : '',subtype: 'h3' , type: 'markup', start: 1442, end: 1453 }],	
-		  		[{ metadata : '',subtype: 'h4' , type: 'markup', start: 1457 , end: 1466 }],	
-				[{ metadata : '',subtype: 'h5' , type: 'markup', start: 1492, end: 1503}],	
-				[{ metadata : '',subtype: 'h6' , type: 'markup', start: 1492, end: 1503}],	
-
-				[{ subtype: 'link' ,type: 'markup', metadata : 'http://test.fr', start:1546, end:1583}]
-			);
+			[{ subtype: 'link' ,type: 'markup', metadata : 'http://test.fr', start:1546, end:1583}]
+		);
 
 
 		var shortexcerpt = 'blou';
 		dms = new Array(
-					[{meta_key: 'footer_center_html',				meta_value: '#'+sample_number+ ' - '+doc_title+' - <a href="'+git_url+'">MusicBox</a>' }],
-					[{meta_key: 'image_thumb',						meta_value: baseuse_url+'/img/lorem/600-400.jpg' }],
-					[{meta_key: 'short_doc_model',					meta_value: 'image_left_title_excerpt' }],
-					[{meta_key: 'short_excerpt',					meta_value: shortexcerpt }],
-					[{meta_key: 'use_authorcard', 					meta_value: 'full_last' }],
-					[{meta_key: 'share_notice', 					meta_value: 'Partager' }],
-					[{meta_key: 'text_class',						meta_value: 'medium' }],
-					[{meta_key: 'branding_class', 					meta_value: '' }], 
-					[{meta_key: 'color_a',							meta_value: '#e67e22' }],
-					[{meta_key: 'color_b',							meta_value: '#f39c12' }],
-					[{meta_key: 'block_bgcolor',					meta_value: 'black_bg' }],
-					[{meta_key: 'block_color',						meta_value: 'white_atext' }],
-					[{meta_key: 'single_theme', 					meta_value: 'model-lh-f fl-th-p' }],
-					[{meta_key: 'kind',								meta_value: 'classic-post' }],
-					[{meta_key: 'share_fragment',					meta_value: 'after_title' }],
-					[{meta_key: 'share_notice', 	   				meta_value: 'Share' }],
-					[{meta_key: 'keywords_notice', 					meta_value: 'Keywords' }],
-					[{meta_key: 'editor_notice', 					meta_value: 'Edited by' }],
-					[{meta_key: 'creator_notice', 					meta_value: 'Created by' }],
-					[{meta_key: 'nodes_fragment', 					meta_value: 'full_last' }],
-					[{meta_key: 'date_fragment', 					meta_value: 'full_first' }],
-					[{meta_key: 'text_class', 						meta_value: 'high_fat' }],
-					[{meta_key: 'text_typo', 						meta_value: 'Esteban::latin' }],
-					[{meta_key: 'headings_typo', 					meta_value: 'Droid Sans' }],
-					[{meta_key: 'doc_notices_after_title',			meta_value: 'MusicBox Demo doc'}],
-					[{meta_key: 'doc_notices_before_title',			meta_value: 'Display a sample text with classic markup for titles (h1-h6), strong, italic, strike, links, lists, ...' }]
-				);
+			[{meta_key: 'footer_center_html',				meta_value: '#'+sample_number+ ' - '+doc_title+' - <a href="'+git_url+'">MusicBox</a>' }],
+			[{meta_key: 'image_thumb',						meta_value: baseuse_url+'/img/lorem/600-400.jpg' }],
+			[{meta_key: 'short_doc_model',					meta_value: 'image_left_title_excerpt' }],
+			[{meta_key: 'short_excerpt',					meta_value: shortexcerpt }],
+			[{meta_key: 'use_authorcard', 					meta_value: 'full_last' }],
+			[{meta_key: 'share_notice', 					meta_value: 'Partager' }],
+			[{meta_key: 'text_class',						meta_value: 'medium' }],
+			[{meta_key: 'branding_class', 					meta_value: '' }], 
+			[{meta_key: 'color_a',							meta_value: '#e67e22' }],
+			[{meta_key: 'color_b',							meta_value: '#f39c12' }],
+			[{meta_key: 'block_bgcolor',					meta_value: 'black_bg' }],
+			[{meta_key: 'block_color',						meta_value: 'white_atext' }],
+			[{meta_key: 'single_theme', 					meta_value: 'model-lh-f fl-th-p' }],
+			[{meta_key: 'kind',								meta_value: 'classic-post' }],
+			[{meta_key: 'share_fragment',					meta_value: 'after_title' }],
+			[{meta_key: 'share_notice', 					meta_value: 'Share' }],
+			[{meta_key: 'keywords_notice', 					meta_value: 'Keywords' }],
+			[{meta_key: 'editor_notice', 					meta_value: 'Edited by' }],
+			[{meta_key: 'creator_notice', 					meta_value: 'Created by' }],
+			[{meta_key: 'nodes_fragment', 					meta_value: 'full_last' }],
+			[{meta_key: 'date_fragment', 					meta_value: 'full_first' }],
+			[{meta_key: 'text_class', 						meta_value: 'high_fat' }],
+			[{meta_key: 'text_typo', 						meta_value: 'Esteban::latin' }],
+			[{meta_key: 'headings_typo', 					meta_value: 'Droid Sans' }],
+			[{meta_key: 'doc_notices_after_title',			meta_value: 'MusicBox Demo doc'}],
+			[{meta_key: 'doc_notices_before_title',			meta_value: 'Display a sample text with classic markup for titles (h1-h6), strong, italic, strike, links, lists, ...' }]
+		);
 		var nodes = new Array('musicbox','lorem-ipsum', 'blou');
 
 
@@ -530,7 +521,7 @@ else if(sample_number==9){
 
 		kind_i					= 'document';
 		section_i				= 'featured_second';
-		doc_title				= 'Lorem Ipsum images';
+		doc_title				= 'Images demo';
 		doc_slug				= 'Lorem-ipsum-images';
 	
 		tds = new Array(
@@ -554,7 +545,7 @@ else if(sample_number==9){
 			);
 
 
-		var shortexcerpt = 'blou';
+		var shortexcerpt = 'Images positionning';
 		dms = new Array(
 					[{meta_key: 'footer_center_html',				meta_value: '#'+sample_number+ ' - '+doc_title+' - <a href="'+git_url+'">MusicBox</a>' }],
 					[{meta_key: 'image_thumb',						meta_value: baseuse_url+'/img/lorem/600-400.jpg' }],
@@ -580,8 +571,8 @@ else if(sample_number==9){
 					[{meta_key: 'text_class', 						meta_value: 'high_fat' }],
 					[{meta_key: 'text_typo', 						meta_value: 'Esteban::latin' }],
 					[{meta_key: 'headings_typo', 					meta_value: 'Droid Sans' }],
-					[{meta_key: 'doc_notices_after_title',			meta_value: 'MusicBox Demo doc'}],
-					[{meta_key: 'doc_notices_before_title',			meta_value: 'Display a sample text with classic markup for titles (h1-h6), strong, italic, strike, links, lists, ...' }]
+					[{meta_key: 'doc_notices_after_title',			meta_value: 'Display images at various positions in several sections'}],
+					[{meta_key: 'doc_notices_before_title',			meta_value: 'MusicBox Demo doc' }]
 				);
 		var nodes = new Array('musicbox','lorem-ipsum', 'blou');
 
@@ -589,59 +580,51 @@ else if(sample_number==9){
 	}
 else if(sample_number==10){
 
-		
-
+	
 		sample_content			= "0123456789012345678- -901234567890120123- -456789012345678- -90123456789012-- 34567890123456789- -01234567893456- -7890123456789- -01234012345678900123456789012345678- -9012345678901234567890123456789- -012345678912345678- -9012345678901234567890123456789- -012345678956789";
-
 		kind_i					= 'document';
 		section_i				= 'featured_second';
 		doc_title				= 'Lorem Ipsum editor tester';
 		doc_slug				= 'Lorem-ipsum-images';
-	
 		tds = new Array(
-				/*five sections with images at different positions */
-
-				[{ type: 'section', subtype: 'text', css : '', start: 0, end: 10}],
-				[{ type: 'section', subtype: 'text', css : '', start: 11, end: 18}],
-				[{ type: 'section', subtype: 'text', css : '', start: 19, end: 32}],
-				[{ type: 'section', subtype: 'text', css : '', start: 33, end: 100 }],
+			/*five sections with images at different positions */
+			[{ type: 'section', subtype: 'text', css : '', start: 0, end: 10}],
+			[{ type: 'section', subtype: 'text', css : '', start: 11, end: 18}],
+			[{ type: 'section', subtype: 'text', css : '', start: 19, end: 32}],
+			[{ type: 'section', subtype: 'text', css : '', start: 33, end: 100 }],
 			[{ type: 'section', subtype: 'text', css : '', start: 101, end: 273 }]
-
-
-		
-
 		);
 
 
 		var shortexcerpt = 'blou';
 		dms = new Array(
-					[{meta_key: 'footer_center_html',				meta_value: doc_secret }],
-					[{meta_key: 'image_thumb',						meta_value: baseuse_url+'/img/lorem/600-400.jpg' }],
-					[{meta_key: 'short_doc_model',					meta_value: 'image_left_title_excerpt' }],
-					[{meta_key: 'short_excerpt',					meta_value: shortexcerpt }],
-					[{meta_key: 'use_authorcard', 					meta_value: 'full_last' }],
-					[{meta_key: 'share_notice', 					meta_value: 'Partager' }],
-					[{meta_key: 'text_class',						meta_value: 'medium' }],
-					[{meta_key: 'branding_class', 					meta_value: '' }], 
-					[{meta_key: 'color_a',							meta_value: '#e67e22' }],
-					[{meta_key: 'color_b',							meta_value: '#f39c12' }],
-					[{meta_key: 'block_bgcolor',					meta_value: 'black_bg' }],
-					[{meta_key: 'block_color',						meta_value: 'white_atext' }],
-					[{meta_key: 'single_theme', 					meta_value: 'model-lh-f fl-th-p' }],
-					[{meta_key: 'kind',								meta_value: 'classic-post' }],
-					[{meta_key: 'share_fragment',					meta_value: 'after_title' }],
-					[{meta_key: 'share_notice', 	   				meta_value: 'Share' }],
-					[{meta_key: 'keywords_notice', 					meta_value: 'Keywords' }],
-					[{meta_key: 'editor_notice', 					meta_value: 'Edited by' }],
-					[{meta_key: 'creator_notice', 					meta_value: 'Created by' }],
-					[{meta_key: 'nodes_fragment', 					meta_value: 'full_last' }],
-					[{meta_key: 'date_fragment', 					meta_value: 'full_first' }],
-					[{meta_key: 'text_class', 						meta_value: 'high_fat' }],
-					[{meta_key: 'text_typo', 						meta_value: 'Esteban::latin' }],
-					[{meta_key: 'headings_typo', 					meta_value: 'Droid Sans' }],
-					[{meta_key: 'doc_notices_after_title',			meta_value: 'MusicBox Demo doc'}],
-					[{meta_key: 'doc_notices_before_title',			meta_value: 'Display a sample text with classic markup for titles (h1-h6), strong, italic, strike, links, lists, ...' }]
-				);
+			[{meta_key: 'footer_center_html',				meta_value: doc_secret }],
+			[{meta_key: 'image_thumb',						meta_value: baseuse_url+'/img/lorem/600-400.jpg' }],
+			[{meta_key: 'short_doc_model',					meta_value: 'image_left_title_excerpt' }],
+			[{meta_key: 'short_excerpt',					meta_value: shortexcerpt }],
+			[{meta_key: 'use_authorcard', 					meta_value: 'full_last' }],
+			[{meta_key: 'share_notice', 					meta_value: 'Partager' }],
+			[{meta_key: 'text_class',						meta_value: 'medium' }],
+			[{meta_key: 'branding_class', 					meta_value: '' }], 
+			[{meta_key: 'color_a',							meta_value: '#e67e22' }],
+			[{meta_key: 'color_b',							meta_value: '#f39c12' }],
+			[{meta_key: 'block_bgcolor',					meta_value: 'black_bg' }],
+			[{meta_key: 'block_color',						meta_value: 'white_atext' }],
+			[{meta_key: 'single_theme', 					meta_value: 'model-lh-f fl-th-p' }],
+			[{meta_key: 'kind',								meta_value: 'classic-post' }],
+			[{meta_key: 'share_fragment',					meta_value: 'after_title' }],
+			[{meta_key: 'share_notice', 	   				meta_value: 'Share' }],
+			[{meta_key: 'keywords_notice', 					meta_value: 'Keywords' }],
+			[{meta_key: 'editor_notice', 					meta_value: 'Edited by' }],
+			[{meta_key: 'creator_notice', 					meta_value: 'Created by' }],
+			[{meta_key: 'nodes_fragment', 					meta_value: 'full_last' }],
+			[{meta_key: 'date_fragment', 					meta_value: 'full_first' }],
+			[{meta_key: 'text_class', 						meta_value: 'high_fat' }],
+			[{meta_key: 'text_typo', 						meta_value: 'Esteban::latin' }],
+			[{meta_key: 'headings_typo', 					meta_value: 'Droid Sans' }],
+			[{meta_key: 'doc_notices_after_title',			meta_value: 'MusicBox Demo doc'}],
+			[{meta_key: 'doc_notices_before_title',			meta_value: 'Display a sample text with classic markup for titles (h1-h6), strong, italic, strike, links, lists, ...' }]
+		);
 		var nodes = new Array('musicbox','lorem-ipsum', 'blou');
 
 
