@@ -80,7 +80,9 @@ exports.doc_build = function(user, room, sample_number){
 	
 		tds = new Array(
 				[{ css: '',	type: 'section', subtype: 'text', metadata : '', start: 0, end: 149}],
-			
+			[{position:'global', 	css: 'child_section' , type: 'child_section', ext_doc:14, subtype: 'child_section', metadata : '', start:0, end: 34}],
+			[{position:'global', 	css: 'child_section' , type: 'child_section', ext_doc:8, subtype: 'child_section', metadata : '', start:0, end: 34}],
+			[{position:'global', 	css: 'child_section' , type: 'child_section', ext_doc:15, subtype: 'child_section', metadata : '', start:0, end: 34}],
 			[{position:'global', 	css: 'child_section' , type: 'child_section', ext_doc:2, subtype: 'child_section', metadata : '', start:0, end: 34}],
 			[{position:'global', 	css: 'child_section' , type: 'child_section', ext_doc:3, subtype: 'child_section', metadata : '', start:0, end: 34}],
 			[{position:'global', 	css: 'child_section' , type: 'child_section', ext_doc:4, subtype: 'child_section', metadata : '', start:0, end: 34}],
@@ -88,13 +90,12 @@ exports.doc_build = function(user, room, sample_number){
 			[{position:'global', 	css: 'child_section' , type: 'child_section', ext_doc:5, subtype: 'child_section', metadata : '', start:0, end: 34}],
 			[{position:'global', 	css: 'child_section' , type: 'child_section', ext_doc:6, subtype: 'child_section', metadata : '', start:0, end: 34}],
 			[{position:'global', 	css: 'child_section' , type: 'child_section', ext_doc:7, subtype: 'child_section', metadata : '', start:0, end: 34}],
-			[{position:'global', 	css: 'child_section' , type: 'child_section', ext_doc:8, subtype: 'child_section', metadata : '', start:0, end: 34}],
 			[{position:'global', 	css: 'child_section' , type: 'child_section', ext_doc:9, subtype: 'child_section', metadata : '', start:0, end: 34}],
 			[{position:'global', 	css: 'child_section' , type: 'child_section', ext_doc:10, subtype: 'child_section', metadata : '', start:0, end: 34}],
 			[{position:'global', 	css: 'child_section' , type: 'child_section', ext_doc:11, subtype: 'child_section', metadata : '', start:0, end: 34}],
 			[{position:'global', 	css: 'child_section' , type: 'child_section', ext_doc:12, subtype: 'child_section', metadata : '', start:0, end: 34}],
 			[{position:'global', 	css: 'child_section' , type: 'child_section', ext_doc:13, subtype: 'child_section', metadata : '', start:0, end: 34}]
-
+			
 		);
 
 
@@ -535,7 +536,7 @@ else if(sample_number==6){
 		);
 
 
-		var shortexcerpt = 'blou';
+		var shortexcerpt = 'Display a sample text with classic markup for titles (h1-h6), strong, italic, strike, links, lists, ...';
 		dms = new Array(
 			[{meta_key: 'footer_center_html',				meta_value: '#'+sample_number+ ' - '+doc_title+' - <a href="'+git_url+'">MusicBox</a>' }],
 			[{meta_key: 'image_thumb',						meta_value: baseuse_url+'/img/lorem/600-400.jpg' }],
@@ -936,7 +937,140 @@ else if(sample_number==11){
 		var nodes = new Array('musicbox','lorem-ipsum', 'factchecking');
 	}
 
+else if(sample_number==15){
 
+		sample_content			= "Lorem Ipsum (h1) Blou Blou ! (h2) Dolor sit amet consectetur adipiscing (h3) Sed non risus. Suspendisse lectus (h4) Dignissim sit amet, adipiscing nec, ultricies sed, dolor. (h5)Lorem Cras elementum ultrices diam. (h6)";
+		sample_content			+= "Lorem Ipsum (strong) Blou Blou ! (italic) Dolor sit amet consectetur adipiscing (strong+italic) Dolor sit amet consectetur adipiscing Sed non risus.(strike)";
+
+
+		sample_content			+= "Dolor sit amet consectetur adipiscing (link) Sed non risus."
+
+		sample_content			+= "(list) Lorem Ipsum Blou Blou ! (item) Dolor sit amet consectetur (item)  Sed non risus. (item)";
+
+
+
+
+		sample_content			+= "Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissi it amet, adipiscing nec, ultricies sed, dolor.(cite)";
+		sample_content			+= "create_log: function (docId, args){ var data = {text: args.text, object: args.object,  verb: args.verb, subject: args.subject, author: args.author, docid: docId };   var data = serialize(data)$http.post(API_URL+'/apis/doclogs/create', data).success(function(log) {if(log){..  (code)";
+
+
+		sample_content			+= "Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissi it amet, adipiscing nec, ultricies sed, dolor. Lorem with section background and padding modern styles. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis. Curabitur aliquet pellentesque diam. Integer quis metus vitae elit lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi vel erat non mauris convallis vehicula. Nulla et sapien. Integer tortor tellus, aliquam faucibus, convallis id, congue eu, quam. Mauris ullamcorper felis vitae erat. Proin feugiat, augue non elementum posuere, metus purus iaculis lectus, et tristique ligula justo vitae magna. Aliquam convallis sollicitudin purus. Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus. Fusce vulputate sem at sapien. Vivamus leo. Aliquam euismod libero eu enim. Nulla nec felis sed leo placerat imperdiet. Aenean suscipit nulla in justo. Suspendisse cursus rutrum augue. Nulla tincidunt tincidunt mi. Curabitur iaculis.";
+		sample_content			+= "Lorem Ipsum Blou Blou ! Dolor sit amet, consectetur adipiscing elit.Sed non risus. Suspendisse lectus tortor, dignissi it amet, adipiscing nec, ultricies sed, dolor. Lorem with section background and padding modern styles. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis. Curabitur aliquet pellentesque diam. Integer quis metus vitae elit lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi vel erat non mauris convallis vehicula. Nulla et sapien. Integer tortor tellus, aliquam faucibus, convallis id, congue eu, quam. Mauris ullamcorper felis vitae erat. Proin feugiat, augue non elementum posuere, metus purus iaculis lectus, et tristique ligula justo vitae magna. Aliquam convallis sollicitudin purus. Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus. Fusce vulputate sem at sapien. Vivamus leo. Aliquam euismod libero eu enim. Nulla nec felis sed leo placerat imperdiet. Aenean suscipit nulla in justo. Suspendisse cursus rutrum augue. Nulla tincidunt tincidunt mi. Curabitur iaculis.";
+
+
+
+		kind_i					= 'document';
+		section_i				= 'featured_second';
+		doc_title				= 'Titles and markup (Black)';
+		doc_slug				= 'Lorem-ipsum-markup_black';
+	
+		tds = new Array(
+			[{ type: 'section', subtype: 'text', metadata : '', start: 0, end: 217}],
+				[{ type: 'section_class', subtype: '', metadata : 'pa100_topbtm',  start: 0, end: 217}],
+				[{ type: 'section_class', subtype: '', metadata : 'black_bg',  start: 0, end: 217}],
+
+			[{ metadata : '',subtype: 'h1' , type: 'markup', start: 0 , end: 15}],	
+			[{ metadata : '',subtype: 'h2' , type: 'markup', start: 16, end: 32}],	
+			[{ metadata : '',subtype: 'h3' , type: 'markup', start: 33, end: 76 }],	
+	  		[{ metadata : '',subtype: 'h4' , type: 'markup', start: 77 , end: 115 }],	
+			[{ metadata : '',subtype: 'h5' , type: 'markup', start: 116, end: 177}],	
+			[{ metadata : '',subtype: 'h6' , type: 'markup', start: 178, end: 217}],
+
+			[{ type: 'section', subtype: 'text', metadata : '', start: 218, end:373}],
+				[{ type: 'section_class', subtype: '', metadata : 'pa100_topbtm', start: 218, end:373}],
+				[{ type: 'section_class', subtype: '', metadata : 'black_bg',  start: 218, end:373}],
+
+				[{ metadata : '',subtype: 'strong' , type: 'markup', start:218, end:238}],	
+				[{ metadata : '',subtype: 'em' , type: 'markup', start:239, end:259}],	
+			    // BOTH
+				  [{ metadata : '',subtype: 'strong' , type: 'markup', start:260, end:313}],	
+				  [{ metadata : '',subtype: 'em' , type: 'markup',  start:260, end:313}],	
+				[{ metadata : '',subtype: 'strike' , type: 'markup', start:356, end:364}],
+
+			[{ type: 'section', subtype: 'text', metadata : '', start: 374, end:432}],
+				[{ type: 'section_class', subtype: '', metadata : 'pa100_topbtm', start: 374, end:432}],
+				[{ type: 'section_class', subtype: '', metadata : 'black_bg',  start: 374, end:432}],
+
+				[{subtype: 'link' ,type: 'markup', metadata : 'http://test.fr',  start:389, end:410}],
+
+			[{ type: 'section', subtype: 'text', metadata : '', start: 433, end:526}],
+				[{ type: 'section_class', subtype: '', metadata : 'pa100_topbtm',start: 433, end:526}],
+				[{ type: 'section_class', subtype: '', metadata : 'black_bg', start: 433, end:526}],
+
+
+				[{ metadata : '',subtype: 'list-item' , type: 'markup', start: 440 , end: 470}],
+				[{ metadata : '',subtype: 'list-item' , type: 'markup', start: 471 , end: 505}],
+				[{ metadata : '',subtype: 'list-item' , type: 'markup', start: 506 , end: 526}],
+
+			[{ type: 'section', subtype: 'text', metadata : '', start: 527, end:673}],
+				[{ type: 'section_class', subtype: '', metadata : 'pa100_topbtm',start: 527, end:673}],
+				[{ type: 'section_class', subtype: '', metadata : 'black_bg',  start: 527, end:673}],
+
+				[{ metadata : '',subtype: 'cite' , type: 'markup', start: 527 , end: 673}],
+				
+			[{ type: 'section', subtype: 'text', metadata : '', start: 674, end:955}],
+				[{ type: 'section_class', subtype: '', metadata : 'pa100_topbtm', start: 674, end:955}],
+				[{ type: 'section_class', subtype: '', metadata : 'black_bg',   start: 674, end:955}],
+
+				[{ metadata : '',subtype: 'code' , 	type: 'markup', start: 674 , end: 839}],
+				[{ metadata : '',subtype: 'em' , 	type: 'markup', start: 674 , end: 684}],
+				[{ metadata : '',subtype: 'em' , 	type: 'markup', start: 820 , end: 839}],
+				[{ metadata : '',subtype: 'strong' , 	type: 'markup', start: 820 , end: 839}],
+
+				[{ metadata : '',subtype: 'code' , 	type: 'markup', start: 840 , end: 955}],
+				[{ metadata : '',subtype: 'strong' , 	type: 'markup', start: 876 , end: 886}],
+				[{position:'right', type: 'note', subtype: 'code_block', metadata : 'code comment',   start: 674, end:955}],
+				[{position:'inline', type: 'summary', subtype: 'summary_block', metadata : 'Some Javascript lines',   start: 674, end:955}],
+
+			[{ type: 'section', subtype: 'text', metadata : '', start: 956, end:1955}],
+				[{ type: 'section_class', subtype: '', metadata : 'pa100_topbtm', start: 956, end:1955}],
+				[{ type: 'section_class', subtype: '', metadata : 'black_bg',   start: 956, end:1955}],
+				[{ type: 'section_class', subtype: '', metadata : 'col_splited_2', start: 956, end:1955}],
+				[{ type: 'section_class', subtype: '', metadata : 'text_wider', start: 956, end:1955}],
+
+			[{ type: 'section', subtype: 'text', metadata : '', start: 1956, end:2155}],
+				[{ type: 'section_class', subtype: '', metadata : 'pa100_topbtm', start: 1956, end:2155}],
+				[{ type: 'section_class', subtype: '', metadata : 'black_bg',   start: 1956, end:2155}],
+				[{ type: 'section_class', subtype: '', metadata : 'col_splited_2', start: 1956, end:2155}]
+
+
+
+		);
+
+
+		var shortexcerpt = 'Display a sample text with classic markup and additionnal css styles/classes';
+		dms = new Array(
+			[{meta_key: 'footer_center_html',				meta_value: '#'+sample_number+ ' - '+doc_title+' - <a href="'+git_url+'">MusicBox</a>' }],
+			[{meta_key: 'image_thumb',						meta_value: baseuse_url+'/img/lorem/600-400.jpg' }],
+			[{meta_key: 'short_doc_model',					meta_value: 'image_left_title_excerpt' }],
+			[{meta_key: 'short_excerpt',					meta_value: shortexcerpt }],
+			[{meta_key: 'use_authorcard', 					meta_value: 'full_last' }],
+			[{meta_key: 'share_notice', 					meta_value: 'Partager' }],
+			[{meta_key: 'text_class',						meta_value: 'medium' }],
+			[{meta_key: 'branding_class', 					meta_value: '' }], 
+			[{meta_key: 'color_a',							meta_value: '#e67e22' }],
+			[{meta_key: 'color_b',							meta_value: '#f39c12' }],
+			[{meta_key: 'block_bgcolor',					meta_value: 'black_bg' }],
+			[{meta_key: 'block_color',						meta_value: 'white_atext' }],
+			[{meta_key: 'single_theme', 					meta_value: 'model-lh-f fl-th-p' }],
+			[{meta_key: 'kind',								meta_value: 'classic-post' }],
+			[{meta_key: 'share_fragment',					meta_value: 'after_title' }],
+			[{meta_key: 'share_notice', 					meta_value: 'Share' }],
+			[{meta_key: 'keywords_notice', 					meta_value: 'Keywords' }],
+			[{meta_key: 'editor_notice', 					meta_value: 'Edited by' }],
+			[{meta_key: 'creator_notice', 					meta_value: 'Created by' }],
+			[{meta_key: 'nodes_fragment', 					meta_value: 'full_last' }],
+			[{meta_key: 'date_fragment', 					meta_value: 'full_first' }],
+			[{meta_key: 'text_class', 						meta_value: 'high_fat' }],
+			[{meta_key: 'text_typo', 						meta_value: 'Esteban::latin' }],
+			[{meta_key: 'headings_typo', 					meta_value: 'Droid Sans' }],
+			[{meta_key: 'doc_notices_before_title',			meta_value: 'MusicBox Demo doc'}],
+			[{meta_key: 'doc_notices_after_title',			meta_value: 'Display a sample text with classic markup for titles (h1-h6), strong, italic, strike, links, lists, ...' }]
+		);
+		var nodes = new Array('musicbox','lorem-ipsum', 'blou');
+
+
+	}
 
 
 
