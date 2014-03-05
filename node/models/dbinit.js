@@ -193,6 +193,9 @@ exports.doc_build = function(user, room, sample_number){
 	
 		tds = new Array(
 				[{ type: 'section', subtype: 'text', metadata : '', start: 0, end: 167}],
+
+
+
 				[{ metadata : '',subtype: 'strong' , type: 'markup',start:5, end:20}],
 				[{ metadata : '',subtype: 'em' , type: 'markup',start:35, end:60}],
 				[{ metadata : '',subtype: 'strike' , type: 'markup',start:75, end:90}],
@@ -242,8 +245,8 @@ exports.doc_build = function(user, room, sample_number){
 					[{meta_key: 'text_class', 						meta_value: 'high_fat' }],
 					[{meta_key: 'text_typo', 						meta_value: 'Esteban::latin' }],
 					[{meta_key: 'headings_typo', 					meta_value: 'Droid Sans' }],
-					[{meta_key: 'doc_notices_after_title',			meta_value: 'MusicBox Demo doc'}],
-					[{meta_key: 'doc_notices_before_title',			meta_value: 'Display a sample text, some images, notes, comments and fragments' }]
+					[{meta_key: 'doc_notices_before_title',			meta_value: 'MusicBox Demo doc'}],
+					[{meta_key: 'doc_notices_after_title',			meta_value: 'Display a sample text, some images, notes, comments and fragments' }]
 				);
 		var nodes = new Array('musicbox','lorem-ipsum', 'blou');
 
@@ -765,18 +768,18 @@ else if(sample_number==11){
 	
 		kind_i					= 'document';
 		section_i				= 'featured_second';
-		doc_title				= 'Le hasard ..#'+doc_secret;
+		doc_title				= 'Le hasard';
 		doc_slug				= 'hasard-demo';
 	
 		tds = new Array(
 				[{ position:'inline', type: 'section', subtype: 'text', metadata : '', start: 0, end: 1473}],
 
 //				[{ metadata : '',subtype: 'em' , type: 'markup', start: 0 , end: 175}],
-				[{ metadata : '',subtype: 'list-item' , type: 'markup', start: 175 , end: 251}],
-				[{ metadata : '',subtype: 'list-item' , type: 'markup', start: 252 , end: 356}],
-				[{ metadata : '',subtype: 'list-item' , type: 'markup', start: 357 , end: 467}],
+			//	[{ metadata : '',subtype: 'list-item' , type: 'markup', start: 175 , end: 251}],
+			//	[{ metadata : '',subtype: 'list-item' , type: 'markup', start: 252 , end: 356}],
+			//	[{ metadata : '',subtype: 'list-item' , type: 'markup', start: 357 , end: 467}],
 
-		 		[{position:'right', depth: 1,  type: 'note', subtype: 'wikipedia', metadata : 'Blaise Pascal, né le 19 juin 1623 à Clairmont (aujourd\'hui Clermont-Ferrand) en Auvergne et mort le 19 août 1662 à Paris, est un mathématicien, physicien, inventeur, philosophe, moraliste et théologien français. Enfant précoce, son père l\'éduque. Les premiers travaux de Pascal concernent les sciences naturelles et appliquées. Il contribue de manière importante à l’étude des fluides. Il a clarifié les concepts de pression et de vide, en étendant le travail de Torricelli. Pascal a écrit des textes importants sur la méthode scientifique.', start: 209, end:221}],
+		 	//	[{position:'right', depth: 1,  type: 'note', subtype: 'wikipedia', metadata : 'Blaise Pascal, né le 19 juin 1623 à Clairmont (aujourd\'hui Clermont-Ferrand) en Auvergne et mort le 19 août 1662 à Paris, est un mathématicien, physicien, inventeur, philosophe, moraliste et théologien français. Enfant précoce, son père l\'éduque. Les premiers travaux de Pascal concernent les sciences naturelles et appliquées. Il contribue de manière importante à l’étude des fluides. Il a clarifié les concepts de pression et de vide, en étendant le travail de Torricelli. Pascal a écrit des textes importants sur la méthode scientifique.', start: 209, end:221}],
 
 
 
@@ -835,8 +838,8 @@ else if(sample_number==11){
 			[{meta_key: 'text_class', 						meta_value: 'high_fat' }],
 			[{meta_key: 'text_typo', 						meta_value: 'Esteban::latin' }],
 			[{meta_key: 'headings_typo', 					meta_value: 'Droid Sans' }],
-			[{meta_key: 'doc_notices_after_title',			meta_value: 'MusicBox Demo doc'}],
-			[{meta_key: 'doc_notices_before_title',			meta_value: '$$$$'+doc_secret }]
+			[{meta_key: 'doc_notices_after_title',			meta_value: 'Un extrait de Wikipédia sur la définition du hasard'}],
+			[{meta_key: 'doc_notices_before_title',			meta_value: 'MusicBox Demo doc' }]
 		);
 		var nodes = new Array('musicbox','lorem-ipsum', 'notes');
 
@@ -904,15 +907,15 @@ else if(sample_number==11){
 			[{position:'right', type: 'note', subtype: 'comment', metadata : 'You know there is not fox where you live @Tom !',    start: 77, end:80}],
 			[{position:'right', type: 'note', subtype: 'comment', metadata : 'Right ! No fox in Buttes Chaumont !',     start: 77, end:80}],
 
-			[{position:'under',  type: 'note', subtype: 'factchecking', metadata : 'Rather red than brown',   start: 10, end:14}],
-			[{position:'under',  type: 'note', subtype: 'factchecking', metadata : 'Not so lazy dog',   start: 34, end:40}],
-			[{position:'under', type: 'note', subtype: 'factchecking', metadata : 'Maybe it\'s <strong>not</strong> a cat ! ',   start: 40, end:42}],
+			[{position:'under',  type: 'note', subtype: 'factchecking', metadata : 'Rather red than brown',   start: 27, end:31}],
+			[{position:'under',  type: 'note', subtype: 'factchecking', metadata : 'Not so lazy dog',   start: 50, end:59}],
+			[{position:'under', type: 'note', subtype: 'factchecking', metadata : 'Maybe it\'s <strong>not</strong> a cat ! ',   start: 57, end:59}],
 
-			[{position:'under',  type: 'note', subtype: 'comment', metadata : 'What a fox looks like ? : <a href="https://www.google.com/search?q=fox&source=lnms&tbm=isch">google images</a>',   start: 40, end:42}],
+			[{position:'under',  type: 'note', subtype: 'comment', metadata : 'What a fox looks like ? : <a href="https://www.google.com/search?q=fox&source=lnms&tbm=isch">google images</a>',   start: 57, end:59}],
 
-			[{position:'global', type: 'data', subtype: 'hyperlocal', metadata : 'Buttes-Chuamont',  start: 0, end:1}],
-			[{position:'global', type: 'data', subtype: 'city', metadata : 'Paris',   start: 0, end:1}],
-			[{position:'global', type: 'data', subtype: 'world', metadata : 'France',   start: 0, end:1}]
+			[{position:'global', type: 'data', subtype: 'hyperlocal', metadata : 'Buttes-Chuamont',  start: 0, end:11}],
+			[{position:'global', type: 'data', subtype: 'city', metadata : 'Paris',   start: 0, end:11}],
+			[{position:'global', type: 'data', subtype: 'world', metadata : 'France',   start: 0, end:11}]
 		);
 
 		var shortexcerpt = 'Fact-checking use demo';
