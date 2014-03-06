@@ -135,15 +135,22 @@ module.exports = {
 }
 
 var fixtures = require("./models/dbinit");
+var default_site = require("./models/default_site");
+
 
 // drop || fixtures sync. 
-if ( nconf.get('fixtures')  ||  nconf.get('drop') ||  nconf.get('tags')){
+if ( nconf.get('fixtures')  ||  nconf.get('drop') ||  nconf.get('tags') || nconf.get('default_site')){
 	sequelize.sync()
 	.success(function() {
 		if (nconf.get('fixtures')){
 			console.log("-- Syncing database with dbinit");
 			fixtures.fooo();
 		}
+		if (nconf.get('default_site')){
+			console.log("-- Creating your new site now !");
+			default_site.create();
+		}
+
 		if (nconf.get('tags')){
 			console.log("-- Syncing database with tags");
 			fixtures.foootags();

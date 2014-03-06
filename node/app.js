@@ -9,6 +9,7 @@ nconf.argv().env().file({file:'config.json'});
 program
     .version(package.version)
     .option('--fixtures', 'Initialize database with fixtures')
+    .option('--default_site', 'Create a new site')
     .option('--drop', 'drop db')
     .option('--tags', 'tags')
     .parse(process.argv);

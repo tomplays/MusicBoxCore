@@ -12,10 +12,7 @@ var git_url = 'https://github.com/tomplays/MusicBox';
 var hardcoded_real_published = '2013-12-11T14:30:46.395Z'; // un bel apres-midi d'hiver, avec un poney
 var sockets_url = 'http://localhost:3013';
 
-
-
 exports.doc_build = function(user, room, sample_number){
-
 	/*
 	1. Homepage
 	2. Blue jpg
@@ -23,18 +20,18 @@ exports.doc_build = function(user, room, sample_number){
 	4  Musicbox cc picture
 	5  Players embed
 	6  Notes 2
-	7  sectiosn basics
-	8  markup
+	7  sections basics
+	8  markups & titles
 	9  images / positions 
 	10
 	11
-	12.  hasard (wikipedia)
+	12.  "Le hasard" (Wikipedia)
 
 	13.  socketed document
 	14.  factcheking demo
+	15.  black titles
 
 	*/
-
 
 	var 	nodes 						= new Array()
 	var  	tds 						= new Array();
@@ -51,11 +48,11 @@ exports.doc_build = function(user, room, sample_number){
 	var		sample_content				= "";
 
 
-
-	//var doc_secret				=  exports.makesecret(13);
-	// not annoying for tests..
-	var doc_secret				=  'A';
-
+	// less annoying for tests..
+	var doc_secret				=  'M';
+	if(sample_number==100){
+		var doc_secret				=  exports.makesecret(13);
+	}
 
 	if(sample_number==0){
 		sample_content			+= "";
@@ -66,8 +63,6 @@ exports.doc_build = function(user, room, sample_number){
 	}
 
 	else if(sample_number==1){
-
-
 	
 
 		sample_content 			+= 'Welcome MusicBox demo site. Here are some documents displaying various features of the render engine from basic documents to higher level definition.';
@@ -101,7 +96,7 @@ exports.doc_build = function(user, room, sample_number){
 
 		var shortexcerpt = 'blou';
 		dms = new Array(
-			[{meta_key: 'footer_center_html',				meta_value: '#:'+doc_secret+' MusicBox demo / homepage /demo <a href="'+git_url+'">MusicBox</a>' }],
+			[{meta_key: 'footer_center_html',				meta_value: 'Homepage demo <a href="'+git_url+'">MusicBox</a>' }],
 			[{meta_key: 'image_thumb', 						meta_value: baseuse_url+'/img/docs/4/music-box.jpg' }],
 			[{meta_key: 'short_doc_model',					meta_value: 'image_left_title_excerpt' }],
 			[{meta_key: 'short_excerpt',					meta_value: shortexcerpt }],
@@ -125,7 +120,7 @@ exports.doc_build = function(user, room, sample_number){
 			//[{meta_key: 'nodes_fragment', 					meta_value: 'full_last' }],
 			//[{meta_key: 'date_fragment', 					meta_value: 'full_first' }],
 			[{meta_key: 'text_class', 						meta_value: 'high_fat' }],
-			[{meta_key: 'text_typo', 						meta_value: 'Esteban::latin' }],
+			[{meta_key: 'text_typo', 						meta_value: 'Esteban:latin' }],
 			[{meta_key: 'headings_typo', 					meta_value: 'Droid Sans' }]
 			
 		);
@@ -1273,7 +1268,7 @@ exports.create_process_and_role_for_room_for_user = function(room,user,capabilit
 
 exports.user_create_room = function(room, user){
 
-		var room1 = models.Room.build({name: 'MusicBox' , slug: '#!', owners:user.id }).save().success(function(room1) {
+		var room1 = models.Room.build({name: 'MusicBox' , slug: 'Mb', owners:user.id }).save().success(function(room1) {
 								
 				// adds some properties  "meta" for room
 				exports.meta_room(room1);
