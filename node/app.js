@@ -4,12 +4,16 @@ var package = require('./package.json'),
     express = require('express'),
     http = require('http'),  
     program = require('commander');
+    var chalk = require('chalk');
+
+console.log(chalk.green('Hello API') );
 
 nconf.argv().env().file({file:'config.json'});
 program
     .version(package.version)
-    .option('--fixtures', 'Initialize database with fixtures')
-    .option('--default_site', 'Create a new site')
+    .option('--fixtures', 'Initialize database with fixtures (full demo features')
+    .option('--default_site', 'Create a new site (light)')
+    .option('--my_site', 'Create my site')
     .option('--drop', 'drop db')
     .option('--tags', 'tags')
     .parse(process.argv);
