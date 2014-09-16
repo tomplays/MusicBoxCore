@@ -26,6 +26,7 @@ module.exports = function(app) {
 
 	/* DOC */
 	app.get('/apis/doc/:id/:static?', 								docroutes.one_doc_full); // post root node infos
+	app.get('/apis/external/:external/:static?', 					docroutes.one_doc_external); 
 
 	app.post('/apis/doc_create', 									docroutes.create_doc); // post root node infos
 	app.post('/apis/doc/:docid/edit', 							    docroutes.edit_doc_infos); // post root node infos

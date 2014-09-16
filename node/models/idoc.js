@@ -34,7 +34,12 @@ module.exports = function(sequelize, DataTypes) {
                 },
             },
             external: {
-                type: DataTypes.BOOLEAN,
+                type: DataTypes.TEXT,
+                validate: {
+                },
+            },
+            clength: {
+                type: DataTypes.STRING,
                 validate: {
                 },
             },

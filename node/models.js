@@ -63,8 +63,14 @@ Idoc.hasMany(Textdata, {as: 'Textdatas'});
 Idoc.hasMany(Idoc, { as: 'Parent', foreignKey: 'idoc_id', joinTableName: 'IdocsParents' });
 Idoc.hasMany(Idoc, { as: 'Child', foreignKey: 'idoc_id', joinTableName: 'IdocsChilds' });
 
+
 Textdata.belongsTo(Idoc, { as: 'Textdataer' });
 Textdata.belongsTo(Idoc, { as: 'Extref',  foreignKey: 'ext_doc' });
+
+
+Textdata.belongsTo(User, { as: 'Textdatauser' });
+Textdata.belongsTo(User, { as: 'UserRef' }); // ,  foreignKey: 'ref_user'
+
 
 Idoc.hasMany(Comment, {as: 'Comments'});
 
@@ -136,10 +142,11 @@ module.exports = {
 
 var fixtures = require("./models/dbinit");
 var default_site = require("./models/default_site");
+var my_site = require("./models/my_site");
 
 
 // drop || fixtures sync. 
-if ( nconf.get('fixtures')  ||  nconf.get('drop') ||  nconf.get('tags') || nconf.get('default_site')){
+if ( nconf.get('fixtures')  ||  nconf.get('drop') ||  nconf.get('tags') || nconf.get('default_site') ||  nconf.get('my_site')){
 	sequelize.sync()
 	.success(function() {
 		if (nconf.get('fixtures')){
@@ -150,7 +157,10 @@ if ( nconf.get('fixtures')  ||  nconf.get('drop') ||  nconf.get('tags') || nconf
 			console.log("-- Creating your new site now !");
 			default_site.create();
 		}
-
+		if (nconf.get('my_site')){
+			console.log("-- Creating my site now !");
+			my_site.create();
+		}
 		if (nconf.get('tags')){
 			console.log("-- Syncing database with tags");
 			fixtures.foootags();

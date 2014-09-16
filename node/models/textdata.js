@@ -8,15 +8,18 @@ module.exports = function(sequelize, DataTypes) {
             type: {
                 type: DataTypes.TEXT,
                 validate: {},
+                defaultValue: 'none',
             },
             subtype: {
                 type: DataTypes.TEXT,
                 validate: {},
+                 defaultValue: 'none',
             },
             start: {
                 type: DataTypes.INTEGER,
                 validate: {
                 },
+                 defaultValue: 0,
             },
             end: {
                 type: DataTypes.INTEGER,
@@ -26,6 +29,7 @@ module.exports = function(sequelize, DataTypes) {
             css: {
                 type: DataTypes.TEXT,
                 validate: {},
+                 defaultValue: 'none',
             },
             metadata: {
                 type: DataTypes.TEXT,
@@ -47,6 +51,7 @@ module.exports = function(sequelize, DataTypes) {
             position: {
                 type: DataTypes.TEXT,
                 validate: {},
+                defaultValue: 'left',
             }
         }
     );

@@ -41,7 +41,7 @@ exports.create_textdata = function (req, res) {
 
  	console.log(req.body)
 	//var data = {'docid':docid,'start':partial_sentence_start , 'end':i, 'sentence': partial_sentence};
-	var tdocid = tposition = tstart = tend = tmetadata = ttype = tcss= tsubtype = '';
+	var tdocid = tposition = tstart = tend = tmetadata = ttype = tcss= tsubtype = tuserid = '';
 
 	// FROM PARSED URL..
 	var tdocid = req.params.docid;
@@ -52,12 +52,12 @@ exports.create_textdata = function (req, res) {
 	var ttype = req.body.type
 	var tcss = req.body.css;
 	var tsubtype = req.body.subtype;
-
+	var tuserid = req.body.userid;
 
 	
 	var doc = models.Idoc.find({
 	 	where: '"Idocs"."id"='+tdocid}).success(function(doc) {
-		models.Textdata.build({position: tposition, css: tcss , metadata : tmetadata, type: ttype, subtype: tsubtype, start: tstart, end: tend}).save().success(function(textdata) {
+		models.Textdata.build({ UserId: tuserid, position: tposition, css: tcss , metadata : tmetadata, type: ttype, subtype: tsubtype, start: tstart, end: tend}).save().success(function(textdata) {
 			textdata.setTextdataer(doc);
 			res.send(textdata);
 			return;
@@ -309,6 +309,10 @@ exports.update_docmeta = function (req, res) {
 	}
 	var docmetaid = req.body.id;
 	var key = req.body.key;
+	if(key == nconf.get('ADMIN_KEYPASS'))
+	{
+		console.log('ADMIN_KEYPASS passed')
+	}
 
 	var docmeta = models.Docmeta.find({
 	 	where: {id:docmetaid}}).success(function(docmeta) {
@@ -320,8 +324,8 @@ exports.update_docmeta = function (req, res) {
 				{where: {id:doc_id}}
 			).success(function(doc) {
 				if(doc){
-					console.log('showing console doc.secret:'+doc.secret)
-					if(doc.secret !== key ){
+					console.log('showing console doc.secret:'+ doc.secret)
+					if( /*(doc.secret !== key) ||*/ (key !== nconf.get('ADMIN_KEYPASS') ) ){
 						out.status = 'secret not match'
 						res.send(out);
 						console.log('docsecret failed try'); // some control

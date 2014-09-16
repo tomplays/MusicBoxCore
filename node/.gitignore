@@ -16,3 +16,6 @@ results
 npm-debug.log
 node_modules
 config.json
+models/my_site.js
+public/img/docs/2
+public/logos

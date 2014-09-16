@@ -263,9 +263,23 @@ else{
 							doc.getProcesses().success(function(processes) {
 								doc.getRoles().success(function(roles) {
 									doc.getNodes().success(function(nodes) {
-										doc.getTextdatas(/*{ include: [{ model: models.Idoc.Docmetas, as: 'Extref' }] }*/).success(function(textdatas) {
+										doc.getTextdatas({ include: [{ model: models.User, as: 'UserRef' }, { model: models.Idoc, as: 'Extref' }] }).success(function(textdatas) {
+											
+												
 
+												_.each(textdatas, function(td, idg){
+													
 
+													if(td.userRef){
+										
+															textdatas[idg].userRef.dataValues.password = 'hidden by api'
+													}
+													if(td.extref){
+										
+															textdatas[idg].extref.dataValues.secret = 'hidden by api'
+													}
+
+												})
 											//if(textdatas.ext_doc !==null){
 												//////
 											//}
@@ -371,7 +385,149 @@ else{
 
 } // else static nconf
 }
+// FROM API
+exports.one_doc_externald = function (req, res) {
+	console.log('dynamic doc file load #'+req.params.external)
 
+}
+exports.one_doc_external= function (req, res) {
+
+
+	console.log('dynamic doc file load #'+req.params.external)
+
+	var test_mode = 'user';
+	var user_in = 1;
+	var exit = false;
+	var external =  encodeURIComponent(req.params.external); 
+	var where_obj = {}	
+	
+		where_obj.external= external;
+		
+	
+
+    var doc = models.Idoc.find({where: where_obj}).success(function(doc) {
+
+
+
+	 	if(doc){
+	 		doc.secret = 'hidden';
+
+
+			doc.getRooms().success(function(Room) {
+				doc.getDoclogs().success(function(doclogs) {
+					doc.getDocmetas().success(function(docmetas) {	
+						doc.getComments().success(function(comments) {
+							doc.getProcesses().success(function(processes) {
+								doc.getRoles().success(function(roles) {
+									doc.getNodes().success(function(nodes) {
+										doc.getTextdatas({ include: [{ model: models.User, as: 'UserRef' }, { model: models.Idoc, as: 'Extref' }] }).success(function(textdatas) {
+
+
+											//if(textdatas.ext_doc !==null){
+												//////
+											//}
+											//	doc.getCreator().success(function(Creator) {
+											//		doc.getContributor().success(function(Contributor) {
+												
+												var my_roles = new Array();
+												var doc_creator= new Array();
+												var doc_editor= new Array();
+
+
+												_.each(roles, function(role, idg){
+													
+													if(role.text=='doc_creator'){
+														doc_creator.push(role.UserId);	
+													}
+													if(role.text=='doc_editor'){
+														doc_editor.push(role.UserId);	
+													}
+													
+													
+													
+													//	console.log(role);
+													if(role.UserId == user_in){
+														//console.log('role granted');
+														my_roles.push(role)
+													}
+													else{
+														//console.log('not role granted by id');
+													}
+												});
+												var my_permissions = new Array();
+								
+												_.each(processes, function(process, idg){
+
+													
+														if((process.text == "view_doc") /* && (user_in ==1) */){
+														 	//exit = true;
+														    my_permissions.push(process.text)
+															//return exit;
+														}
+											
+									
+												});
+									
+									
+									
+												var doc_infos = {};
+												doc_infos.doc = doc;
+												doc_infos.myroles_granted = my_permissions;
+												doc_infos.textdatas = textdatas;
+												doc_infos.roles = roles;
+												doc_infos.comments= comments;
+												doc_infos.logs = doclogs;
+												doc_infos.processes = processes;
+												doc_infos.docmetas =docmetas;
+												doc_infos.nodes = nodes;
+												doc_infos.room = Room;
+												doc_infos.creator = doc_creator;
+												doc_infos.editor = doc_editor;
+
+												//doc_infos.contributor = Contributor;
+												if(exit === false){
+
+                                          		if(req.params.static && req.params.static == 'write'){               
+													var file = './public/statics/docs/'+req.params.external+'.json';
+	                                                jf.writeFile(file, doc_infos, function(err) {
+	                                                  console.log(err);
+	                                                  res.json(doc_infos);
+	                                                });
+                                            	}
+                                            	else{
+                                            		res.json(doc_infos);
+                                            	}
+
+
+													
+												}
+												else{
+													res.send('all doc_infos exited');
+												}
+											//}); // contribs
+										//}); // creator
+									});
+								});
+								});//nodes
+							});
+						});
+					});
+				});
+			}).error(function() {
+	  			res.send('e2??');
+			});
+		} 
+		else{
+			console.log('522');
+			res.send('Doc not found');
+		}
+
+	}).error(function() {
+  		res.send('e1??');
+	});
+
+
+}
 
 // CLONE a document from antoher.
 // TODO : ROLES and PROCESS cloning.
