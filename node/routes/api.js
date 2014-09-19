@@ -25,6 +25,195 @@ nconf 		= require('nconf');
 */
 
 
+var S = require('string');
+var htmlparser = require("htmlparser");
+
+var deep = 0
+var tds = new Array()
+
+function resursive_map(o,level){
+	
+	thus = o;
+	console.log(deep)
+	if(thus.children) {
+		deep = level+1;
+		_.each(thus.children, function(dc){
+			return resursive_map(dc.children, deep)
+		})
+
+	}
+	return;
+
+
+
+}
+var s;
+function  helpLinkConvert(s, tag){
+	//var reg = '';
+
+	
+	if(tag == 'h1'){
+			var uu = /<h1>(.+?)<\/h1>/g
+
+	}
+	if(tag == 'em'){
+			var uu = /<em>(.+?)<\/em>/g
+
+	}
+	if(tag == 'span'){
+			var uu = /<span>(.+?)<\/span>/g
+
+	}
+	
+   var text = s.replace(uu, function(match, contents, offset, s)
+    {    	
+    	console.log('match')
+
+    	console.log(match)
+    	   console.log('s')
+
+    	    	console.log(s)
+
+    	
+    //	var inner = contents.replace(RegExp('<\/?' + tag + '[^<>]*>', 'gi'), '');
+		var inner  = contents.replace(/<(?:.|\s)*?>/g, "");
+    	//console.log('offset '+offset)
+    	//console.log('inner length '+contents.length)
+    	var end = offset + contents.length;
+    //	for(i = start)
+    	var td = new Object({'tag': tag, 'start':offset, 'end': end , 'inner' :inner })
+		tds.push(td)
+		
+
+		//return contents;
+		console.log(contents)
+		s = '<t>'+contents+'</t>';
+        return s
+    });
+
+
+	
+}
+
+exports.encode = function (req,res){
+
+	console.log(req.body.request.text);
+	var s = req.body.request.text
+	// var s_ = S(s).stripTagsMb().s //'just some text'
+	// console.log(s_)
+	
+
+     helpLinkConvert(s,'h1');
+    // helpLinkConvert(s,'em');
+    // helpLinkConvert(s,'span');
+
+	
+
+
+
+
+	//var h1 = 'h1'
+	//var ttt = s.replace('<h1>', helpLinkConvert);
+	console.log('tt')
+	console.log(s)
+
+console.log(tds)
+
+
+
+var handler = new htmlparser.DefaultHandler(function (error, dom) {
+	
+	var stooges = new Array();
+
+	_.each(dom, function(d){
+		var cur_deep = 0;
+		stooges.push(cur_deep)
+
+
+	    var recursive = resursive_map(d,0)
+
+
+	
+
+		console.log(d)
+		if(d.children){
+			cur_deep = 1
+				stooges.push({'deep': cur_deep, 'path_c':00})
+			console.log('d has children')
+			var t_dc = 0;
+			_.each(d.children, function(dc){
+				console.log('dc')
+				console.log(dc)
+
+				if(dc.children){
+					cur_deep = 2
+					stooges.push({'deep': cur_deep, 'path_c':t_dc})
+
+					var t_dc = 0;
+					_.each(dc.children, function(sdc){
+						console.log('sub dc')
+						console.log(sdc)
+
+						if(sdc.children){
+							cur_deep = 3
+							stooges.push({'deep': cur_deep, 'path_c':t_dc})
+
+							var t_sdc = 0;
+							_.each(sdc.children, function(ssdc){
+									console.log('SUB sub sub dc !')
+									console.log(ssdc)
+									if(ssdc.children){
+										
+										cur_deep = 4
+										stooges.push({'deep': cur_deep, 'path_c':t_dc+'_'+t_sdc})
+									}
+
+									
+									t_sdc++;
+
+							})
+
+						}
+
+					})
+
+					t_dc++;
+
+				}
+
+
+			})
+			t_dc++;
+
+		//	console.log(d.children)
+		}
+
+	})
+	var maxx = _.max(stooges, function(stooge){ return stooge[0]; });
+	console.log(stooges)
+
+	console.log(maxx)
+console.log('deep'+deep)
+
+
+   // if (error)
+        //[...do something for errors...]
+    //else
+       // [...parsing done, do something...]
+});
+//var parser = new htmlparser.Parser(handler);
+//parser.parseComplete(s);
+//sys.puts(sys.inspect(handler.dom, false, null));
+
+
+
+
+// console.log(handler.dom)
+//console.log(rawHtml)
+//console.log(parser)
+//console.log(handler)
+
+}
 
 exports.create_textdata = function (req, res) {
 	var out = new Object();

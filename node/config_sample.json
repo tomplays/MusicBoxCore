@@ -14,6 +14,7 @@
     "DATABASE_DIALECT": "postgres",
     "DATABASE_INSERT_MODE" : "any", 
     "DATABASE_DOCSAPI_MODE": "dynamic",
+    "API_SECRET": "",
     "ADMIN_KEYPASS": "qsklqkslqsu",
     "CREATE_DOC_KEYPASS": "qskjkqjskjqksjk",
     "CREATE_DOC_COUNT": "39"

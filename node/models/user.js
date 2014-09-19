@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
 	return sequelize.define("User", {
 		username: {
 			type: DataTypes.STRING,
-			//unique: true,
+			unique: true,
 			validate: {
 				is: ["[a-z0-9_]",'i'],
 				len: [2, 15],
@@ -31,7 +31,7 @@ module.exports = function(sequelize, DataTypes) {
 		password: {
 			type: DataTypes.STRING,
 			validate: {
-				len: [6, 256],
+				len: [1, 256],
 				notNull: true,
 				notEmpty: true,
 			},
@@ -66,6 +66,26 @@ module.exports = function(sequelize, DataTypes) {
 			avatar: function() {
 				this.avatar = gravatar.url(this.email);
 				return this.save_raw(params);
+
+			},
+			auth: function(username, password) {
+				console.log('test auth'+username, password)
+				var eventEmitter = new Utils.CustomEventEmitter(function() {
+						require("../models").User.find({ where: { username:username } })
+							.success(function(user) {
+								if (user && bcrypt.compareSync(password, user.password)) {
+									console.log('success')
+									eventEmitter.emit('success', user);
+								} else {
+									console.log('failure')
+									eventEmitter.emit('error', "Could not authenticate user");
+								}
+							})
+							.error(function(error){
+								eventEmitter.emit('error', err);
+							});
+					});
+					return eventEmitter.run();
 
 			}
 		}

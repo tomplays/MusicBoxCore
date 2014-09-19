@@ -88,7 +88,7 @@ I use nodemon for local tests too.
 					background, baseline, extra infos for nodes
 
 				process.js
-					what could users do ?
+					what can users do ?
 				
 				role.js
 					me ? can I or not

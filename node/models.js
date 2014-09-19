@@ -65,10 +65,23 @@ Idoc.hasMany(Idoc, { as: 'Child', foreignKey: 'idoc_id', joinTableName: 'IdocsCh
 
 
 Textdata.belongsTo(Idoc, { as: 'Textdataer' });
-Textdata.belongsTo(Idoc, { as: 'Extref',  foreignKey: 'ext_doc' });
+Textdata.belongsTo(Idoc, { as: 'DocRef' ,foreignKey: 'subIdocId'});
 
 
-Textdata.belongsTo(User, { as: 'Textdatauser' });
+Textdata.belongsTo(Textdata, { as: 'TextdataRef', foreignKey: 'TextdataId'})
+//Textdata.belongsTo(Textdata, {as:'TextdataTextdataer'})
+
+
+
+//Textdata.hasMany(Textdata, { as: 'TextdataTarents', joinTableName: 'TextdatasTarents' });
+//Textdata.hasMany(Textdata, { as: 'TextdataTextdatas', foreignKey: 'textdata_id', joinTableName: 'TextdataTextdatas' });
+
+//Textdata.belongsTo(Textdata, { as: 'TextdataRef' ,  foreignKey: 'ext_textdata'});
+
+//Textdata.hasMany(Textdata, { as: 'Textdataref'});
+
+
+//Textdata.belongsTo(User, { as: 'Textdatauser' });
 Textdata.belongsTo(User, { as: 'UserRef' }); // ,  foreignKey: 'ref_user'
 
 

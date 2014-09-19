@@ -21,6 +21,8 @@
     "bcrypt": "~0.7.3",
     "commander": "~1.1.1",
     "jsonfile": "*",
-    "chalk": "^0.4.0"
+    "chalk": "^0.4.0",
+    "string": "^2.0.1",
+    "htmlparser": "^1.7.7"
   }
 }

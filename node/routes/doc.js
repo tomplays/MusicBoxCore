@@ -238,6 +238,9 @@ else{
 	var test_mode = 'user';
 	var user_in = 1;
 	var exit = false;
+	var api_infos = new Array();
+	var entities= new Array();
+	
 	var id = req.params.id; 
 	var where_obj = {}	
 	if(_.isFinite(id) ){ 
@@ -263,20 +266,27 @@ else{
 							doc.getProcesses().success(function(processes) {
 								doc.getRoles().success(function(roles) {
 									doc.getNodes().success(function(nodes) {
-										doc.getTextdatas({ include: [{ model: models.User, as: 'UserRef' }, { model: models.Idoc, as: 'Extref' }] }).success(function(textdatas) {
+										doc.getTextdatas({ include: [{ model: models.User, as: 'UserRef' }, {model: models.Textdata, as: 'TextdataRef'  }, { model: models.Idoc, as: 'DocRef' }] }).success(function(textdatas) {
 											
 												
 
 												_.each(textdatas, function(td, idg){
-													
+
+												    if(td.type){
+
+														entities.push(td.type)
+												    }
 
 													if(td.userRef){
-										
-															textdatas[idg].userRef.dataValues.password = 'hidden by api'
+														textdatas[idg].userRef.dataValues.password = 'hidden by api'
 													}
 													if(td.extref){
-										
+															// textdatas[idg].extref.dataValues.content = 'excerpt'
 															textdatas[idg].extref.dataValues.secret = 'hidden by api'
+
+															var excerpt = '';
+															// content
+															textdatas[idg].extref.dataValues.content = 'read more...'
 													}
 
 												})
@@ -340,7 +350,9 @@ else{
 												doc_infos.room = Room;
 												doc_infos.creator = doc_creator;
 												doc_infos.editor = doc_editor;
+												doc_infos.api_infos = {}
 
+												doc_infos.api_infos.entities = entities;
 												//doc_infos.contributor = Contributor;
 												if(exit === false){
 
@@ -386,10 +398,7 @@ else{
 } // else static nconf
 }
 // FROM API
-exports.one_doc_externald = function (req, res) {
-	console.log('dynamic doc file load #'+req.params.external)
 
-}
 exports.one_doc_external= function (req, res) {
 
 

@@ -26,7 +26,7 @@ module.exports = function(app) {
 
 	/* DOC */
 	app.get('/apis/doc/:id/:static?', 								docroutes.one_doc_full); // post root node infos
-	app.get('/apis/external/:external/:static?', 					docroutes.one_doc_external); 
+	//app.get('/apis/external/:external/:static?', 					docroutes.one_doc_external); 
 
 	app.post('/apis/doc_create', 									docroutes.create_doc); // post root node infos
 	app.post('/apis/doc/:docid/edit', 							    docroutes.edit_doc_infos); // post root node infos
@@ -73,8 +73,18 @@ module.exports = function(app) {
 
 	
 	//USER (no real CRUD API for users yet)
+	app.post('/apis/profile/register', 								userroutes.apiprofile_register); // public
  	app.get('/apis/profile/:username_or_id/:static?', 				userroutes.apiprofile); // public
 	
+	// 
+	app.get('/apis/profiles/list/:apisecret?/:static?', 						userroutes.apiprofile_list); // public
+	
+	app.get('/apis/profiles/auth/:id/:password', 						userroutes.apiprofile_auth); // public
+
+
+	// encoding api 
+	app.post('/apis/encode',							   				 apiroutes.encode); 	// CURl : curl --data  "request[text]=my text" http://localhost:3001/apis/encode
+
 
 	app.get('*'	, function(req, res){
 		 var out = '<!DOCTYPE html><html><head><!-- /-) !--> <title> '+nconf.get('API_NAME')+'</title></head><body>';
