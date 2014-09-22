@@ -6,6 +6,8 @@
 var _package = require('./package.json'),
 express = require('express'),
 fs = require('fs'),
+jade = require('jade'),
+
 mongoose = require('mongoose'),
  _ = require('underscore'),
 nconf = require('nconf'), 

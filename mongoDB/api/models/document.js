@@ -8,10 +8,10 @@ var mongoose = require('mongoose'),
 
 
 /**
- * Article Schema
+ * Document Schema
  */
 
-var TextdataSchema = new Schema({
+var MarkupSchema = new Schema({
     created: {
         type: Date,
         default: Date.now
@@ -20,6 +20,17 @@ var TextdataSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    user_id: {
+        type: Number,
+        default: '',
+        trim: true
+    },
+    doc_id: {
+        type: Number,
+        default: '',
+        trim: true
+    },
+
     start: {
         type: Number,
         default: '',
@@ -29,10 +40,40 @@ var TextdataSchema = new Schema({
         type: Number,
         default: '',
         trim: true
+    },
+    metadata: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    type: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    subtype: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    status: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    position: {
+        type: String,
+        default: 'left',
+        trim: true
+    },
+    depth: {
+        type: Number,
+        default: 1,
+        trim: true
     }
 });
 
-var ArticleSchema = new Schema({
+var DocumentSchema = new Schema({
     created: {
         type: Date,
         default: Date.now
@@ -43,7 +84,7 @@ var ArticleSchema = new Schema({
     },
     title: {
         type: String,
-        default: '',
+        default: 'Yout title',
         trim: true
     },
     subtitle: {
@@ -53,10 +94,10 @@ var ArticleSchema = new Schema({
     },
     content: {
         type: String,
-        default: '',
+        default: 'Your content',
         trim: true
     },
-    textdatas: [TextdataSchema], 
+    markups: [MarkupSchema], 
     published:{
         type: Boolean,
         default: false
@@ -66,7 +107,7 @@ var ArticleSchema = new Schema({
 /**
  * Validations
  */
-ArticleSchema.path('title').validate(function(title) {
+DocumentSchema.path('title').validate(function(title) {
     return title.length;
 }, 'Title cannot be blank');
 
@@ -81,4 +122,4 @@ ArticleSchema.statics.load = function(id, cb) {
 };
 */
 
-mongoose.model('Article', ArticleSchema);
+mongoose.model('Document', DocumentSchema);

@@ -1,0 +1,20 @@
+html(ng-app="musicBox")
+	head
+		script(type="text/javascript").
+			// var DOC = new Object()
+			// DOC.doc = #{doc}
+			var dd = '#{doc}'
+			dd =  dd.replace(/&quot;/g,'"')
+			var DOC= JSON.parse(dd);
+		script(src="/bower_components/angular/angular.min.js")
+		script(src='/bower_components/angular-sanitize/angular-sanitize.min.js')
+		script(src='/bower_components/angular-route/angular-route.min.js')
+		script(src='/bower_components/angular-resource/angular-resource.min.js')
+		// script(src='/js/angular-modules/filters.js')
+		// script(src='/js/angular-modules/directives.js')
+		script(src='/js/angular-modules/services.js')
+		// Angular top level 'app' routing 
+		script(src='/js/app.js')
+		script(src='/js/MusicBox/document_v1.js')
+	body()
+		div(ng-view)
