@@ -25,8 +25,13 @@ html(ng-app="musicBox")
 		script(src='/js/angular-modules/services.js')
 		script(src='/js/angular-modules/render_services.js')
 
+
 		// Angular top level 'app' routing 
 		script(src='/js/app.js')
 		script(src='/js/MusicBox/document_v1.js')
+
+
+		link(rel='stylesheet', href='/css/grid.css')
+
 	body()
 		div(ng-view)

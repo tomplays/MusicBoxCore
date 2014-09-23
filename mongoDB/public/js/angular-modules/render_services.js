@@ -27,8 +27,9 @@ musicBox.factory('renderfactory', function ($rootScope, $http, $location,$routeP
             $rootScope.available_sections_objects        =   self.objAvailable(); 
             $rootScope.fragment_types                    =   self.fragmentTypes();
             $rootScope.fragment_sub_types                =   self.fragmentSubTypes();
-         
-          //  $rootScope.available_positions_objects_flat  =   self.posAvailableFlat();
+            $rootScope.available_layouts  =   self.posAvailable();
+
+          // $rootScope.available_positions_objects_flat  =   self.posAvailableFlat();
           //  $rootScope.inline_markup_available           =   self.InlineMarkupAvailable();
 
             // used in doc.jade
@@ -37,69 +38,6 @@ musicBox.factory('renderfactory', function ($rootScope, $http, $location,$routeP
            // $rootScope.classesofsections                 =   self.classesAvailable();
 
 
-
-
-         
-
-         // fragmentsAvailable
-
-            $rootScope.ilc = new Array()
-            $rootScope.p_lang = '';         
-            $rootScope.doctoload = new Array();
-            //to clean doc / working_doc /etc...
-
-
-
-        //  $rootScope.p_lang = 'en'
-          if($routeParams.doc_id && !$rootScope.doctoload.id){
-            $rootScope.doctoload = $routeParams.doc_id
-          }
-          else{
-               $rootScope.doctoload = 'homepage'
-          }
-          $rootScope.fresh_doc = $location.$$search.isfresh;
-          // if key param in url, test key.
-          if($location.$$search.key){
-                 $rootScope.dockeys.key     = $location.$$search.key;
-                 var preset  = {action: 'testkey', 'dockey': $rootScope.dockeys["key"] , 'docid': $routeParams.doc_id};
-                 self.testkey($rootScope.doctoload.id,preset);
-          }
-          if($location.$$search.summarize){
-            $rootScope.ilc['summarize_toggle'] = 'true';
-          }
-          else{ 
-           $rootScope.ilc['summarize_toggle'] = 'false' 
-          }
-          var rl = $routeParams.render_layout;
-          _.each($rootScope.render_available, function(ra, rai){
-              if(ra == rl ){
-                 $rootScope.current_renders_index = rai;
-                 $rootScope.render_layout = ra;
-                  $rootScope.render_layout_next = $rootScope.render_available[rai+1];
-              }
-          });
-          //console.log($rootScope.current_renders_index );
-          if($rootScope.render_layout == 'lire' || $location.$$search.lang =='fr'){
-            $rootScope.p_lang =  'fr'; 
-            moment.lang('fr');
-          }
-          else if($rootScope.render_layout == 'lesen' || $location.$$search.lang =='de'){
-            // if todo ... :-) $rootScope.p_lang =  'de'; 
-            $rootScope.p_lang= 'en'; 
-          }
-          else if($location.$$search.lang =='en'){
-            // if todo ... :-) $rootScope.p_lang =  'de'; 
-            $rootScope.p_lang= 'en'; 
-          }
-          // depending on params
-         // var translation = translations();
-         
-
-       //   $rootScope.ilc                =   translation.loadlangs($rootScope.p_lang); //Intelligent Langs Control
-          $rootScope.def                =   self.def($rootScope.p_lang); // but lang is opt (english fallback)
-      //    console.log($rootScope.p_lang)
-
-          
 
          // console.log(self);
 
@@ -110,7 +48,7 @@ musicBox.factory('renderfactory', function ($rootScope, $http, $location,$routeP
 
 
       objAvailable:function (){
-        var arr = new Array('comment','place','data','version', 'translation','note','summary','summary-block','freebase','player','markup','css_styles','classes','img','child_section', 'semantic');
+        var arr = new Array('container','comment','place','data','version', 'translation','note','summary','summary-block','freebase','player','markup','css_styles','classes','img','child_section', 'semantic');
         return arr 
       },
       fragmentTypes:function (){
@@ -123,7 +61,26 @@ musicBox.factory('renderfactory', function ($rootScope, $http, $location,$routeP
         return arr 
       },
       posAvailable:function (){
-        var arr = new Array({name:'left'},{name:'right'},{name:'wide'},{name:'slidewide'},{name:'center'},{name:'center_into_before'},{name:'center_into_after'},{name:'under'}, {name:'inline'}, {name:'inline-implicit'}, {name:'global'});
+
+        var arr = new Array(
+          {name:'wide', order:0},
+          {name:'slidewide', order:1},
+          {name:'center', order:2, include_title:true},
+          {name:'left', order:3},
+          {name:'inline_into_before',  order:4},
+          {name:'inline', order:5, include_objects:false}, 
+          {name:'inline-implicit', order:6},
+          {name:'inline_into_after', order:7},
+          
+          {name:'right', order:8},
+         
+          {name:'under', order:9},
+         
+          {name:'global', order:10});
+
+        arr  = _.sortBy(arr,function (num) {
+         return num.order;
+        });
         return arr;
       },
       posAvailableFlat:function (){

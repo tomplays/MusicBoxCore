@@ -107,7 +107,7 @@ exports.docByIdOrTitleRender = function(req, res) {
 }
 
 
-
+// /api/v1/doc/:doc_id_or_title/markups/create/:type/:subtype/:start/:end/:position/:metadata/:status/:depth
 exports.markup_create = function(req, res) {
 	var query = Document.findOne({ 'title':req.params.doc_id_or_title });
 	// selecting the `name` and `occupation` fields
@@ -115,14 +115,14 @@ exports.markup_create = function(req, res) {
 	// execute the query at a later time
 	query.exec(function (err, doc) {
 	  if (err) {
-	  	return handleError(err);
+	  	res.send(err)
 	  }
 	  else{
 			var markup  = new Object( {'position': req.params.position, 'start':req.params.start, 'end':req.params.end, 'subtype': req.params.subtype, 'type': req.params.type, 'status': req.params.status, 'metadata': req.params.metadata, 'depth': req.params.depth} )
 			doc.markups.push(markup)
 			doc.save(function(err,doc) {
 			        if (err) {
-			            return handleError(err);
+			          res.send(err)
 			        } else {
 			             res.json(doc)
 			        }
@@ -130,23 +130,56 @@ exports.markup_create = function(req, res) {
 
 	  }
 	});
-
-
-
-
-
-
 }
-// /api/v1/doc/:doc_id_or_title/markups/create/:type/:subtype/:start/:end/:position/:metadata/:status/:depth
+// /api/v1/doc/:doc_id_or_title/markups/delete/:markup_id
+
+exports.markup_delete = function(req, res) {
+	var query = Document.findOne({ 'title':req.params.doc_id_or_title });
+	// selecting the `name` and `occupation` fields
+	//query.select('name occupation');
+	// execute the query at a later time
+	query.exec(function (err, doc) {
+	  if (err) {
+	  	res.send(err)
+	  }
+	  else{
+
+	  		if(req.params.markup_id && req.params.markup_id == 'all'){
+				doc.markups = new Array();
+	  		}
+			else{
+				console.log(req.params.markup_id)
+				var found = new Array();
+				 _.each(doc.markups, function (m, i){
+			       if(m._id == req.params.markup_id){
+			       	console.log('remove'+i)
+			       	found = m
+			       }
+			      });
+
+			 	doc.markups = _.without(doc.markups,found );
+			}
 
 
-exports.markup_offset = function(req, res) {
+			// both case save
+			doc.save(function(err,doc) {
+			        if (err) {
+			           res.send(err)
+			        } else {
+			             res.json(doc)
+			        }
+			 	});
+	  }
+	});
+}
 
+exports.markup_offset= function(req, res) {
+	//todo
+	res.send('ok')
+}
 
-
-
+exports.markups_offset = function(req, res) {
 	// /api/v1/doc/:doc_id_or_title/markups/offset/:side/:start/:end/:qty
-
 	var query = Document.findOne({ 'title':req.params.doc_id_or_title });
 	// selecting the `name` and `occupation` fields
 	//query.select('name occupation');
@@ -156,137 +189,32 @@ exports.markup_offset = function(req, res) {
 	  	return handleError(err);
 	  }
 	  else{
-
-
+	  	var qty = parseInt(req.params.qty)
 	  	_.each(doc.markups, function (td, i){
-		       //if(td.end < 1){
-
-		      // 	if( (td.start <= req.params.start )  ){
-
+		    
+		      //if( (td.start <= req.params.start )  ){
 					if(req.params.side && req.params.side == 'left'){
-						doc.markups[i].end = doc.markups[i].end + req.params.qty;
-		       			doc.markups[i].start   =   doc.markups[i].start + req.params.qty;
+						doc.markups[i].end 		= 	parseInt(doc.markups[i].end) + qty;
+		       			doc.markups[i].start    =   parseInt(doc.markups[i].start) + qty;
 		       		}
 		       		else{
-		       			doc.markups[i].end = doc.markups[i].end - req.params.qty;
-		       			doc.markups[i].start = doc.markups[i].start - req.params.qty;
-
+		       			doc.markups[i].end 		= parseInt(doc.markups[i].end) - qty;
+		       			doc.markups[i].start 	= parseInt(doc.markups[i].start) - qty;
 		       		}
-
-
-		   //    	}
-		       		
-
-
-
-		       		
-		       // }
+		  	 //}
 		});
 		doc.save(function (err,article) {
 						 if (err) {
 						 	res.send(err)
 						 }
 						  else{
-						  	 console.log('Success!');
-						    res.json(doc.markups)
+						  	// console.log('Success!');
+						    res.json(doc)
 						  }
 					});
-
-	  
-
 	  }
-	  
-
-	  
 	})
-
-
 }
-
-
-
-
-
-
-
-
-
-exports.docByIdOrTitle__ = function(req, res) {
-   
-
-
-	if(req.params.doc_id_or_title){
-var query  =  Document.where({ title: req.params.doc_id_or_title });
-
-
- query.findOne(function(err, article) {
-        if (err){
-
-         return handleError(err);
-        }
-        else{
-
-
-        	if(article){
-        		  res.json(article)
-        		//article.textdatas.push({ start: 5 , end:12});
-        		//article.textdatas.push({ start: 10 , end:100});
-        	
-					_.each(article.markups, function (mk, i){
-		        		if(mk.end < 1){
-		        			mk.end++;
-		        		}
-		        	});
-
-					/*
-
-					article.save(function (err,article) {
-						 if (err) {
-						 	res.send(err)
-						 }
-						  else{
-						  	 console.log('Success!');
-						   
-						  }
-					});
-
-					*/
-
-
-
-
-
-        	}
-        	
-
-
-			
-
-			// {$push: {readings: req.params.customer_reading}},
-
-
-
-
-        	//console.log(article)
-        }
-    });
-
-
-
-
-	}
-	else{
-		 res.send('provide doc id or title')
-
-	}
-	
-	return;
-
-};
-
-
-
-
 
 /*
 Contact.findByIdAndUpdate(
