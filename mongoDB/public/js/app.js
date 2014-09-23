@@ -8,12 +8,24 @@ angular.module('musicBox',  ['ngResource', 'musicBox.filters', 'ngRoute', 'music
         templateUrl: 'partials/document',
         controller: DocumentCtrl
       }).
-      
+      when('/:docid', {
+        templateUrl: 'partials/document',
+        controller: DocumentCtrl
+      }).
+      when('/doc/:docid', {
+        templateUrl: '/../partials/document',
+        controller: DocumentCtrl
+      }).
+      when('/docs/:mode', {
+        templateUrl: '/partials/documents_list',
+        controller: DocumentsListCtrl
+      }).
+     
       otherwise({
-        
-        redirectTo: ''
+        redirectTo: '/!'
       });
       $locationProvider.html5Mode(true);
+      $locationProvider.hashPrefix('!');
       
     // $sceDelegate.enabled(false);
      //$sceDelegateProvider.resourceUrlWhitelist(['.*']);

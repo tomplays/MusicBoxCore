@@ -1,2 +1,17 @@
 h1
 	{{doc.title}}
+	{{doc.content}}
+
+	{{sectionstocount}}
+
+
+section(ng-repeat='section in sorted_sections')
+	p {{section.start}}
+	p {{section.end}}
+	p {{section.metadata}}
+	p {{section.type}}
+
+
+footer
+	a(href="/doc/{{doc.title}}") permalink
+	a(href="/") back home

@@ -18,6 +18,24 @@ exports.list = function(req, res) {
 	})
    
 };
+exports.listRender = function(req, res) {
+	var query = Document.find();
+	// selecting the `name` and `occupation` fields
+	//query.select('name occupation');
+	// execute the query at a later time
+	query.exec(function (err, docs) {
+		console.log(docs)
+	  if (err) return handleError(err);
+	  //res.json(docs)
+	  docs = JSON.stringify(docs)
+		res.render('index_v1', {
+	 		
+             docs: docs
+		
+ 		 });
+	})
+   
+};
 
 exports.autocreatedoc = function(req, res){
 
@@ -90,7 +108,39 @@ exports.docByIdOrTitleRender = function(req, res) {
 
 
 
-exports.offset_td = function(req, res) {
+exports.markup_create = function(req, res) {
+	var query = Document.findOne({ 'title':req.params.doc_id_or_title });
+	// selecting the `name` and `occupation` fields
+	//query.select('name occupation');
+	// execute the query at a later time
+	query.exec(function (err, doc) {
+	  if (err) {
+	  	return handleError(err);
+	  }
+	  else{
+			var markup  = new Object( {'position': req.params.position, 'start':req.params.start, 'end':req.params.end, 'subtype': req.params.subtype, 'type': req.params.type, 'status': req.params.status, 'metadata': req.params.metadata, 'depth': req.params.depth} )
+			doc.markups.push(markup)
+			doc.save(function(err,doc) {
+			        if (err) {
+			            return handleError(err);
+			        } else {
+			             res.json(doc)
+			        }
+			 	});
+
+	  }
+	});
+
+
+
+
+
+
+}
+// /api/v1/doc/:doc_id_or_title/markups/create/:type/:subtype/:start/:end/:position/:metadata/:status/:depth
+
+
+exports.markup_offset = function(req, res) {
 
 
 
