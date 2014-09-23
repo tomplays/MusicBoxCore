@@ -1,7 +1,14 @@
 html(ng-app="musicBox")
 	head
 		script(type="text/javascript").
+			var user_obj = new Object();
+			user_obj.username = '#{user.username}'
+			user_obj.image_url= '#{user.image_url}'
+			var USERIN= user_obj;
+
 			
+
+
 			var doc_obj = '#{doc}'
 			if(doc_obj){
 				doc_obj =  doc_obj.replace(/&quot;/g,'"')

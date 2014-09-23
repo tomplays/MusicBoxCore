@@ -13,19 +13,26 @@ mongoose = require('mongoose'),
 nconf = require('nconf'), 
 http = require('http'),  
 program = require('commander'),
-chalk = require('chalk');
+chalk = require('chalk'),
+passport = require('passport'),
+logger = require('mean-logger'),
+ mongoStore = require('connect-mongo')(express),
+    flash = require('connect-flash'),
+    helpers = require('view-helpers');
 
 nconf.argv().env().file({file:'config.json'});
 
-mongoose.connect('mongodb://localhost/test');
 
 
+
+
+var auth = require('./api/authorization');
 
 
 
 
 var db = mongoose.connection;
-
+var dbz = mongoose.connect('mongodb://localhost/test');
 
 //Bootstrap models
 var models_path = __dirname + '/api/models';
@@ -53,6 +60,20 @@ db.once('open', function callback () {console.log(chalk.green('Hello API') );});
 
 var app = express();
 
+ //Prettify HTML
+    app.locals.pretty = true;
+
+    //Should be placed before express.static
+    app.use(express.compress({
+        filter: function(req, res) {
+            return (/json|text|javascript|css/).test(res.getHeader('Content-Type'));
+        },
+        level: 9
+    }));
+
+   app.enable("jsonp callback");
+
+
 app.configure(function(){
   app.set('port',nconf.get('PORT') );
   app.set('views', __dirname + '/views');
@@ -60,10 +81,43 @@ app.configure(function(){
   app.set('view options', {
     layout: true
   });
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(express.cookieParser(  nconf.get('COOKIESECRET') ) );
-  app.use(express.session( nconf.get('SESSIONSECRET') ) );
+    app.use(express.cookieParser('secreet') );
+
+        app.use(express.bodyParser());
+        app.use(express.urlencoded());
+        app.use(express.json());
+        app.use(express.methodOverride('secreet'));
+  
+
+        //express/mongo session storage
+        app.use(express.session({
+            secret: 'secreet',
+            store: new mongoStore({
+                db: 'test',
+                collection: 'sessions'
+            })
+        }));
+
+        //connect flash for flash messages
+        app.use(flash());
+
+        //dynamic helpers
+       // app.use(helpers('musicbox'));
+
+        //use passport session
+        app.use(passport.initialize());
+        app.use(passport.session());
+
+        //routes should be at the last
+       // app.use(app.router);
+        
+        //Setting the fav icon and static folder
+        app.use(express.favicon());
+
+       
+
+
+
   app.use(express.static(__dirname + '/public'));
   app.use(app.router);
 });
@@ -81,9 +135,21 @@ app.use(function(req, res, next) {
         next();
     });
 
+
+require('./api/passport')(passport);
+
 // Routes
-var routes = require('./api/routes')(app);
+
+
+var routes = require('./api/routes')(app, passport, auth);
 //Start the app by listening on <port>
-var port =  3002;
+var port =  80;
 app.listen(port);
 console.log('Express app started on port ' + port);
+
+
+//Initializing logger
+logger.init(app, passport, mongoose);
+
+//expose app
+exports = module.exports = app;

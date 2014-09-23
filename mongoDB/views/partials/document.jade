@@ -1,14 +1,18 @@
 div(class="sections_container")
 	h1 
 		{{sectionstocount}}
+	welcome {{userin.username}}
+	a(ng-click="external_link('http://localhost/auth/facebook')" , ng-if="userin.username == '' ") log in with facebook
+
+	img(ng-src="{{userin.image_url}}")
 	section(ng-repeat='section in sorted_sections')
 		h1 {{section.start}} - {{section.end}} - {{section.metadata}} - {{section.type}}
 		a(ng-click="delete_markup(section)") delete container
 		h3 p: {{$index}}
 		div(ng-repeat='layout in available_layouts')
 			div(class="layout_ layout_name_{{layout.name}} has_count_{{section.objects_count.by_positions[layout.name].count}} has_object_{{section.objects_count.by_positions[layout.name].has_object}}")
-				span {{layout.name}}
-				h3 {{section.objects_count.by_positions[layout.name].count}}
+				// span {{layout.name}}
+				// h3 {{section.objects_count.by_positions[layout.name].count}}
 				div(ng-if=" (layout.name== 'wide') && ($parent.$index ==0) ")
 					h1
 						{{doc.title}}
@@ -24,7 +28,9 @@ div(class="sections_container")
 				// to stay on same indent level
 				div
 					div(ng-if="layout.name == 'inline'")
-						p text here
+						div
+							span(data-order="{{$index}}" ng-repeat="l in letters[$parent.$parent.$index]")
+								{{l.char}}
 						div(class="markup_ markup_type_inline", ng-repeat="markup in section.objects['markup']['inline']")
 							
 							p {{markup._id}} {{markup.start}} - {{markup.end}} - {{markup.metadata}} - {{markup.type}} {{markup.subtype}}

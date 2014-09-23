@@ -1,13 +1,33 @@
 'use strict';
 
 
-var index = require('../api/controllers/index.js');
-var docs = require('../api/controllers/documents.js');
+var index = require('../api/controllers/index');
+var docs = require('../api/controllers/documents');
+var users = require('../api/controllers/users');
 
 
 
-module.exports = function(app) {
+module.exports = function(app, passport, auth) {
 
+
+	// USER
+
+    app.get('/signout', users.signout);
+  //Setting the facebook oauth routes
+    app.get('/auth/facebook', passport.authenticate('facebook', {
+        scope: ['email', 'publish_stream'],
+        failureRedirect: '/'
+    }), users.signin);
+
+    app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+        failureRedirect: '/'
+    }), users.authCallback);
+
+   
+    //Finish with setting up the username param
+    //app.param('username', users.userByName);
+    app.param('userId', users.userById);
+    
     //Home 
    
 
