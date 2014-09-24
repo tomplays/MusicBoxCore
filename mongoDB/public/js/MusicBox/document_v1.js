@@ -33,7 +33,7 @@ var render;
 /** 
 * @class DocumentsListCtrl
 **/
-function DocumentsListCtrl($scope, $http , $location, $routeParams) {
+function DocumentsListCtrl($scope, $http , $location, $routeParams, socket) {
 		$scope.docs = DOCS;
 		console.log($scope.docs)
 
@@ -49,12 +49,20 @@ function DocumentsListCtrl($scope, $http , $location, $routeParams) {
  * @param {Object} $routeParams -  angular service
  * @param {Factory} renderfactory -  angular custom factory
  */
-function DocumentCtrl($scope, $http , $location, $routeParams, renderfactory) {
+function DocumentCtrl($scope, $http , $location, $routeParams, renderfactory,socket) {
 		
+		socket.on('news', function (data) {
+			console.log(data);
+		})
+		socket.on('newsback', function (data) {
+			console.log('newsback')
+			console.log(data);
+		})
+
 		/**
 		* init a document.
 	    * @function DocumentCtrl#init
-		
+
 
 		*/
 		$scope.init = function (){
@@ -347,6 +355,8 @@ var flatten= function (n) {
 
 
 		})
+		socket.emit('news', { action: 'post_comment'});
+
 
 	}
 	$scope.offset_markup = function (markup){

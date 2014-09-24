@@ -1,6 +1,48 @@
 'use strict';
 
 
+      
+
+// SOCKET part 
+musicBox.factory('socket', function($rootScope, $http, $location)  {
+  
+  if(1){
+    var socket = io.connect('http://localhost');
+   // console.log(socket)
+    return {
+
+      on: function (eventName, callback) {
+        socket.on(eventName, function () {
+          var args = arguments;
+          $rootScope.$apply(function () {
+            callback.apply(socket, args);
+          });
+        });
+      },
+      emit: function (eventName, data, callback) {
+        socket.emit(eventName, data, function () {
+          var args = arguments;
+          $rootScope.$apply(function () {
+            if (callback) {
+              callback.apply(socket, args);
+            }
+          });
+        })
+      }
+    };
+
+  }
+  else {
+    var socket = '';
+    return {
+      on:  function () {},
+      emit:  function () {}
+
+    }
+    
+  };
+});
+
 
 
 musicBox.factory('renderfactory', function ($rootScope, $http, $location,$routeParams) {

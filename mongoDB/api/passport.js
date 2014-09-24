@@ -20,12 +20,12 @@ module.exports = function(passport) {
     });
 
     passport.deserializeUser(function(id, done) {
-        console.log('deserialize')
+        //console.log('deserialize')
       
         User.findOne({
             _id: id
         }, '-salt -hashed_password', function(err, user) {
-            console.log(user)
+         //   console.log('user in')
 
             done(err, user);
         });
@@ -50,7 +50,7 @@ module.exports = function(passport) {
                 'facebook.id': profile.id
             }, function(err, user) {
                 if (err) {
-                    console.log(user)
+                    //console.log(user)
                     return done(err);
                 }
                 if (!user) {
@@ -66,12 +66,12 @@ module.exports = function(passport) {
                     });
                     user.save(function(err) {
                         if (err) console.log(err);
-                        console.log(user)
+                      //  console.log(user)
                         return done(err, user);
                     });
                   
                 } else {
-                                        console.log(user)
+                                   //     console.log(user)
 
                     return done(err, user);
                 }

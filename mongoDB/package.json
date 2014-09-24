@@ -38,6 +38,7 @@
     "mongoose": "~3.8.3",
     "request": "~2.33.0",
     "jsdoc": "^3.3.0-alpha9",
-    "fileupload": "^0.3.0"
+    "fileupload": "^0.3.0",
+    "socket.io-client": "^1.1.0"
   }
 }

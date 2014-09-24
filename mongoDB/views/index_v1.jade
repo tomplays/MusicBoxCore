@@ -22,7 +22,11 @@ html(ng-app="musicBox")
 		// Misc libs/utils
 		script(src="/bower_components/jquery/dist/jquery.min.js")
 		script(src='/bower_components/underscore/underscore-min.js')
-			
+		
+
+		//if locals.use_socket_server
+		script(src="http://localhost/socket.io/socket.io.js")
+
 		script(src="/bower_components/angular/angular.min.js")
 		script(src='/bower_components/angular-sanitize/angular-sanitize.min.js')
 		script(src='/bower_components/angular-route/angular-route.min.js')
