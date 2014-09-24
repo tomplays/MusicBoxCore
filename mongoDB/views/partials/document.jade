@@ -60,8 +60,11 @@ div(class="sections_container")
 	a(ng-click="push_section()") push markup_section
 	a(ng-click="offset_markups()") offset_markups
 
+input(onchange="angular.element(this).scope().preuploadFile(this.files)", type="file")
+a(ng-click="uploadFile()" ) send
+p {{upload_file_image.path}}
 
-
+img(ng-if="upload_file_image.uploaded == true" , ng-src="http://localhost/uploads/{{upload_file_image.path}}{{upload_file_image.basename}}")
 footer
 	a(href="/doc/{{doc.title}}") permalink
 	a(href="/") back home
