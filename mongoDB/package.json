@@ -36,7 +36,8 @@
     "htmlparser": "^1.7.7",
     "jade": "~1.0.2",
     "mongoose": "~3.8.3",
-    "request": "~2.33.0"
-
+    "request": "~2.33.0",
+    "jsdoc": "^3.3.0-alpha9",
+    "fileupload": "^0.3.0"
   }
 }

@@ -20,47 +20,58 @@ console.log('DocumentCtrl @ /public/js/MusicBox/document_v1.js');
 
 
 Welcome here ! 
-//
-Functions (angularJS) to render a documents.
 */
+
+
 
 
 // ** GLOBAL MISC VARS
 var inheriting = {};
 var GLOBALS;
-// MAIN document controller
-// require files "filters.js" and "services.js" for CTRLs
+var render;
+
+/** 
+* @class DocumentsListCtrl
+**/
 function DocumentsListCtrl($scope, $http , $location, $routeParams) {
 		$scope.docs = DOCS;
 		console.log($scope.docs)
 
 }
-var render;
-function DocumentCtrl($scope, $http , $location, $routeParams, renderfactory) {
 
+
+ /**
+ * Represents a document.
+ * @class DocumentCtrl
+ * @param {Object} $scope - angular service
+ * @param {Object} $http -  angular service
+ * @param {Object} $location -  angular service
+ * @param {Object} $routeParams -  angular service
+ * @param {Factory} renderfactory -  angular custom factory
+ */
+function DocumentCtrl($scope, $http , $location, $routeParams, renderfactory) {
 		
+		/**
+		* init a document.
+	    * @function DocumentCtrl#init
+		
+
+		*/
 		$scope.init = function (){
 
 			if(USERIN){
-			console.log(USERIN)
-			//console.log(JSON.parse(USERIN))
-			$scope.userin = USERIN;
-			
-		//	console.log($scope.userin.image_url)
-			//$scope.userin.image_url = decode($scope.userin.image_url)
-		}
+				//console.log(USERIN)
+				$scope.userin = USERIN;
+			}
 		render = renderfactory();
 		$scope.render = render.init();
 
 		if(DOC){
-			console.log('natural loaded')
 			$scope.doc = DOC;
 			$scope.$emit('docEvent', {action: 'doc_ready' });
 			return;
 		}
 		else{
-			// coming from listing to a doc.
-			console.log('need api call')
 			$scope.doc = 'DOC loading';
 			alert('no service here')
 		}
@@ -69,23 +80,22 @@ function DocumentCtrl($scope, $http , $location, $routeParams, renderfactory) {
 
 	}
 
-
-
-
-		
-	$scope.prepare_sections = function (){
+	/**
+	* init sections 
+	* @function DocumentCtrl#init_sections
+	*/
+	$scope.init_sections = function (){
 
 		$scope.sectionstocount = 0;
 		$scope.markups  = _.sortBy($scope.doc.markups,function (num) {
 			return num.start;
 		});
-		console.log($scope.markups)
+		//console.log($scope.markups)
 		//http://localhost:3002/api/v1/doc/bloue0.6898315178696066/markups/push/container/section/0/990/left/hello/visible/1
 	    $scope.sorted_sections = _.filter($scope.markups, function(td){ return  td.type == 'container'; });
 		$scope.sectionstocount = _.size($scope.sorted_sections);
 		$scope.sections_to_count_notice = ($scope.sectionstocount == 0) ? true : false;
 		// console.log($scope.sorted_sections)
-
 
 		$scope.objects_sections = new Array();
 		$scope.objects_sections['global_by_type'] = new Array();
@@ -94,14 +104,23 @@ function DocumentCtrl($scope, $http , $location, $routeParams, renderfactory) {
 			
 		});
 
-		$scope.$emit('docEvent', {action: 'sections_prepared' });
+		$scope.$emit('docEvent', {action: 'sections_ready' });
 
 	}
 
 
-	// sub loop _a
-	// fill arrays of letters for each section
-	// required init : 
+	/**
+	* fill arrays of letters for each section  {@link DocumentCtrl#distribute_markups} 
+	* @param {Object} section - section object
+	* @param {Start-range} section.start 	-    section start
+	* @param {End-range} section.end 		-	 section end
+	* @param {Number} [section_count] - section index value 
+	* @function DocumentCtrl#fill_chars
+	* @return {Object} letters of a section
+	* @link DocumentCtrl#distribute_markups 
+	* @todo remove section count param
+	*/
+	
 	$scope.fill_chars = function (section, section_count){
 		var temp_letters = new Array(); 
 		var i;
@@ -131,7 +150,10 @@ function DocumentCtrl($scope, $http , $location, $routeParams, renderfactory) {
 			letter_arr.fi_nd = new Object({'fi': false, 'nd':false/*, 'md':false*/});
 			letter_arr.classes = new Array();
 
-
+			/** 
+			* @something here
+			* @link DocumentCtrl#fill_chars
+			*/
 
 			letter_arr.order = i;
 			letter_arr.action = '';
@@ -163,49 +185,46 @@ function DocumentCtrl($scope, $http , $location, $routeParams, renderfactory) {
 
 
 
-	/* loop _b
-	// Push right objects in right sections (distribution in arrays of objects by sections)
+	
 
-	// REQUIRED INITs: 
-	  - loaded tds
-	  - prepared sections
-		
-	  - overview: 
-
-		each(sorted_sections,s)
-			
-			init globals objects
-			fill_chars()
-			init type-position arrays
-			
-			each(textdatas,td)
-				if in s.ranges 
-					dispacth in array(type, position)
-
-					if markup 
-						dispatch in array(position = inline)
-
-						loop from s.start to s.end 
-							add td.type, td.classes,.. to letters
-				 	
-			push to "all" objects
-			push to "global' objects
-						
-
-
-
-	 return 
-	 > emit event 'dispatched_objects'
-
+	/**
+	* @description 
+	* Distribute markups in layout position and push classes to letters (loop _b)
+	*
+	* Push right objects in right sections (distribution in arrays of objects by sections)
+	* #### assuming 
+	* * Document and its markups are loaded
+	* * Sections are init
+	*
+	* #### loop overview 
+	*
+	* ##### each(sorted_sections,s) 
+	*
+	* * init globals objects
+	* * fill_chars()
+	* * init type-position arrays
+	*
+	* * each(textdatas,td)
+	* * if in s.ranges 
+	*
+	* @return {DocEvent} emit event 'dispatched_objects']
+	* @function DocumentCtrl#distribute_markups
+	* @link DocumentCtrl#fill_chars
+	* @todo -
 	*/
+
 	$scope.distribute_markups = function (){
 		//	
 		// START Looping each SECTION
 		// 
 		$scope.letters = new Array()
 		_.each($scope.sorted_sections, function(section, index){
-			//console.log(section, index)
+
+			console.log(section)
 			$scope.fill_chars(section,index);
+
+
+
 			//$scope.objects_sections[index] = new Array();
 			$scope.sorted_sections[index]['objects'] = new Array();
 			$scope.sorted_sections[index]['objects_count'] = new Array();
@@ -219,12 +238,8 @@ function DocumentCtrl($scope, $http , $location, $routeParams, renderfactory) {
 				$scope.sorted_sections[index]['objects'][$scope.available_sections_objects[obj_index]] = new Array();
 					// and each subs objects an array of each positions
 					_.each(render.posAvailable() , function(op){ // op: left, right, ..
-						
 						$scope.sorted_sections[index]['objects_count']['by_positions'][op.name] = new Object({'count':0, 'has_object':false})
-						
-
 						$scope.sorted_sections[index]['objects'][$scope.available_sections_objects[obj_index]][op.name] = new Array();
-					
 					});
 			});
 
@@ -300,6 +315,9 @@ var flatten= function (n) {
 			if(!$scope.push.metadata){
 				$scope.push.metadata= '-';
 			}
+			else{
+				$scope.push.metadata =encodeURIComponent($scope.push.metadata);
+			}
 			if(!$scope.push.status){
 				$scope.push.status= '-';
 			}
@@ -310,8 +328,9 @@ var flatten= function (n) {
 				$scope.push.position = 'inline';
 			}
 
+
 			// todo : post api
-			 $http.get('http://localhost:3002/api/v1/doc/'+$scope.doc.title+'/markups/push/'+$scope.push.type+'/'+$scope.push.subtype+'/'+$scope.push.start+'/'+$scope.push.end+'/'+$scope.push.position+'/'+$scope.push.metadata+'/'+$scope.push.status+'/'+$scope.push.depth).success(function(m) {
+			 $http.get('http://localhost/api/v1/doc/'+$scope.doc.title+'/markups/push/'+$scope.push.type+'/'+$scope.push.subtype+'/'+$scope.push.start+'/'+$scope.push.end+'/'+$scope.push.position+'/'+$scope.push.metadata+'/'+$scope.push.status+'/'+$scope.push.depth).success(function(m) {
 				//console.log(m)
 				$scope.doc = m;
 				$scope.$emit('docEvent', {action: 'doc_ready' });
@@ -321,48 +340,94 @@ var flatten= function (n) {
 
 	}
 	$scope.offset_markups = function (){
-			 $http.get('http://localhost:3002/api/v1/doc/'+$scope.doc.title+'/markups/offset/left/0/1/1').success(function(m) {
-				console.log(m)
-				$scope.doc = m;
-				$scope.$emit('docEvent', {action: 'doc_ready' });
-
-
-			 })
-
-	}
-	$scope.offset_markup = function (markup){
-			 $http.get('http://localhost:3002/api/v1/doc/'+$scope.doc.title+'/markup/'+markup._id+'/offset/left/0/1/1').success(function(m) {
-				console.log(m)
-				//$scope.doc = m;
-				//$scope.$emit('docEvent', {action: 'doc_ready' });
-
-
-			 })
-
-	}
-	$scope.delete_markup = function (markup){
-		 if(markup.type=="container"){
-		 	alert('can hold objects!')
-		 }
-
-		 $http.get('http://localhost:3002/api/v1/doc/'+$scope.doc.title+'/markups/delete/'+markup._id).success(function(m) {
+		$http.get('http://localhost/api/v1/doc/'+$scope.doc.title+'/markups/offset/left/0/1/1').success(function(m) {
 			console.log(m)
 			$scope.doc = m;
 			$scope.$emit('docEvent', {action: 'doc_ready' });
 
 
 		})
+
+	}
+	$scope.offset_markup = function (markup){
+		$http.get('http://localhost/api/v1/doc/'+$scope.doc.title+'/markup/'+markup._id+'/offset/left/0/1/1').success(function(m) {
+			console.log(m)
+			//$scope.doc = m;
+			//$scope.$emit('docEvent', {action: 'doc_ready' });
+		})
 	}
 
+	/**
+	* delete a markup on click
+	* @function DocumentCtrl#delete_markup
+	* @param  {Object} markup - markup to delete
+	*/
+	$scope.delete_markup = function (markup){
+		 if(markup.type=="container"){
+		 	alert('can hold objects!')
+		 }
+		 $http.get('http://localhost/api/v1/doc/'+$scope.doc.title+'/markups/delete/'+markup._id).success(function(m) {
+			console.log(m)
+			$scope.doc = m;
+			$scope.$emit('docEvent', {action: 'doc_ready' });
+		})
+	}
+
+	/**
+	* turn links clickable out of angular routing
+	* @function DocumentCtrl#external_link
+	* @param  {String} link - redirect link
+	*/
 	$scope.external_link = function (link){
 		window.location = link;
 	}
+	
+	$scope.upload_file_image = new Object({'uploaded': false});
+
+
+	$scope.preuploadFile = function(files){
+		$scope.upload_file_image.file = files[0];
+		return;
+	
+
+
+	}
+
+	$scope.uploadFile = function(){
+		
+		
+		var fd = new FormData();
+		fd.append("image", $scope.upload_file_image.file);
+
+		
+		$http.post('http://localhost/upload', fd, { withCredentials: true,
+        headers: {'Content-Type': undefined },
+        transformRequest: angular.identity } ).success(function(m) {
+		
+        	$scope.upload_file_image.uploaded = true
+
+        	$scope.upload_file_image.basename = m[0].basename
+			$scope.upload_file_image.path = m[0].path
+			$scope.upload_file_image.type = m[0].type
 
 
 
+				
+				}).error(function(err){
+					console.log(err)
+				})
 
 
-// EVENTS 
+	}
+
+
+
+	/**
+	*  EVENTS 
+	* 
+	* Get broadcasted events
+	* @function DocumentCtrl#events
+	*/
 
 	$scope.$on('doc', function(event, args) {
 		if(args.action){
@@ -371,9 +436,9 @@ var flatten= function (n) {
 				//alert('d')
 			}
 			if(args.action == 'doc_ready'){
-				$scope.prepare_sections()
+				$scope.init_sections()
 			}
-			if(args.action == 'sections_prepared'){
+			if(args.action == 'sections_ready'){
 				$scope.distribute_markups()
 			}
 
@@ -381,9 +446,5 @@ var flatten= function (n) {
 
 	});
 
-
 $scope.init() 
-
 } // CTRL
-
-

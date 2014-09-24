@@ -27,7 +27,7 @@ module.exports = function(app, passport, auth) {
     //Finish with setting up the username param
     //app.param('username', users.userByName);
     app.param('userId', users.userById);
-    
+
     //Home 
    
 
@@ -37,6 +37,7 @@ module.exports = function(app, passport, auth) {
     app.get('/docs/:list?', docs.listRender);
   	app.get('/doc/:doc_id_or_title', docs.docByIdOrTitleRender);
     app.get('/partials/:name/:param?', index.partial);
+
 
 
 
@@ -68,7 +69,13 @@ module.exports = function(app, passport, auth) {
 
 
 
+	var fileupload = require('fileupload').createFileUpload('public/uploads').middleware;
 
+ 	// curl -F "userid=1" -F "filecomment=This is an image file" -Fe=@/Users/tom/Qs.txt" localhost/upload
+	app.post('/upload', fileupload, function(req, res) {
+	   res.send(req.body.image)
+	 })
+	 
     app.get('/api/v1/doc/createnew/auto', docs.autocreatedoc);
 
 
