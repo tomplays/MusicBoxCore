@@ -7,14 +7,23 @@ var mongoose = require('mongoose'),
     User = mongoose.model('User'),
     request = require('request');
 
+var nconf = require('nconf');
+//nconf.argv().env().file({file:'config.json'});
+
+var facebook = new Object({
+        'clientID': nconf.get('FACEBOOK_ID'),
+        'clientSecret': nconf.get('FACEBOOK_SECRET'),
+        'callbackURL': nconf.get("ROOT_URL")+"/auth/facebook/callback" // 
+});
 
 
+/*
 var facebook = new Object({
         'clientID': "717370198340854",
         'clientSecret': "a66279a9a1995742a66431b6eee82a56",
         'callbackURL': "http://localhost/auth/facebook/callback" // 
 });
-/*
+
 var facebook = new Object({
         'clientID': "718013574943183",
         'clientSecret': "6ded2f8da5c3e3840a22e797be148cf9",
