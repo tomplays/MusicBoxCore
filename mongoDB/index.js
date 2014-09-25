@@ -32,7 +32,7 @@ var auth = require('./api/authorization');
 
 
 var db = mongoose.connection;
-var dbz = mongoose.connect('mongodb://localhost/test');
+var dbz = mongoose.connect('mongodb://localhost/testez');
 
 //Bootstrap models
 var models_path = __dirname + '/api/models';
@@ -53,7 +53,21 @@ walk(models_path);
 
 
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function callback () {console.log(chalk.green('Hello API') );});
+db.once('open', function callback () {
+
+
+
+
+
+
+});
+
+
+
+
+  console.log(chalk.green('Hello API') );
+
+
 
 
 
@@ -81,20 +95,22 @@ app.configure(function(){
   app.set('view options', {
     layout: true
   });
-    app.use(express.cookieParser('secreet') );
+    app.use(express.cookieParser('secreeet') );
 
         app.use(express.bodyParser());
         app.use(express.urlencoded());
         app.use(express.json());
-        app.use(express.methodOverride('secreet'));
+        app.use(express.methodOverride('secreeet'));
   
 
         //express/mongo session storage
         app.use(express.session({
-            secret: 'secreet',
+            secret: 'secreeet',
             store: new mongoStore({
-                db: 'test',
-                collection: 'sessions'
+                db: mongoose.connection.db,
+                collection: 'sessions',
+                clear_interval: 3600,
+                auto_reconnect: true
             })
         }));
 
@@ -174,6 +190,11 @@ io.on('connection', function(socket){
 // logger.init(app, passport, mongoose);
 //expose app
 
+
+
+
 exports = module.exports = app;
+
+
 
 

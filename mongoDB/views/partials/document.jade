@@ -1,70 +1,34 @@
 div(class="sections_container")
-	h1 
-		{{sectionstocount}}
+	h1 {{sectionstocount}}
 	welcome {{userin.username}}
-	a(ng-click="external_link('http://localhost/auth/facebook')" , ng-if="userin.username == '' ") log in with facebook
+	a(ng-click="external_link(root_url+'/auth/facebook')" , ng-if="userin.username == '' ") log in with facebook
 
 	img(ng-src="{{userin.image_url}}")
 	section(ng-repeat='section in sorted_sections')
-		h1 {{section.start}} - {{section.end}} - {{section.metadata}} - {{section.type}}
-		a(ng-click="delete_markup(section)") delete container
-		h3 p: {{$index}}
+		.cols-edit(ng-include="fragments['section_editor'][0].url" )
 		div(ng-repeat='layout in available_layouts')
 			div(class="layout_ layout_name_{{layout.name}} has_count_{{section.objects_count.by_positions[layout.name].count}} has_object_{{section.objects_count.by_positions[layout.name].has_object}}")
 				// span {{layout.name}}
 				// h3 {{section.objects_count.by_positions[layout.name].count}}
 				div(ng-if=" (layout.name== 'wide') && ($parent.$index ==0) ")
-					h1
-						{{doc.title}}
+					h1 {{doc.title}}
 				div(ng-if="layout.include_objects !==false")
+					div(ng-if="layout.name == 'left'")
+							
+							.cols-edit(ng-include="fragments['markup_push'][0].url" )
+
+							div(class="markup_ markup_type_inline", ng-repeat="markup in section.objects['markup']['inline']")
+								.cols-edit(ng-include="fragments['markup_editor'][0].url" )
+
 					div(ng-repeat='object in available_sections_objects')
 
 						div(class="markup_ markup_type_{{markup.type}}" ng-repeat="markup in section.objects[object][layout.name]")
-
-							p {{markup._id}} {{markup.start}} - {{markup.end}} - {{markup.metadata}} - {{markup.type}}
-							a(ng-click="delete_markup(markup)") delete markup
-							a(ng-click="offset_markup(markup)") offset markup start/end/+3
-				
+							.cols-edit(ng-include="fragments['markup_editor'][0].url" )
 				// to stay on same indent level
 				div
 					div(ng-if="layout.name == 'inline'")
 						div
-							span(data-order="{{$index}}" ng-repeat="l in letters[$parent.$parent.$index]")
-								{{l.char}}
-						div(class="markup_ markup_type_inline", ng-repeat="markup in section.objects['markup']['inline']")
-							
-							p {{markup._id}} {{markup.start}} - {{markup.end}} - {{markup.metadata}} - {{markup.type}} {{markup.subtype}}
-							a(ng-click="delete_markup(markup)") delete markup
-							a(ng-click="offset_markup(markup)") offset markup start/end/+3
-
-.tools_container
-	p type 
-		input(ng-model="push.type" ,type="text")
-	p subtype
-		input(ng-model="push.subtype" ,type="text")
-	p position
-		input(ng-model="push.position" ,type="text")
-	p start
-		input(ng-model="push.start" ,type="text")
-	p end
-		input(ng-model="push.end", type="text")
-	p metadata
-		input(ng-model="push.metadata", type="text")
-	p status
-		input(ng-model="push.status" ,type="text")
-	p depth
-		input(ng-model="push.depth" type="text" )
-
-
-	a(ng-click="push_markup()") push markup
-	a(ng-click="push_section()") push markup_section
-	a(ng-click="offset_markups()") offset_markups
-
-input(onchange="angular.element(this).scope().preuploadFile(this.files)", type="file")
-a(ng-click="uploadFile()" ) send
-p {{upload_file_image.path}}
-
-img(ng-if="upload_file_image.uploaded == true" , ng-src="http://localhost/uploads/{{upload_file_image.path}}{{upload_file_image.basename}}")
+							span(ng-class="l.classes" , data-order="{{$index}}" ng-repeat="l in letters[$parent.$parent.$index]") {{l.char}}
 footer
 	a(href="/doc/{{doc.title}}") permalink
 	a(href="/") back home

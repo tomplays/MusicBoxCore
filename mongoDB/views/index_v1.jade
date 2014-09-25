@@ -1,31 +1,31 @@
+doctype html
 html(ng-app="musicBox")
 	head
 		script(type="text/javascript").
+			// var API_SERVER_URL =  '#{api_server_url}'
+			var socket_url = '#{socket_url}'
+			var root_url = '#{root_url}'
+
 			var user_obj = new Object();
 			user_obj.username = '#{user.username}'
 			user_obj.image_url= '#{user.image_url}'
-			var USERIN= user_obj;
-
+			var USERIN= user_obj
 			
-
-
 			var doc_obj = '#{doc}'
-			if(doc_obj){
+			if('#{doc}')
 				doc_obj =  doc_obj.replace(/&quot;/g,'"')
-				var DOC= JSON.parse(doc_obj);
-			}
-			if('#{docs}'){
-				var docs_obj = '#{docs}'
-				docs_obj =  docs_obj.replace(/&quot;/g,'"')
-				var DOCS= JSON.parse(docs_obj);
-			}
+				var DOC= JSON.parse(doc_obj)
+			
+			// var docs_obj = '#{docs}'
+			// if('#{docs}')	
+			//	docs_obj =  docs_obj.replace(/&quot;/g,'"')
+			//	var DOCS = JSON.parse(docs_obj)
+
 		// Misc libs/utils
 		script(src="/bower_components/jquery/dist/jquery.min.js")
 		script(src='/bower_components/underscore/underscore-min.js')
 		
-
-		//if locals.use_socket_server
-		script(src="http://localhost/socket.io/socket.io.js")
+		
 
 		script(src="/bower_components/angular/angular.min.js")
 		script(src='/bower_components/angular-sanitize/angular-sanitize.min.js')
@@ -33,6 +33,10 @@ html(ng-app="musicBox")
 		script(src='/bower_components/angular-resource/angular-resource.min.js')
 		// script(src='/js/angular-modules/filters.js')
 		// script(src='/js/angular-modules/directives.js')
+
+		//if locals.use_socket_server
+		script(src="#{socket_url}/socket.io/socket.io.js")
+
 		script(src='/js/angular-modules/services.js')
 		script(src='/js/angular-modules/render_services.js')
 
@@ -43,6 +47,8 @@ html(ng-app="musicBox")
 
 
 		link(rel='stylesheet', href='/css/grid.css')
+		link(rel='stylesheet', href='/css/charset.css')
+
 
 	body()
 		div(ng-view)

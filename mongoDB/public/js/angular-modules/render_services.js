@@ -7,7 +7,7 @@
 musicBox.factory('socket', function($rootScope, $http, $location)  {
   
   if(1){
-    var socket = io.connect('http://localhost');
+    var socket = io.connect(socket_url);
    // console.log(socket)
     return {
 
@@ -140,6 +140,21 @@ musicBox.factory('renderfactory', function ($rootScope, $http, $location,$routeP
       },
       fragmentsAvailable:function (){
         var arr = new Array();
+
+
+            arr['markup_editor']             = [ {  url: 'fragments/markup_editor.jade'} ];
+            arr['section_editor']            = [ {  url: 'fragments/section_editor.jade'} ];
+            arr['markup_push']               = [{  url: 'fragments/markup_push.jade'} ];
+
+
+
+
+
+
+
+
+            /*
+
             arr['branding']             = [ {  url: 'fragments/branding.jade'} ];
             arr['share']                = [ {  url: 'fragments/share'} ];
             arr['author_card']          = [ {  url: 'fragments/profile'} ]; 
@@ -182,6 +197,10 @@ musicBox.factory('renderfactory', function ($rootScope, $http, $location,$routeP
             arr['section_tool_lab']     = [ {  url: 'editor/section_tool_lab'} ];
             arr['bottom_editor']        = [ {  url: 'editor/bottom_editor'} ];
             arr['logs']     = [ {  url: 'fragments/logs'} ];
+
+*/
+
+
         return arr;
       },
       classesAvailable:function (){

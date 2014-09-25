@@ -11,7 +11,14 @@ var mongoose = require('mongoose'),
  * Document Schema
  */
 
+var ObjectIdSchema = Schema.ObjectId;
+var ObjectId = mongoose.Types.ObjectId;
+//
+// generate _id
+//http://stackoverflow.com/questions/11604928/is-there-a-way-to-auto-generate-objectid-when-a-mongoose-model-is-newed
+
 var MarkupSchema = new Schema({
+    _id:  {type:ObjectIdSchema, default: function () { return new ObjectId()} },
     created: {
         type: Date,
         default: Date.now

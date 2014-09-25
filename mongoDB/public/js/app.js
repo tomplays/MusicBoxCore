@@ -8,6 +8,7 @@ angular.module('musicBox',  ['ngResource', 'musicBox.filters', 'ngRoute', 'music
         templateUrl: 'partials/document',
         controller: DocumentCtrl
       }).
+
       when('/:docid', {
         templateUrl: 'partials/document',
         controller: DocumentCtrl
@@ -16,10 +17,17 @@ angular.module('musicBox',  ['ngResource', 'musicBox.filters', 'ngRoute', 'music
         templateUrl: '/../partials/document',
         controller: DocumentCtrl
       }).
+       when('/sockets/list', {
+        templateUrl: '/partials/sockets_list',
+        controller: SocketsListCtrl
+      }).
       when('/docs/:mode', {
         templateUrl: '/partials/documents_list',
         controller: DocumentsListCtrl
       }).
+     
+
+      
      
       otherwise({
         redirectTo: '/!'

@@ -4,6 +4,14 @@ var mongoose = require('mongoose'),
  _ = require('underscore'),
 Document = mongoose.model('Document')
 
+
+var nconf = require('nconf')
+nconf.argv().env().file({file:'config.json'});
+
+
+
+
+
 exports.list = function(req, res) {
 	var query = Document.find();
 	query.exec(function (err, docs) {
@@ -14,7 +22,7 @@ exports.list = function(req, res) {
 exports.listRender = function(req, res) {
 	var query = Document.find();
 	query.exec(function (err, docs) {
-		console.log(docs)
+		//console.log(docs)
 		if (err) return handleError(err);
 			docs = JSON.stringify(docs)
 			res.render('index_v1', {
@@ -45,16 +53,66 @@ exports.docByIdOrTitle = function(req, res) {
 		res.json(doc)
 	})
 }
+exports.markup_edit = function(req, res) {
+	console.log(req.body.start)
+
+	var edited = new Array();
+	var query = Document.findOne({ 'title':req.params.doc_id_or_title });
+	query.exec(function (err, doc) {
+	if (err){ 
+			return handleError(err);
+	}
+	else{
+			 _.each(doc.markups , function (m, i){
+			       if(m._id == req.params.markup_id){
+			      	 	console.log(m)
+			      	 	m.start = req.body.start
+			      	 	m.end = req.body.end
+			      	 	m.type = req.body.type
+			      	 	m.subtype = req.body.subtype
+			      	 	m.position= req.body.position
+						/*
+						++
+
+						  m.depth
+						  m.status
+						  m.metadata
+						  m.doc_id
+						  m.user_id
+						  m.updated
+						  m.created
+						*/
+			      	 	edited.push(m)
+			      	 	doc.markups[i] = m
+			       }
+			 });
+			 doc.save(function(err,doc) {
+				if (err) {
+					res.send(err)
+				} else {
+					var out = new Object();
+					out.doc = doc
+					out.edited = new Array();
+					out.edited.push(edited)
+					res.json(out)
+				}
+			});
+	}
+		
+	})
+	
+}
+
 
 exports.docByIdOrTitleRender = function(req, res) {
 
 
-	console.log(req.user)
+	//console.log(req.user)
 
 
 
 	if(!req.params.doc_id_or_title){
-		var doc_id_or_title  = 'bloue0.6898315178696066';
+		var doc_id_or_title  = 'bloue0.06191607634536922';
 	}
 	else{
 		var doc_id_or_title  = req.params.doc_id_or_title;
@@ -73,13 +131,12 @@ exports.docByIdOrTitleRender = function(req, res) {
 		}
 		
 
-		console.log(doc)
+		//console.log(doc)
 		res.render('index_v1', {
 			doc: doc_,
-			user : user_
-			
-
-
+			docs: new Object(),
+			user : user_,
+			socket_url: nconf.get('SOCKET_SERVER_URL')
 		});
 	})
 }
@@ -94,50 +151,81 @@ exports.markup_create = function(req, res) {
 	}
 	else{
 		var markup  = new Object( {'position': req.params.position, 'start':req.params.start, 'end':req.params.end, 'subtype': req.params.subtype, 'type': req.params.type, 'status': req.params.status, 'metadata': req.params.metadata, 'depth': req.params.depth} )
+		//console.log(doc.markups)
+
+
 		doc.markups.push(markup)
+		console.log('doc.markups after')
+		//console.log(doc.markups)
+
+		var inserted = _.last(doc.markups);
+		// console.log(inserted)
+
 		doc.save(function(err,doc) {
 			if (err) {
 				res.send(err)
 			} else {
-				res.json(doc)
+				var out = new Object();
+				out.doc = doc
+				out.inserted = new Array();
+				out.inserted.push(inserted)
+				//console.log(out)
+				//console.log(doc)
+				res.json(out)
 			}
 		});
 	  }
 	});
 }
 
+
+
 // /api/v1/doc/:doc_id_or_title/markups/delete/:markup_id
 exports.markup_delete = function(req, res) {
+	console.log(req.params.doc_id_or_title)
+	var deleted= new Array();
 	var query = Document.findOne({ 'title':req.params.doc_id_or_title });
-	// selecting the `name` and `occupation` fields
-	//query.select('name occupation');
-	// execute the query at a later time
+	
+
+
 	query.exec(function (err, doc) {
-	  if (err) {
+	  if(err) {
 	  	res.send(err)
 	  }
 	  else{
 	  		if(req.params.markup_id && req.params.markup_id == 'all'){
-				doc.markups = new Array();
+					deleted= doc.markups
+					doc.markups = new Array();
 	  		}
 			else{
-				console.log(req.params.markup_id)
-				var found = new Array();
-				 _.each(doc.markups, function (m, i){
+				//console.log(req.params.markup_id)
+				var deleted= new Array();
+				//console.log(doc.markups)
+
+				//console.log(doc)
+
+				  _.each(doc.markups , function (m, i){
 			       if(m._id == req.params.markup_id){
-			       	console.log('remove'+i)
-			       	found = m
+			      	 	//console.log('remove'+i)
+			       		deleted.push(m)
 			       }
 			      });
 
-			 	doc.markups = _.without(doc.markups,found );
+			 		doc.markups = _.without(doc.markups,deleted[0] ); // asuming ony one. to test with array
+
 			}
 			// both case save
 			doc.save(function(err,doc) {
 			        if (err) {
 			           res.send(err)
 			        } else {
-			             res.json(doc)
+
+
+			        	var out = new Object();
+						out.doc = doc
+						out.deleted= new Array();
+						out.deleted.push(deleted)
+						res.json(out)
 			        }
 			 	});
 	  }
