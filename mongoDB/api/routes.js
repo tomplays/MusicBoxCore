@@ -4,6 +4,7 @@
 var index = require('../api/controllers/index');
 var docs = require('../api/controllers/documents');
 var users = require('../api/controllers/users');
+var rooms = require('../api/controllers/rooms');
 
 
 
@@ -27,6 +28,12 @@ module.exports = function(app, passport, auth) {
     //Finish with setting up the username param
     //app.param('username', users.userByName);
     app.param('userId', users.userById);
+
+
+     app.get('/me/account', passport.authenticate('facebook', {
+        failureRedirect: '/'
+    }), users.account);
+
 
     //Home 
    
@@ -80,9 +87,13 @@ module.exports = function(app, passport, auth) {
 	   res.send(req.body.image)
 	 })
 	 
-    app.get('/api/v1/doc/createnew/auto', docs.autocreatedoc);
+    app.get('/api/v1/doc/create/:title?',  auth.requiresLogin, docs.createdoc);
     app.get('/sockets/list', index.sockets_list);
 
+
+
+
+    app.get('/api/v1/room/create/:title?',  auth.requiresLogin, rooms.createroom);
 
 
 };

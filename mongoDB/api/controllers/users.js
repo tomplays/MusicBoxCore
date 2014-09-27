@@ -51,6 +51,26 @@ exports.session = function(req, res) {
     res.redirect('/');
 };
 
+
+exports.account = function(req, res) {
+  
+        if(req.user){
+                user_ = new Object({'username': 'jsjd',  'image_url':'img'})
+
+        }
+        
+        res.render('index_v1', {
+            doc: new Object(),
+            docs: new Object(),
+            user : user_,
+            socket_url: nconf.get('SOCKET_SERVER_URL')
+        });
+
+
+  
+
+}
+
 /**
  * Create user
  */

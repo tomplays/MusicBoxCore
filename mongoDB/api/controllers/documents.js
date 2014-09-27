@@ -31,26 +31,76 @@ exports.listRender = function(req, res) {
 	})
 };
 
-exports.autocreatedoc = function(req, res){
-	var ar = new Object({'title':'bloue'+Math.random()})
-	ar.markups = new Array()
-	var markup  = new Object( {'start':0, 'end':0} )
-	ar.markups.push(markup)
-	var doc = new Document(ar);
+exports.createdoc = function(req, res){
+   
+
+
+
+	//var ar = new Object({'title':'bloue'+Math.random()})
+	var new_doc = new Object({'title':req.params.title, 'content': 'Start editing..'})
+
+	new_doc.markups = new Array()
+	new_doc.doc_options = new Array()
+
+
+	var markup  = new Object( {'start':0, 'end':100,  'type': 'container', 'subtype':'section', 'position':'inline'} )
+	var doc_options  = new Object( {'option_name':'text_typography', 'option_value':'Esteban',  'option_type': 'style' } )
+
+
+	new_doc.markups.push(markup)
+	new_doc.doc_options.push(doc_options)
+	new_doc.room = '542691cab9dc3c6a19445d27'
+
+
+	var doc = new Document(new_doc);
+	if(req.user){
+
+		doc.user = req.user;
+   	 	doc.username = req.user.username;
+   	 	console.log(req.user)
+	}
+	else{
+		//return res.send('users/signup', {
+             //   errors: err.errors,
+             //   article: article
+          //  });
+	}
+
+	//doc.populate('user', 'name username image_url').exec(function(err,doc) {
+
+
+	
+
+
+
 	doc.save(function(err,doc) {
 		if (err) {
-   			return handleError(err);
+   			res.json(err);
         } else {
-             res.json(doc)
+
+        	 
+
+
+        	console.log(doc)
+
+      	var doc =  Document.findOne({title: new_doc.title}).populate('user', 'name username image_url').populate('room').exec(function(err, doc) {
+        res.json(doc)
+    });	
+        	
+
+            
         }
     });
 }
 
 exports.docByIdOrTitle = function(req, res) {
 	var query = Document.findOne({ 'title':req.params.doc_id_or_title });
-	query.exec(function (err, doc) {
-	if (err) return handleError(err);
+	query.populate('user').populate('room').exec(function (err, doc) {
+	if (err){
+		res.json(err)
+	} else{
 		res.json(doc)
+		}
 	})
 }
 exports.markup_edit = function(req, res) {
@@ -112,7 +162,9 @@ exports.docByIdOrTitleRender = function(req, res) {
 
 
 	if(!req.params.doc_id_or_title){
-		var doc_id_or_title  = 'bloue0.06191607634536922';
+		// (no test if no homepage, assuming existence)
+		var doc_id_or_title  = 'homepage';
+
 	}
 	else{
 		var doc_id_or_title  = req.params.doc_id_or_title;
