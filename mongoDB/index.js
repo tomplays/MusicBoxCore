@@ -22,19 +22,11 @@ logger = require('mean-logger'),
 
 nconf.argv().env().file({file:'config.json'});
 
-
-
-
-
 var auth = require('./api/authorization');
-
-
-
-
 var db = mongoose.connection;
-var dbz = mongoose.connect('mongodb://localhost/testez');
+var dbz = mongoose.connect('mongodb://localhost/'+nconf.get('DB_NAME'));
 
-//Bootstrap models
+// models auto load
 var models_path = __dirname + '/api/models';
 var walk = function(path) {
     fs.readdirSync(path).forEach(function(file) {
@@ -54,24 +46,8 @@ walk(models_path);
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback () {
-
-
-
-
-
-
+  console.log(chalk.green('Hello mongo') );
 });
-
-
-
-
-  console.log(chalk.green('Hello API') );
-
-
-
-
-
-
 var app = express();
 
  //Prettify HTML
@@ -95,17 +71,17 @@ app.configure(function(){
   app.set('view options', {
     layout: true
   });
-    app.use(express.cookieParser('secreeet') );
+    app.use(express.cookieParser( nconf.get('COOKIESECRET')) );
 
         app.use(express.bodyParser());
         app.use(express.urlencoded());
         app.use(express.json());
-        app.use(express.methodOverride('secreeet'));
+        app.use(express.methodOverride( nconf.get('SESSIONSECRET') ));
   
 
         //express/mongo session storage
         app.use(express.session({
-            secret: 'secreeet',
+            secret: nconf.get('SESSIONSECRET'),
             store: new mongoStore({
                 db: mongoose.connection.db,
                 collection: 'sessions',
@@ -117,8 +93,33 @@ app.configure(function(){
         //connect flash for flash messages
         app.use(flash());
 
-        //dynamic helpers
-       // app.use(helpers('musicbox'));
+
+        app.locals.site_title = nconf.get('SITE_TITLE');
+        app.locals.site_description = nconf.get('SITE_DESCRIPTION');
+        app.locals.site_description_long = nconf.get('SITE_DESCRIPTION_LONG');
+        app.locals.root_url= nconf.get('ROOT_URL');
+        app.locals.api_url= nconf.get('API_URL');
+
+
+
+
+
+
+// which is short for
+
+app.use(function(req, res, next){
+  res.locals.uname = "fresh";
+  next();
+});
+
+        // dynamic helpers
+
+
+
+
+
+
+
 
         //use passport session
         app.use(passport.initialize());
@@ -129,14 +130,12 @@ app.configure(function(){
         
         //Setting the fav icon and static folder
         app.use(express.favicon());
-
-       
-
-
-
-  app.use(express.static(__dirname + '/public'));
-  app.use(app.router);
+        app.use(express.static(__dirname + '/public'));
+        app.use(app.router);
 });
+
+
+
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: false , showStack: false }));
 });
@@ -150,43 +149,25 @@ app.use(function(req, res, next) {
         res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
         next();
     });
-
-
-
 require('./api/passport')(passport);
-
-
 // Routes
 var routes = require('./api/routes')(app, passport, auth);
-
-
-
-
-
-
-
 var server =  http.createServer(app);
 server.listen(app.get('port'), function(){
-  console.log("*/* Express server listening on port " + app.get('port'));
- // require('./api/socket.js').say('hello socket')
-
+    console.log(chalk.green( "Express server listening on port "+ app.get('port')  ) );
 });
-
 var io;
-exports.io = io =  require('socket.io').listen(server, {log:false, origins:'*:*'})
+exports.io = io =  require('socket.io').listen(server, {log:false, origins:'*:*'}, function(){
+  console.log(chalk.green('Hello io') );
+})
 io.on('connection', function(socket){
-    console.log("socket connected ");
-
+    
+console.log(chalk.green('Hello client'+socket.handshake.address))
+  //console.log(socket);
     socket.on('news', function(data){
-     
       require('./api/socket').socketer(socket, data);
-
-
     });
   });
-
-
-
 // logger.init(app, passport, mongoose);
 //expose app
 
@@ -194,7 +175,3 @@ io.on('connection', function(socket){
 
 
 exports = module.exports = app;
-
-
-
-

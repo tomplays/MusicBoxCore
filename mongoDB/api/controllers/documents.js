@@ -7,7 +7,7 @@ Document = mongoose.model('Document')
 
 var nconf = require('nconf')
 nconf.argv().env().file({file:'config.json'});
-
+var app;
 
 
 
@@ -37,17 +37,22 @@ exports.createdoc = function(req, res){
 
 
 	//var ar = new Object({'title':'bloue'+Math.random()})
-	var new_doc = new Object({'title':req.params.title, 'content': 'Start editing..'})
+	var new_doc = new Object({'title':req.params.title, 'content': 'Start editing.. Start editing..Start editing..Start editing..Start editing..Start editing..Start editing..Start editing..Start editing..Start editing..Start editing..Start editing..Start editing..Start editing..Start editing..Start editing..Start editing..Start editing..Start editing..Start editing..Start editing..Start editing..Start editing..Start editing..Start editing..Start editing..'})
 
 	new_doc.markups = new Array()
 	new_doc.doc_options = new Array()
 
 
 	var markup  = new Object( {'start':0, 'end':100,  'type': 'container', 'subtype':'section', 'position':'inline'} )
+	var markup_summary  = new Object( {'start':20, 'end':30,  'type': 'summary', 'subtype':'', 'position':'inline-implicit'} )
+
+
 	var doc_options  = new Object( {'option_name':'text_typography', 'option_value':'Esteban',  'option_type': 'style' } )
 
 
 	new_doc.markups.push(markup)
+	new_doc.markups.push(markup_summary)
+
 	new_doc.doc_options.push(doc_options)
 	new_doc.room = '542691cab9dc3c6a19445d27'
 
@@ -144,6 +149,7 @@ exports.markup_edit = function(req, res) {
 					out.doc = doc
 					out.edited = new Array();
 					out.edited.push(edited)
+
 					res.json(out)
 				}
 			});
@@ -182,14 +188,14 @@ exports.docByIdOrTitleRender = function(req, res) {
 
 		}
 		
-
-		//console.log(doc)
+  
 		res.render('index_v1', {
 			doc: doc_,
 			docs: new Object(),
 			user : user_,
 			socket_url: nconf.get('SOCKET_SERVER_URL')
 		});
+
 	})
 }
 
@@ -248,26 +254,8 @@ exports.markup_delete = function(req, res) {
 	  		if(req.params.markup_id && req.params.markup_id == 'all'){
 					deleted= doc.markups
 					doc.markups = new Array();
-	  		}
-			else{
-				//console.log(req.params.markup_id)
-				var deleted= new Array();
-				//console.log(doc.markups)
 
-				//console.log(doc)
-
-				  _.each(doc.markups , function (m, i){
-			       if(m._id == req.params.markup_id){
-			      	 	//console.log('remove'+i)
-			       		deleted.push(m)
-			       }
-			      });
-
-			 		doc.markups = _.without(doc.markups,deleted[0] ); // asuming ony one. to test with array
-
-			}
-			// both case save
-			doc.save(function(err,doc) {
+					doc.save(function(err,doc) {
 			        if (err) {
 			           res.send(err)
 			        } else {
@@ -279,7 +267,47 @@ exports.markup_delete = function(req, res) {
 						out.deleted.push(deleted)
 						res.json(out)
 			        }
+			 		});
+
+	  		}
+			else{
+				//console.log(req.params.markup_id)
+				var deleted= new Array();
+				//console.log(doc.markups)
+
+				//console.log(doc)
+					var after_markups = new Array();
+				  _.each(doc.markups , function (m, i){
+			       if(m._id == req.params.markup_id){
+			      	 	console.log(m)
+			       		deleted.push(m)
+
+			       }
+			       else{
+			       		after_markups.push(m)
+			       }
+			      });
+				  doc.markups = new Array()
+			      doc.markups = after_markups;
+
+			      doc.save(function(err,doc) {
+			        if (err) {
+			           res.send(err)
+			        } else {
+
+
+			        	var out = new Object();
+						out.doc = doc
+						out.deleted= new Array(deleted);
+						//out.deleted.push(deleted[0])
+						res.json(out)
+			        }
 			 	});
+
+
+			}
+			// both case save
+			
 	  }
 	});
 }

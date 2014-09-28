@@ -11,6 +11,13 @@ var rooms = require('../api/controllers/rooms');
 module.exports = function(app, passport, auth) {
 
 
+ var fileupload = require('fileupload').createFileUpload('public/uploads').middleware;
+
+    app.post('/api/v1/media/upload', fileupload, function(req, res) {
+       res.send(req.body.image)
+     })
+
+
 	// USER
 
     app.get('/signout', users.signout);
@@ -50,6 +57,7 @@ module.exports = function(app, passport, auth) {
     app.get('/fragments/:name/:param?',     index.fragments); // load sub-blocks 
     app.get('/doc/fragments/:name/:param?',  index.fragments); // load sub-blocks 
 
+   
 
     app.get('/api/v1/docs', docs.list);
 
@@ -80,12 +88,7 @@ module.exports = function(app, passport, auth) {
 
 
 
-	var fileupload = require('fileupload').createFileUpload('public/uploads').middleware;
 
- 	// curl -F "userid=1" -F "filecomment=This is an image file" -Fe=@/Users/tom/Qs.txt" localhost/upload
-	app.post('/upload', fileupload, function(req, res) {
-	   res.send(req.body.image)
-	 })
 	 
     app.get('/api/v1/doc/create/:title?',  auth.requiresLogin, docs.createdoc);
     app.get('/sockets/list', index.sockets_list);

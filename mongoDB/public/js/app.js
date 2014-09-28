@@ -25,9 +25,16 @@ angular.module('musicBox',  ['ngResource', 'musicBox.filters', 'ngRoute', 'music
         templateUrl: '/partials/documents_list',
         controller: DocumentsListCtrl
       }).
-     
-
+      when('/me/account', {
+        templateUrl: '/partials/user_account',
+        controller: UserCtrl
+      }).
+      when('#_=_', {
+        redirectTo: '/!'
+      }).
       
+     //     
+
      
       otherwise({
         redirectTo: '/!'
@@ -42,6 +49,6 @@ angular.module('musicBox',  ['ngResource', 'musicBox.filters', 'ngRoute', 'music
 // instead of empty file include, but files exist #v+
 // if/not included switcher
 angular.module('musicBox.filters', [])
-angular.module('musicBox.directives', [])
+//angular.module('musicBox.directives', [])
 
 

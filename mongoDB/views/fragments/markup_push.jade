@@ -16,13 +16,9 @@ span(ng-click="open_markup_push(section)") +
 		input(ng-model="push.status" ,type="text")
 	p depth
 		input(ng-model="push.depth" type="text" )
-
+	p
+		a(ng-click="push_markup()") push
 	input(onchange="angular.element(this).scope().preuploadFile(this.files)", type="file")
 	a(ng-click="uploadFile()" ) send
-	p {{upload_file_image.fullpath}}
+	img(ng-if="upload_file_image.uploaded == true", ng-src="{{upload_file_image.fullpath}}")
 
-	img(ng-if="upload_file_image.uploaded == true" , ng-src="{{upload_file_image.fullpath}}")
-
-	a(ng-click="push_markup()") push markup
-	a(ng-click="push_section()") push markup_section
-	a(ng-click="offset_markups()") offset_markups

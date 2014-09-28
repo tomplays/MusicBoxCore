@@ -84,6 +84,23 @@ musicBox.factory('renderfactory', function ($rootScope, $http, $location,$routeP
          // console.log(self);
 
 
+         // ui set up.
+  // this var never change as long a doc is loaded... (no reset at rebuild)
+
+  $rootScope.ui = new Object();
+  $rootScope.ui.selected_range  = new Object({start:null, end:null});
+  $rootScope.ui.selected_section_index = null;
+  $rootScope.ui.selected_objects = new Array()
+  $rootScope.ui.menus = new Array();
+  $rootScope.ui.menus.push_markup = new Array();
+  $rootScope.ui.menus.push_markup.open = -1;
+
+
+    $rootScope.inserttext = new Array()
+    $rootScope.inserttext[0] =''
+
+
+
           console.log('render service on init_first')
         
         },
